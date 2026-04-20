@@ -2,7 +2,7 @@ import { BaseComponent } from '../../core/BaseComponent.js';
 import { setAriaProps } from '../../core/a11y/aria.js';
 import { EVE_ICONS, type EveIconId } from '../../core/icons/constants.js';
 import { ensureIconSprite, iconHref } from '../../core/icons/sprite.js';
-import shadowStyles from '../../styles/shadow-components.css?inline';
+import shadowStyles from '../../styles/shadow-components.compiled.css?inline';
 
 /** Types de boutons « common » M3 Expressive. @see https://m3.material.io/components/buttons */
 const VARIANTS = new Set(['elevated', 'filled', 'tonal', 'outlined', 'text']);

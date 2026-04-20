@@ -1,0 +1,28 @@
+---
+alwaysApply: true
+description: Lancer le build npm après chaque modification des sources (lib + shadow CSS + doc).
+---
+
+# Build automatique après modification (Eve)
+
+## Obligation
+
+Après **toute modification** de fichiers sous la lib ou la doc du dépôt Eve :
+
+1. **À la racine** du repo (`eve/`), exécuter **`npm run build`** (inclut `postbuild` → copie vers `docs/public/eve/`).
+
+2. **Styles shadow du bouton** : si `src/styles/shadow-components.css` a été modifié, **avant** `npm run build`, régénérer le fichier consommé par Vite :
+   ```bash
+   npx @tailwindcss/cli -i ./src/styles/shadow-components.css -o ./src/styles/shadow-components.compiled.css --minify
+   ```
+   Puis `npm run build`.
+
+3. **Doc React** (`docs/`) : si seuls des fichiers de `docs/` changent, un `npm run build` dans `docs` peut suffire après copie des bundles ; en cas de doute, **`npm run build` à la racine** reste la référence.
+
+## Ne pas terminer une tâche
+
+Sans avoir lancé le build adapté quand des sources compilables ont changé — sauf si la modification est strictement documentaire (README uniquement, etc.).
+
+## Rappel
+
+Les bundles publiés sont dans `dist/` ; la doc locale sert `docs/public/eve/*` mis à jour par `postbuild`.

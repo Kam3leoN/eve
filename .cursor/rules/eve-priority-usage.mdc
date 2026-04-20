@@ -11,7 +11,7 @@ Quand un besoin UI est couvert par un composant EVE existant, il faut utiliser c
 
 ## Obligations
 
-- Pour les actions de navigation et de telechargement dans la demo PHP, preferer `eve-button` aux liens stylises manuellement.
+- Pour les actions de navigation et de telechargement dans les demos/docs, preferer `eve-button` aux liens stylises manuellement quand le rendu utilise les web components EVE.
 - Eviter les duplications de styles custom si une variante EVE equivalente existe (`filled`, `outlined`, `text`, etc.).
 - Verifier les composants de la lib avant d'ajouter du HTML/CSS ad hoc.
 - Si un composant EVE manque une capacite necessaire, proposer d'abord une extension du composant plutot qu'un contournement local.

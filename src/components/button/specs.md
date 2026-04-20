@@ -14,7 +14,7 @@ Fournir un bouton Material Design 3 Expressive polyvalent (actions principales/s
 ## États
 
 - Hover/focus/pressed via state layer (`::before`).
-- Morph de forme au pressed/selected, plus preview au hover.
+- Morph de forme au pressed/selected.
 - Prise en charge du mode `no-autoinit` via `BaseComponent`.
 
 ## API

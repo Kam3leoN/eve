@@ -42,8 +42,9 @@ Construire une **librairie de composants UI/UX** en **Vanilla TypeScript/JavaScr
 | Composant `button` | `button.mdc` |
 | Grille page, mobile-first, UX | `layout-grid.mdc` |
 | Objectif Lighthouse 100 (dev/prod, mobile/desktop) | `lighthouse-100.mdc` |
-| Liens PHP robustes + menu centralise | `php-links-menu.mdc` |
 | Priorite d'usage des composants EVE | `eve-priority-usage.mdc` |
+| Build `npm run build` après modifs sources ; shadow CSS compilé | `build-after-edit.mdc` |
+| Corriger toutes les erreurs linter / diagnostics | `linter-fix-all.mdc` |
 
 ## Ordre de travail recommandé
 

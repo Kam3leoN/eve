@@ -19,17 +19,20 @@
     "./package.json": "./package.json"
   },
   "scripts": {
-    "dev": "vite --open /index.html",
+    "dev": "npm run build && npm run dev --prefix docs",
+    "dev:lib": "vite --open /index.html",
+    "build:js": "vite build",
+    "build:css": "npx @tailwindcss/cli -i ./src/styles/eve.css -o ./dist/eve.min.css --minify",
+    "watch:css": "npx @tailwindcss/cli -i ./src/styles/eve.css -o ./dist/eve.min.css --watch",
     "test": "vitest",
     "test:run": "vitest run",
     "zip:dist": "node -e \"require('node:fs').rmSync('dist/eve-distribution.zip',{force:true})\" && bestzip dist/eve-distribution.zip dist/eve.min.css dist/eve.min.js dist/eve.min.cjs dist/eve.min.mjs",
-    "build": "vite build && npx @tailwindcss/cli -i ./src/styles/eve.css -o ./dist/eve.min.css --minify && npm run zip:dist",
+    "build": "npm run build:js && npm run build:css && npm run zip:dist",
+    "postbuild": "node docs/scripts/copy-eve-dist.mjs",
     "preview": "vite preview",
-    "lighthouse:dev:mobile": "lhci autorun --config=./lighthouserc.dev.mobile.json",
-    "lighthouse:dev:desktop": "lhci autorun --config=./lighthouserc.dev.desktop.json",
-    "lighthouse:prod:mobile": "lhci autorun --config=./lighthouserc.prod.mobile.json",
-    "lighthouse:prod:desktop": "lhci autorun --config=./lighthouserc.prod.desktop.json",
-    "lighthouse:all": "npm run lighthouse:dev:mobile && npm run lighthouse:dev:desktop && npm run lighthouse:prod:mobile && npm run lighthouse:prod:desktop"
+    "docs:dev": "npm run dev",
+    "docs:build": "npm run build && npm run build --prefix docs",
+    "docs:preview": "npm run preview --prefix docs"
   },
   "keywords": [
     "material-design-3",

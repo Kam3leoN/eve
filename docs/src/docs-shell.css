@@ -1,0 +1,120 @@
+/**
+ * Mise en page minimale de la doc (structure seulement).
+ * Le thème visuel des composants vient de eve.min.css.
+ */
+.docs-shell {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  min-height: 100dvh;
+  box-sizing: border-box;
+}
+
+.docs-aside {
+  padding: 1rem;
+  border-inline-end: 1px solid var(--docs-border, #e5e7eb);
+}
+
+.docs-main {
+  padding: 1.5rem;
+}
+
+.docs-group-title {
+  margin: 1rem 0 0.5rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.docs-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.docs-nav a {
+  border-radius: 0.5rem;
+  padding: 0.45rem 0.65rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.docs-nav a[aria-current='page'] {
+  font-weight: 600;
+}
+
+.docs-demo {
+  border: 1px solid var(--docs-border, #e5e7eb);
+  border-radius: 1rem;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.docs-demo pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.docs-button-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.docs-subsection-title {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.docs-dir-panel {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px dashed var(--docs-border, #e5e7eb);
+}
+
+.docs-dir-panel[dir='rtl'] {
+  text-align: start;
+}
+
+.docs-size-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.docs-size-table th,
+.docs-size-table td {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--docs-border, #e5e7eb);
+  vertical-align: middle;
+}
+
+.docs-size-table th {
+  text-align: start;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.docs-size-table td:first-child {
+  white-space: nowrap;
+  font-family: ui-monospace, monospace;
+}
+
+.docs-table-wrap {
+  overflow-x: auto;
+}
+
+@media (max-width: 1024px) {
+  .docs-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .docs-aside {
+    border-inline-end: none;
+    border-block-end: 1px solid var(--docs-border, #e5e7eb);
+  }
+}

@@ -1,0 +1,8 @@
+/* Reset minimal — le rendu typographique des composants vient de la lib Eve. */
+body {
+  margin: 0;
+}
+
+#root {
+  min-height: 100dvh;
+}

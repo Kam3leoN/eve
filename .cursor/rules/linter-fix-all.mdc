@@ -1,0 +1,26 @@
+---
+alwaysApply: true
+description: Corriger toutes les erreurs de linter / diagnostics avant de conclure une tâche.
+---
+
+# Linter et diagnostics — correction systématique (Eve)
+
+## Obligation
+
+Avant de considérer une tâche **terminée** sur du code :
+
+1. **Diagnostics IDE** : utiliser l’outil de lecture des diagnostics (`read_lints`) sur les **fichiers modifiés** (ou le dossier concerné) et **corriger toutes les erreurs** signalées.
+
+2. **TypeScript** : aucune erreur de compilation sur les fichiers touchés (`tsc` / diagnostics TS).
+
+3. **ESLint** : lorsque le dossier **`docs/`** est modifié, exécuter **`npm run lint --prefix docs`** et corriger jusqu’à **0 erreur** (avertissements traités si la règle du projet l’exige).
+
+4. **Cohérence** : ne pas introduire de nouvelles erreurs dans les fichiers voisins directement impactés par le changement.
+
+## Si le linter échoue encore
+
+Itérer (correction → relancer lint / relire diagnostics) plutôt que de livrer avec des erreurs connues.
+
+## Hors périmètre
+
+Fichiers purement binaires, `node_modules/`, `dist/` générés (ne pas « corriger » le bundle minifié ; corriger la **source** puis rebuild).

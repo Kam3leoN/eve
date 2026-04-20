@@ -7,7 +7,7 @@
  * @see https://material-web.dev/components/button/
  *
  * Cinq types : elevated, filled, tonal (filled tonal), outlined, text.
- * M3 Expressive : taille par défaut **small** ; morph au :active **et** à l’état sélectionné.
+ * M3 Expressive : taille par défaut **small** ; morph au :active **et** à l’état sélectionné (sans hover).
  * @see https://m3.material.io/components/buttons/overview
  * @see https://m3.material.io/components/buttons/specs
  *
@@ -31,9 +31,6 @@
     --eve-btn-lh: var(--eve-comp-button-label-large-line-height);
     --eve-btn-tracking: var(--eve-comp-button-label-large-tracking);
     --eve-btn-radius-pressed: var(--eve-comp-button-sm-radius-pressed);
-    --eve-btn-radius-hover: calc(
-      (var(--eve-btn-radius-rest) + var(--eve-btn-radius-pressed)) / 2
-    );
     min-height: var(--eve-btn-h);
     padding-inline: var(--eve-btn-pad-x);
     padding-block: max(
@@ -106,13 +103,6 @@
     display: none;
   }
 
-  .eve-btn:hover:not(:disabled):not(.eve-btn--soft)::before {
-    opacity: 0.08;
-  }
-  /* Hover morph preview : rayon intermédiaire (moitié de l’écart repos -> pressed). */
-  .eve-btn:hover:not(:disabled):not(.eve-btn--soft):not(.eve-btn--shape-toggle-swap):not(.eve-btn--text) {
-    border-radius: var(--eve-btn-radius-hover);
-  }
   .eve-btn:focus-visible:not(:disabled)::before {
     opacity: 0.1;
   }
