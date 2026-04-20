@@ -1,0 +1,22 @@
+---
+alwaysApply: true
+description: Conteneur grille `.eve-container`, mobile-first et intégration user-friendly obligatoires.
+---
+
+# Layout grille & mobile-first (Eve)
+
+## Toujours en tête
+
+1. **Conteneur** : le contenu de page, démo ou intégration doit passer par **`.eve-container`** (ou pattern documenté équivalent utilisant les `--eve-layout-*` dans `eve-layout.css`). Ne pas laisser de blocs principaux « flottants » sans gouttière ni `max-width` quand un layout global est attendu.
+2. **Mobile-first** : définir d’abord le comportement **petit écran** (pleine largeur, espacements serrés, une colonne), puis enrichir avec **`min-width`** (jamais l’inverse).
+3. **User-friendly** : zones tactiles confortables, texte lisible, pas de débordement horizontal involontaire (`overflow-x`), contrastes et focus visibles (voir aussi `accessibility.mdc`).
+
+## Fichiers
+
+- `src/styles/eve-layout.css` — tokens `--eve-layout-*`, classe **`.eve-container`**, **`.eve-span-full`**.
+
+## Patterns
+
+- Grille **12 colonnes** ; les enfants directs de `.eve-container` sont **pleine largeur** par défaut (`grid-column: 1 / -1`).
+- Ne pas combiner **`display: flex`** (utilitaires Tailwind inclus) sur le **même nœud** que `.eve-container` : la grille serait écrasée. Utiliser un **enfant** pour colonne flex ou stack.
+- Préférer **`clamp()`** pour paddings / gaps entre breakpoints plutôt que des paliers arbitraires non testés sur mobile.

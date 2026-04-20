@@ -1,0 +1,31 @@
+---
+alwaysApply: false
+description: Icônes Eve — sprite SVG unique, core/icons.ts, utilisation use href.
+globs:
+  - "**/core/icons.ts"
+  - "**/icons/**"
+---
+
+# Système d’icônes (Sprite SVG)
+
+## Fichier central
+
+- **`src/core/icons.ts`** (ou équivalent) :
+  - Définit une **collection de constantes** : IDs stables, noms Material Symbols alignés sur le set choisi.
+  - Exporte les **IDs** et éventuellement une map `iconId → symbol name` pour la doc.
+
+## Sprite
+
+- **Une seule injection** dans le DOM : élément `<svg>` caché contenant des **`<symbol id="...">`** pour chaque icône.
+- Les composants consomment via :
+  - `<svg><use href="#icon-id" /></svg>` (et `xlink:href` en compat legacy si nécessaire pour cibles anciennes — documenter la stratégie).
+
+## Performance
+
+- Le sprite est chargé **une fois** ; le navigateur **met en cache** ; les instances `<use>` sont légères.
+- Éviter de dupliquer des SVG inline volumineux par instance.
+
+## Accessibilité
+
+- Si l’icône est **purement décorative** : `aria-hidden="true"` sur le `<svg>`.
+- Si elle **porte du sens** : `role="img"` + `aria-label` / texte visible selon pattern.

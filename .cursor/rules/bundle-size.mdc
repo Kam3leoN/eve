@@ -1,0 +1,17 @@
+---
+alwaysApply: false
+description: Poids du bundle Eve — dépendance Material Color Utilities et pistes d’allègement.
+globs:
+  - "vite.config.ts"
+  - "package.json"
+---
+
+# Taille de bundle
+
+- Le build JS inclut **`@material/material-color-utilities`** (HCT, thème image, `applyTheme`). C’est la part principale du fichier (~150 kB brut, ~32 kB gzip en ESM).
+- **Ne pas dupliquer** la logique couleur dans Eve : un seul chemin via `core/theme/`.
+
+## Pistes futures (sans doublon de code)
+
+- Documenter un build **« peer »** optionnel (MCU en `peerDependencies` + `external` Rollup) pour les applis qui chargent déjà Material côté bundle.
+- Lazy-load du module thème uniquement quand `createEveTheme` est appelé (import dynamique) — à valider selon API publique.

@@ -1,0 +1,27 @@
+---
+alwaysApply: false
+description: Contrat d’export Eve — ce que index.ts doit exposer et ce qui est interne.
+globs:
+  - "src/index.ts"
+  - "src/core/**/index.ts"
+---
+
+# API publique Eve
+
+## Point d’entrée
+
+- **`src/index.ts`** : réexporte uniquement `core/*`, `registerEveElements`, classe `Button`.
+- Ne pas exporter d’implémentations internes (détails de shadow, helpers non stables).
+
+## Build
+
+- **ESM** : `dist/eve.mjs` — imports nommés, tree-shaking possible.
+- **CJS** : `dist/eve.cjs`
+- **IIFE** : `dist/eve.iife.js` — variable globale **`Eve`** (script classique).
+- **CSS** : `dist/eve.css` (Tailwind + couche base focus) — import optionnel `eve/styles`.
+
+## Consommateurs
+
+- **Module** : `import { createEveTheme, registerEveElements } from 'eve'`
+- **Script** : charger `eve.iife.js` puis `Eve.registerEveElements()`, `Eve.createEveTheme`, etc.
+- **Styles** : lier `eve.css` ou intégrer le preset Tailwind du projet (voir `build-delivery.mdc`).

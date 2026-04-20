@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Eve est une librairie UI headless et stylée en TypeScript, alignée Material Design 3 Expressive avec composants accessibles et thèmes dynamiques."
+    />
+    <title>Eve — démo</title>
+    <link rel="preload" href="/src/styles/eve.css" as="style" />
+    <link rel="stylesheet" href="/src/styles/eve.css" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="/src/styles/eve.css" /></noscript>
+  </head>
+  <body class="min-h-screen text-[color:var(--md-sys-color-on-surface)]">
+    <main id="demo" class="eve-container min-h-screen py-6 sm:py-8">
+      <div class="flex flex-col gap-6 sm:gap-8">
+        <h1 class="text-2xl font-semibold text-[color:var(--md-sys-color-on-background)]">
+          Eve — démo locale
+        </h1>
+        <p class="text-sm opacity-90">Thème M3 appliqué sur <code>:root</code>.</p>
+        <section id="mount"></section>
+      </div>
+    </main>
+    <script type="module" src="/demo/main.ts"></script>
+  </body>
+</html>

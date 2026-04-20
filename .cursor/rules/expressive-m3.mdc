@@ -1,0 +1,13 @@
+---
+alwaysApply: true
+description: Politique obligatoire — Material 3 Expressive uniquement ; jamais Baseline ; easing Emphasized exclusivement.
+---
+
+# Material 3 Expressive (obligatoire)
+
+- **Eve vise exclusivement Material 3 Expressive.** Ne pas orienter le design, la doc ni le code vers le train **Baseline** ni vers un « M3 minimal / classique » présenté comme cible.
+- **Motion — easing** : utiliser **uniquement** la famille **Emphasized** (`md.sys.motion.easing.emphasized`, `emphasized-decelerate`, `emphasized-accelerate`). Aucune autre famille de courbes du tableau Material (p.ex. jeux de courbes « utilitaires » parallèles à Emphasized) dans ce dépôt.
+- **Motion** : [Motion overview](https://m3.material.io/m3/pages/motion-overview/) ; courbes Emphasized + durées : [tokens specs](https://m3.material.io/styles/motion/easing-and-duration/tokens-specs) (colonnes **Emphasized**).
+- **Formes** : échelle **Expressive** (rayons généreux, continuité avec les composants expressifs).
+- **Composants** : états et transitions **Expressive** (courbes Emphasized + durées `md.sys.motion.duration.*`).
+- **Boutons** : se conformer à [Buttons overview](https://m3.material.io/components/buttons/overview) (M3 Expressive) — p.ex. **small = défaut**, *Shape morphs when pressed* **et** *when selected* ; paddings inline par palier dans `m3-comp-button-tokens.css` + `button.mdc`.

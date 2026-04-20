@@ -1,0 +1,82 @@
+/**
+ * Mesures — M3 Expressive (buttons).
+ *
+ * Doc : https://m3.material.io/components/buttons/overview
+ * - Cinq tailles ; **small = défaut** (« Small (existing, default) »).
+ * - **Padding horizontal** par palier (1dp≈1px) : XS 12 / Small 16 / Medium 24 / Large 48 / XL 64.
+ * - Formes : round / square ; morph pressed **et** sélectionné (row C).
+ *
+ * Pilule round : rayon repos = hauteur ÷ 2. Fiche interne : hauteurs / gaps / row B–C.
+ */
+:root {
+  /* Typo (lisibilité vs hauteur de container) */
+  --eve-comp-button-label-medium-size: 0.75rem;
+  --eve-comp-button-label-medium-line-height: 1rem;
+  --eve-comp-button-label-medium-tracking: 0.03125em;
+
+  --eve-comp-button-label-large-size: 0.875rem;
+  --eve-comp-button-label-large-line-height: 1.25rem;
+  --eve-comp-button-label-large-tracking: 0.00625em;
+
+  /** Medium (56px) — entre label et titre */
+  --eve-comp-button-title-md-size: 1.125rem;
+  --eve-comp-button-title-md-line-height: 1.75rem;
+  --eve-comp-button-title-md-tracking: 0.00625em;
+
+  /** Large (96px) */
+  --eve-comp-button-headline-md-size: 2rem;
+  --eve-comp-button-headline-md-line-height: 2.5rem;
+  --eve-comp-button-headline-md-tracking: 0em;
+
+  /** Extra-large (136px) */
+  --eve-comp-button-headline-lg-size: 2.5rem;
+  --eve-comp-button-headline-lg-line-height: 3rem;
+  --eve-comp-button-headline-lg-tracking: 0em;
+
+  /* 1 — Extra-small : 32 px */
+  --eve-comp-button-xs-height: 32px;
+  --eve-comp-button-xs-padding-inline: 12px;
+  --eve-comp-button-xs-icon-size: 20px;
+  --eve-comp-button-xs-gap: 4px;
+
+  /* 2 — Small : 40 px */
+  --eve-comp-button-sm-height: 40px;
+  --eve-comp-button-sm-padding-inline: 16px;
+  --eve-comp-button-sm-icon-size: 20px;
+  --eve-comp-button-sm-gap: 8px;
+
+  /* 3 — Medium : 56 px */
+  --eve-comp-button-md-height: 56px;
+  --eve-comp-button-md-padding-inline: 24px;
+  --eve-comp-button-md-icon-size: 24px;
+  --eve-comp-button-md-gap: 8px;
+
+  /* 4 — Large : 96 px */
+  --eve-comp-button-lg-height: 96px;
+  --eve-comp-button-lg-padding-inline: 48px;
+  --eve-comp-button-lg-icon-size: 32px;
+  --eve-comp-button-lg-gap: 12px;
+
+  /* 5 — Extra-large : 136 px */
+  --eve-comp-button-xl-height: 136px;
+  --eve-comp-button-xl-padding-inline: 64px;
+  --eve-comp-button-xl-icon-size: 40px;
+  --eve-comp-button-xl-gap: 16px;
+
+  /**
+   * Forme M3 Expressive (Google) — dp = px 1:1
+   * - Round : rayon repos = hauteur ÷ 2 (pilule), défini en CSS.
+   * - Square (row B) : rayon aux coins au repos.
+   * - Pressed (row C) : morph au :active.
+   */
+  --eve-comp-button-xs-radius-square: 12px;
+  --eve-comp-button-xs-radius-pressed: 8px;
+  --eve-comp-button-sm-radius-square: 12px;
+  --eve-comp-button-sm-radius-pressed: 8px;
+  --eve-comp-button-md-radius-square: 16px;
+  --eve-comp-button-md-radius-pressed: 12px;
+  --eve-comp-button-lg-radius-square: 28px;
+  --eve-comp-button-lg-radius-pressed: 16px;
+  --eve-comp-button-xl-radius-square: 28px;
+  --eve-comp-button-xl-radius-pressed: 16px;
+}

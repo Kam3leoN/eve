@@ -1,0 +1,42 @@
+---
+alwaysApply: false
+description: Build et livraison Eve — ESM tree-shakeable, UMD/IIFE pour script tag, Tailwind consommateur.
+globs:
+  - "**/vite.config.*"
+  - "**/rollup.config.*"
+  - "**/package.json"
+  - "**/tsconfig*.json"
+---
+
+# Build et livraison
+
+## Formats (état du dépôt)
+
+1. **ESM** : `dist/eve.mjs` — `package.json` → `exports["."].import`.
+2. **CommonJS** : `dist/eve.cjs` — `exports["."].require`.
+3. **IIFE** : `dist/eve.iife.js` — globale **`Eve`** (script sans module).
+4. **CSS** : `dist/eve.css` — `exports["./styles"]` ; généré par `@tailwindcss/cli` depuis `src/styles/eve.css`.
+
+Scripts npm : `npm run build` = `vite build` + `tsc -p tsconfig.build.json` (déclarations `.d.ts` dans `dist/`) + Tailwind CLI (`dist/eve.css`).
+
+## Déclarations TypeScript
+
+- **`tsconfig.build.json`** : `emitDeclarationOnly`, `rootDir` = `src`, sortie à plat dans `dist/` (ex. `dist/index.d.ts`).
+- Les imports `*.css?inline` sont typés via `src/types/css-inline.d.ts`.
+
+## package.json (points de vigilance)
+
+- **`exports`** : mapper `./` vers ESM build ; fichier **types** `.d.ts` alignés.
+- **`sideEffects`** : déclarer si CSS entry ou fichiers avec effets pour aider le tree-shaking (sinon `"sideEffects": false` si tout est pur).
+- **Peer vs deps** : Tailwind reste typiquement chez le consommateur ; la lib fournit **preset** ou **fichier de config** à fusionner.
+
+## CSS
+
+- Stratégie au choix (documenter dans le repo) :
+  - Build CSS unique `eve.css` pour script tag.
+  - Ou consommateur intègre le **preset Tailwind** + import des layers.
+
+## Qualité
+
+- Types TS stricts en source ; **d.ts** générés ou écrits pour les deux modes.
+- Tester l’import ESM et le chargement script sur une page HTML minimale.

@@ -1,0 +1,15 @@
+---
+alwaysApply: false
+description: Préfixage dynamique via lib.config.ts pour API publique, tags et variables.
+globs:
+  - "**/lib.config.ts"
+  - "**/src/**/*.ts"
+  - "**/src/**/*.css"
+  - "**/src/**/*.scss"
+---
+
+# Préfixage
+
+- Utiliser `LIB_PREFIX` et helpers de `lib.config.ts` pour le nommage.
+- Les custom elements publics doivent passer par `withLibPrefix()`.
+- Les nouvelles variables CSS exposées doivent être préfixées `--${LIB_PREFIX}-...`.

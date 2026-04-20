@@ -1,0 +1,14 @@
+@import "./m3-sys-motion-shape.css";
+@import "./m3-sys-typography.css";
+@import "./m3-comp-button-tokens.css";
+@import "./eve-layout.css";
+@import "tailwindcss";
+
+/* Couverture de scan pour utilitaires utilisés hors shadow (démo, intégrations). */
+@source "../**/*.{ts,html}";
+
+@layer base {
+  :root.eve-focus-visible :focus:not(:focus-visible) {
+    outline: none;
+  }
+}

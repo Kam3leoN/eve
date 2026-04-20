@@ -1,0 +1,32 @@
+---
+alwaysApply: true
+description: Exiger Lighthouse 100 sur Performance, Accessibilite, Best Practices et SEO en dev, prod, desktop et mobile.
+---
+
+# Lighthouse 100 - Regle obligatoire
+
+## Objectif
+
+Chaque changement UI, navigation, SEO ou chargement de ressources doit conserver un score **100/100** sur:
+- Performance
+- Accessibilite
+- Best Practices
+- SEO
+
+## Perimetre d'audit obligatoire
+
+- Dev (WAMP/PHP): mobile + desktop
+- Prod (build): mobile + desktop
+
+## Exigences techniques
+
+- Metadonnees SEO obligatoires par page: `title`, `meta description`, canonical, `lang`.
+- `robots.txt` et sitemap valides.
+- Navigation sans rechargement avec fallback SSR.
+- CSS et JS non critiques charges sans bloquer le rendu initial.
+- Eviter les scripts inutiles au premier ecran.
+
+## Validation avant finalisation
+
+- Executer `npm run lighthouse:all`.
+- Une tache n'est jamais consideree terminee si l'un des 4 criteres est en dessous de 100.

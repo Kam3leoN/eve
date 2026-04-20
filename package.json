@@ -1,0 +1,58 @@
+{
+  "name": "eve",
+  "version": "0.1.0",
+  "description": "Librairie UI Material 3 vanilla (TypeScript), légère et agnostique du framework",
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/eve.min.cjs",
+  "module": "./dist/eve.min.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/eve.min.mjs",
+      "require": "./dist/eve.min.cjs",
+      "default": "./dist/eve.min.mjs"
+    },
+    "./styles": "./dist/eve.min.css",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "dev": "vite --open /index.html",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "zip:dist": "node -e \"require('node:fs').rmSync('dist/eve-distribution.zip',{force:true})\" && bestzip dist/eve-distribution.zip dist/eve.min.css dist/eve.min.js dist/eve.min.cjs dist/eve.min.mjs",
+    "build": "vite build && npx @tailwindcss/cli -i ./src/styles/eve.css -o ./dist/eve.min.css --minify && npm run zip:dist",
+    "preview": "vite preview",
+    "lighthouse:dev:mobile": "lhci autorun --config=./lighthouserc.dev.mobile.json",
+    "lighthouse:dev:desktop": "lhci autorun --config=./lighthouserc.dev.desktop.json",
+    "lighthouse:prod:mobile": "lhci autorun --config=./lighthouserc.prod.mobile.json",
+    "lighthouse:prod:desktop": "lhci autorun --config=./lighthouserc.prod.desktop.json",
+    "lighthouse:all": "npm run lighthouse:dev:mobile && npm run lighthouse:dev:desktop && npm run lighthouse:prod:mobile && npm run lighthouse:prod:desktop"
+  },
+  "keywords": [
+    "material-design-3",
+    "web-components",
+    "typescript",
+    "tailwindcss",
+    "a11y"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@material/material-color-utilities": "^0.4.0"
+  },
+  "devDependencies": {
+    "@lhci/cli": "^0.15.1",
+    "@tailwindcss/cli": "^4.2.2",
+    "@tailwindcss/vite": "^4.2.2",
+    "@types/node": "^25.6.0",
+    "bestzip": "^2.2.3",
+    "esbuild": "^0.28.0",
+    "jsdom": "^26.1.0",
+    "tailwindcss": "^4.2.2",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.8",
+    "vitest": "^3.2.4"
+  }
+}

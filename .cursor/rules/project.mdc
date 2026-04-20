@@ -1,0 +1,58 @@
+---
+alwaysApply: true
+description: Vision Eve — lib UI M3 vanilla TS, règles transverses et index des règles détaillées.
+---
+
+# Projet Eve — librairie de composants UI (Vanilla TS/JS)
+
+## Mission
+
+Construire une **librairie de composants UI/UX** en **Vanilla TypeScript/JavaScript**, **agnostique du framework**, alignée sur **Material Design 3 Expressive** (pas Baseline), optimisée **performance** et **accessibilité (WCAG 2.1)**.
+
+## Layout & expérience utilisateur
+
+- **Grille** : utiliser le conteneur **`.eve-container`** et les tokens `eve-layout` (`src/styles/eve-layout.css`) pour les pages et démos ; ne pas ignorer la mise en page globale.
+- **Mobile-first** : styles de base pour petits viewports, puis media queries en **`min-width`** ; viser une utilisation **clair et confortable** (lisibilité, pas de scroll horizontal parasite, touch targets raisonnables).
+- **RTL obligatoire pour les nouveaux composants** : toute nouvelle démo/documentation composant doit inclure au moins un exemple en **`dir="rtl"`** (et idéalement un contrôle en `dir="ltr"` dans le bloc RTL) pour valider direction, espacements logiques et icônes directionnelles.
+- Détail des obligations : règle **`layout-grid.mdc`** (toujours appliquée).
+
+## Principes non négociables
+
+- **Pas de dépendance** à React, Vue ou autre framework pour le cœur de la lib.
+- **Livraison double** : consommation via `<script src="...">` (HTML/PHP) **et** import **ESM** (Vite, bundlers).
+- **Styles** : **TailwindCSS** avec configuration **partagée** et réutilisable.
+- **Couleurs** : thème dynamique basé sur **HCT** (Material **Expressive**), pas une palette hardcodée arbitraire sans validation contraste.
+- **A11y** : intégrée dès la conception (pas en couche collée après coup).
+
+## Règles détaillées (fichiers séparés)
+
+| Sujet | Fichier |
+|--------|---------|
+| Arborescence, plugins par composant, interop script/ESM | `architecture.mdc` |
+| Thème HCT, tokens CSS, image → couleur dominante | `theming-hct.mdc` |
+| Focus trap, focus visible, ARIA | `accessibility.mdc` |
+| Composant « Master », slots, composition | `components-patterns.mdc` |
+| Sprite SVG, `core/icons.ts` | `icons.mdc` |
+| Build UMD/IIFE + ESM, points d’entrée | `build-delivery.mdc` |
+| Arborescence réelle `src/` | `src-structure.mdc` |
+| Contrat d’exports publics | `public-api.mdc` |
+| Poids bundle / MCU | `bundle-size.mdc` |
+| Tokens motion & shape M3 Expressive | `m3-motion-shape-tokens.mdc` |
+| Politique Expressive / pas Baseline | `expressive-m3.mdc` |
+| Composant `button` | `button.mdc` |
+| Grille page, mobile-first, UX | `layout-grid.mdc` |
+| Objectif Lighthouse 100 (dev/prod, mobile/desktop) | `lighthouse-100.mdc` |
+| Liens PHP robustes + menu centralise | `php-links-menu.mdc` |
+| Priorite d'usage des composants EVE | `eve-priority-usage.mdc` |
+
+## Ordre de travail recommandé
+
+1. Valider la structure dossiers et les points d’entrée (`architecture.mdc`, `build-delivery.mdc`).
+2. Implémenter le **noyau thème HCT** + injection `:root` (`theming-hct.mdc`).
+3. Poser **a11y core** réutilisable (`accessibility.mdc`).
+4. **Icônes** sprite unique (`icons.mdc`).
+5. Composants (**Button**, puis extensions Expressive) (`components-patterns.mdc`).
+
+## Langue
+
+Documentation des règles et commentaires orientés équipe : **français** ; API et noms de symboles : **anglais** (convention code).

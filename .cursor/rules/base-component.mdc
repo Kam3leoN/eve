@@ -1,0 +1,14 @@
+---
+alwaysApply: false
+description: Contrat BaseComponent (init/destroy/no-autoinit) pour tous les custom elements.
+globs:
+  - "**/core/BaseComponent.ts"
+  - "**/components/**/*.ts"
+---
+
+# BaseComponent
+
+- Tout composant personnalisé doit hériter de `BaseComponent`.
+- `onInit()` et `onDestroy()` sont obligatoires.
+- `no-autoinit` doit bloquer l’initialisation auto.
+- `init()` doit rester idempotent.

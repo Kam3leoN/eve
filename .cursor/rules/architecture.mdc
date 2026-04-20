@@ -1,0 +1,52 @@
+---
+alwaysApply: false
+description: Structure modulaire Eve, dossiers-plugins, Tailwind partagé, usage sans framework.
+globs:
+  - "**/*"
+---
+
+# Architecture Eve
+
+## Objectif
+
+Modularité maximale : chaque composant vit dans un **dossier autonome** (style « plugin »), importable seul ou via un index agrégé, sans couplage framework. **Design system : Material 3 Expressive uniquement** (`expressive-m3.mdc`).
+
+L’arborescence effective est maintenue dans **`src-structure.mdc`** (éviter la divergence).
+
+## Structure de dossiers suggérée
+
+```text
+eve/
+├── src/
+│   ├── core/
+│   │   ├── theme/          # HCT, génération tokens, injection CSS
+│   │   ├── a11y/           # FocusTrap, FocusVisible, helpers ARIA
+│   │   ├── dom/            # Utilitaires DOM légers (sans framework)
+│   │   └── icons.ts        # Références symboles + bootstrap sprite (voir icons.mdc)
+│   ├── components/
+│   │   ├── button/         # Exemple : index.ts, styles (tokens Tailwind), tests
+│   │   └── card/           # Exemple « Master » avec slots
+│   └── index.ts            # Réexport public contrôlé
+├── tailwind.config.ts      # Config partagée (preset ou package interne)
+├── package.json
+└── vite.config.ts (ou rollup) # build ESM + UMD/IIFE
+```
+
+## Règles par composant (dossier-plugin)
+
+- **Un dossier = un composant** : comportement TS, styles (classes Tailwind / layers), éventuellement petit README interne si besoin.
+- **Exports explicites** depuis `components/<name>/index.ts` ; pas d’effets de bord à l’import sauf opt-in (`init()`).
+- **Aucun import** depuis React/Vue dans `src/core` ni dans les composants vanilla.
+- **Interop** :
+  - **Module** : `import { Button } from 'eve'` (ou sous-chemin stable documenté).
+  - **Script global** : bundle UMD/IIFE expose une **API namespace** (ex. `window.Eve`) avec constructeurs ou factories documentés.
+
+## TailwindCSS
+
+- **Une seule source de vérité** pour thème sémantique : variables CSS M3 (`--md-sys-color-*`) générées par le moteur HCT, consommées dans Tailwind via `theme.extend.colors` mappées sur `var(...)`.
+- Éviter les couleurs « magiques » en dur dans les composants ; préférer **tokens** + **états** (hover, disabled) via variables ou classes utilitaires cohérentes.
+
+## Performance (rappel)
+
+- Pas de polyfills lourds inutiles ; viser **tree-shaking** (ESM named exports).
+- Éviter les grosses dépendances pour du simple DOM ; préférer utilitaires internes minces.

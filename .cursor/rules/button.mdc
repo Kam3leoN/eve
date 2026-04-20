@@ -1,0 +1,51 @@
+---
+alwaysApply: false
+description: Référence `button` alignée M3 Expressive common buttons.
+globs:
+  - "src/components/button/**"
+  - "src/styles/shadow-components.css"
+---
+
+# `button` (Material 3 Expressive)
+
+## Specs
+
+- [Buttons — M3](https://m3.material.io/components/buttons)
+- [Buttons — specs (états, tailles, Expressive)](https://m3.material.io/components/buttons/specs)
+- [Material Web — Buttons](https://material-web.dev/components/button/)
+
+## Variantes (`variant`)
+
+| Valeur | Rôle |
+|--------|------|
+| `elevated` | Surface + ombre (séparation visuelle) |
+| `filled` | Action principale |
+| `tonal` | Secondaire (secondary container) |
+| `outlined` | Emphase moyenne, bordure `outline-variant`, libellé `on-surface-variant` |
+| `text` | Priorité faible |
+
+## Attributs
+
+- `size`: `extra-small` \| `small` (**défaut** doc M3 Expressive) \| `medium` \| `large` \| `extra-large` — hauteurs **32 / 40 / 56 / 96 / 136** px (`m3-comp-button-tokens.css`).
+- `shape`: **`round` (défaut M3 Expressive / pilule h÷2)** \| `square` — **square** : row B au repos ; **:active** et sélectionné : row C (sauf ci-dessous).
+- `shape-toggle-swap` (booléen) — avec **toggle** / `pressed` : **off** = forme `shape` ; **on** = **inverse** (*square* → pilule h÷2, *round* → square row B). Désactive le morph row C classique sur sélectionné / `:active`.
+- `dir` — `rtl` \| `ltr` (optionnel) : propagé sur le `<button>` / `<a>` interne ; sinon héritage depuis le document ou un ancêtre. Padding/gap déjà logiques ; chevron sprite retourné en RTL.
+- `disabled` — non focusable (bouton natif / lien `tabindex=-1`).
+- `soft-disabled` — `aria-disabled`, reste focusable (toolbar).
+- `href` / `target` — rend un `<a>` (sinon `<button>`).
+- `type` — `button` \| `submit` \| `reset` (bouton seulement).
+- `name`, `value`, `form` — formulaires (bouton seulement).
+- `icon-leading` / `icon-trailing` — clés sprite (`constants.ts`).
+- Position d’icône implicite : `icon-leading` = début, `icon-trailing` = fin (pas de flag supplémentaire).
+- `toggle` — bouton interrupteur : clic bascule `pressed` (ignoré si `href` ou `type` submit/reset). S’applique aux **cinq** variantes common (y compris `text`).
+- `pressed` — état sélectionné (booléen) ; avec `toggle`, synchronisé au clic ; sinon contrôle manuel.
+- Événement **`eve-change`** — `detail.pressed` (booléen), `bubbles` + `composed`.
+- `aria-label` — reflété sur le contrôle interne ; `aria-pressed` si `toggle` ou `pressed`.
+
+## Styles
+
+- State layer `::before` : hover 8 %, focus / pressed 10 % (couleur « on » selon variante). **Variant `text`** : pas de state layer (pas de surface derrière le libellé).
+- **Morph de forme** (Expressive) : row C au `:active` **et** lorsque **sélectionné** (`.eve-btn--pressed`). Au repos non sélectionné : round = h÷2, square = row B.
+- Grille M3 (Default / Toggle unselected / Toggle selected) : **elevated** — défaut & off : `surface-container-low` + **`primary`** (libellé) ; on : `primary` + `on-primary`. **filled** — défaut : `primary` + `on-primary` ; off : `surface-container` + `on-surface-variant` ; on : `primary` + `on-primary`. **tonal** — défaut & off : `secondary-container` + `on-secondary-container` ; on : `secondary` + `on-secondary`. **outlined** — défaut & off : contour `outline-variant` + `on-surface-variant` ; on : **`inverse-surface`** + **`inverse-on-surface`**. **text** — libellé `primary` (pas de rangée toggle distincte dans la grille). `applyEveTheme` définit `--md-sys-color-surface-container-low` et `--md-sys-color-surface-container` via **SchemeExpressive** (Dynamic Color).
+- Motion Emphasized ; `prefers-reduced-motion` désactive les transitions.
+- Mesures (padding inline, gap, icône) : fiche Expressive — voir `m3-comp-button-tokens.css`. Typo : **label-medium** (XS), **label-large** (**small** défaut + S explicite), **title-md** (M), **headline** (L/XL). Famille/poids via `m3-sys-typography.css`.

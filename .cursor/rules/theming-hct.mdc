@@ -1,0 +1,45 @@
+---
+alwaysApply: false
+description: Thème dynamique Material 3 via HCT, tokens CSS, extraction couleur depuis image, contraste WCAG.
+globs:
+  - "**/core/theme/**"
+  - "**/theme/**"
+  - "**/*hct*"
+---
+
+# Thématisation HCT (Material 3 Expressive)
+
+- Cible **Expressive** (pas Baseline) ; alignement couleur / rôles avec les attentes **Expressive**. Voir `expressive-m3.mdc`.
+
+## Base
+
+- Utiliser exclusivement le modèle **HCT** (Hue, Chroma, Tone) tel que défini par Material / Material Color Utilities (référence conceptuelle M3), pas un simple HSL naïf pour les décisions sémantiques.
+- **Entrées** :
+  - **Couleur** : Hex ou RGB (conversion vers espace interne HCT).
+  - **Image** : pipeline obligatoire pour **extraire une couleur dominante** (échantillonnage + réduction / choix de swatch), puis **même pipeline HCT** que pour une couleur manuelle (comme prévu par les approches type Material « source color »).
+
+## Sortie : Design Tokens CSS
+
+- Générer une **palette de tokens M3** : Primary, Secondary, Tertiary, Error, Surface, Surface-variant, Outline, etc., avec variantes **on-*** et **\*-container** attendues par M3.
+- **Injection** : écrire les variables sur **`:root`** (ou sur un conteneur thémable si besoin futur), par ex. :
+  - `--md-sys-color-primary`
+  - `--md-sys-color-on-primary`
+  - `--md-sys-color-primary-container`
+  - `--md-sys-color-on-primary-container`
+  - (idem schéma pour les autres rôles)
+- Le module TS ne doit pas supposer un framework : **setter de style** sur `document.documentElement` ou feuille CSS construite en string selon stratégie retenue.
+
+## Accessibilité des couleurs (WCAG 2.1)
+
+- L’algorithme de **génération / ajustement** des tons et paires **on-X / X** doit **viser les ratios de contraste** applicables (texte normal et large selon cas d’usage) entre fond et contenu.
+- Si une combinaison ne passe pas : **ajuster Chroma/Tone** dans l’espace HCT (boucle de contrainte) plutôt que d’exposer des couleurs invalides.
+- Documenter les **hypothèses** (taille de texte, AA vs AAA si le projet tranche).
+
+## API attendue (conceptuelle)
+
+- Une **fonction principale** du style `createThemeFromSource({ hex? | rgb?, image? })` → objet tokens + **effet de bord** : application des variables CSS (ou retour pur + application séparée, mais les deux modes doivent être possibles pour les tests).
+
+## Tests
+
+- Tests unitaires sur **contraste** pour quelques seeds (clair/sombre si le scope inclut dark theme).
+- Test non régression sur **extraction image** (image fixe en fixture).

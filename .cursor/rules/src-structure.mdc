@@ -1,0 +1,40 @@
+---
+alwaysApply: false
+description: Arborescence réelle src/ Eve — point unique de vérité pour éviter les doublons avec architecture.mdc.
+globs:
+  - "src/**"
+---
+
+# Structure `src/` (Eve)
+
+Cible **M3 Expressive** (voir `expressive-m3.mdc`). Ne pas dupliquer ces informations ailleurs : mettre à jour ce fichier si l’arborescence change.
+
+```text
+src/
+├── index.ts                 # API publique (exports nommés)
+├── vite-env.d.ts            # Types Vite (dev)
+├── types/
+│   └── css-inline.d.ts      # Ambient `*.css?inline` (tsc build)
+├── core/
+│   ├── a11y/                # aria, focus-trap, focus-visible
+│   ├── dom/                 # focusable (sélecteur partagé)
+│   ├── icons/               # constantes + sprite (ensureIconSprite)
+│   ├── theme/               # createEveTheme / applyEveTheme (HCT via Material)
+│   └── index.ts
+├── components/
+│   ├── button/              # Button
+│   └── register.ts          # registerEveElements()
+└── styles/
+    ├── eve.css              # import tokens M3 + eve-layout + Tailwind
+    ├── eve-layout.css       # .eve-container, grille 12 col, --eve-layout-*
+    ├── m3-sys-motion-shape.css # --md-sys-motion-* et --md-sys-shape-* (:root)
+    ├── m3-sys-typography.css   # label-large (boutons)
+    └── shadow-components.css # Styles shadow DOM (import ?inline dans eve-button)
+```
+
+## Règles
+
+- **Un seul fichier** `shadow-components.css` pour `button` (évite de multiplier les imports Tailwind).
+- **Motion / formes** : `m3-sys-motion-shape.css` + règle `m3-motion-shape-tokens.mdc`.
+- **Thème** : logique dans `core/theme/` uniquement ; pas de copie d’algo HCT hors `@material/material-color-utilities`.
+- **Icônes** : IDs dans `core/icons/constants.ts`, injection dans `sprite.ts`.

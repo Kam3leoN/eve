@@ -1,0 +1,13 @@
+---
+alwaysApply: false
+description: Guidelines Ripple Material 3 (state layer + animation) pour composants interactifs.
+globs:
+  - "**/core/ripple/**"
+  - "**/components/**/*.ts"
+---
+
+# Ripple
+
+- Utiliser `core/ripple/Ripple.ts` au lieu de réimplémenter l’ondulation.
+- Respecter les durées/easing Material 3.
+- Nettoyer les nœuds ripple en `destroy()`.

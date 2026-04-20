@@ -1,0 +1,13 @@
+---
+alwaysApply: false
+description: Utilisation de Announcer pour notifications lecteurs d’écran.
+globs:
+  - "**/core/a11y/**"
+  - "**/components/**/*.ts"
+---
+
+# Announcer
+
+- Pour les messages dynamiques non visibles, utiliser `Announcer.announce()`.
+- Éviter de créer plusieurs régions `aria-live` concurrentes.
+- Nettoyer avec `Announcer.destroy()` dans les scénarios de teardown global.

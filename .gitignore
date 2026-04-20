@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env
+.env.*
+.npmrc
+.pnpm-store/
+.turbo/
+coverage/
+*.local
+.DS_Store
+vite.config.d.ts

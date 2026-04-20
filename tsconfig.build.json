@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "declarationMap": true,
+    "emitDeclarationOnly": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "stripInternal": true
+  },
+  "include": ["src/**/*.ts", "src/types/css-inline.d.ts"],
+  "exclude": ["src/vite-env.d.ts"]
+}

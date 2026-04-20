@@ -1,0 +1,42 @@
+/**
+ * Tokens Motion & Shape — **Material 3 Expressive** uniquement (pas Baseline).
+ *
+ * Courbes d’easing : **famille Emphasized** seule (`md.sys.motion.easing.emphasized*`).
+ *
+ * - Motion Expressive : https://m3.material.io/m3/pages/motion-overview/
+ * - Courbes Emphasized + durées : https://m3.material.io/styles/motion/easing-and-duration/tokens-specs
+ * - Formes : https://m3.material.io/styles/shape
+ */
+:root {
+  /* —— Duration (md.sys.motion.duration.*) —— Expressive —— */
+  --md-sys-motion-duration-short1: 50ms;
+  --md-sys-motion-duration-short2: 100ms;
+  --md-sys-motion-duration-short3: 150ms;
+  --md-sys-motion-duration-short4: 200ms;
+  --md-sys-motion-duration-medium1: 250ms;
+  --md-sys-motion-duration-medium2: 300ms;
+  --md-sys-motion-duration-medium3: 350ms;
+  --md-sys-motion-duration-medium4: 400ms;
+  --md-sys-motion-duration-long1: 450ms;
+  --md-sys-motion-duration-long2: 500ms;
+  --md-sys-motion-duration-long3: 550ms;
+  --md-sys-motion-duration-long4: 600ms;
+  --md-sys-motion-duration-extra-long1: 700ms;
+  --md-sys-motion-duration-extra-long2: 800ms;
+  --md-sys-motion-duration-extra-long3: 900ms;
+  --md-sys-motion-duration-extra-long4: 1000ms;
+
+  /* —— Easing : Emphasized uniquement (Expressive) —— md.sys.motion.easing.emphasized* —— */
+  --md-sys-motion-easing-emphasized: cubic-bezier(0.2, 0, 0, 1);
+  --md-sys-motion-easing-emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1);
+  --md-sys-motion-easing-emphasized-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15);
+
+  /* —— Shape (md.sys.shape.corner.*) —— Expressive —— */
+  --md-sys-shape-corner-none: 0px;
+  --md-sys-shape-corner-extra-small: 4px;
+  --md-sys-shape-corner-small: 8px;
+  --md-sys-shape-corner-medium: 12px;
+  --md-sys-shape-corner-large: 16px;
+  --md-sys-shape-corner-extra-large: 28px;
+  --md-sys-shape-corner-full: 9999px;
+}

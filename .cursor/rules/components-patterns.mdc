@@ -1,0 +1,26 @@
+---
+alwaysApply: false
+description: Patterns composants Eve (M3 Expressive) — Web Components, slots, composition.
+globs:
+  - "**/components/**"
+---
+
+# Composants (Expressive)
+
+Référence **`expressive-m3.mdc`** : pas de patterns ni de visuels Baseline.
+
+## Slots (Web Components)
+
+- **Préférer `<slot>` natif** dans le shadow DOM (`customElements.define`).
+- La composition doit permettre d’**imbriquer** d’autres balises ou composants sans casser les tokens (`--md-sys-color-*`, `--md-sys-motion-*`, `--md-sys-shape-*`) ni le focus.
+
+## Button (référence actuelle)
+
+- Comportement : `type`, `disabled`, icônes via attributs `icon-leading` / `icon-trailing` ou slots.
+- **Motion** : transitions via variables définies dans `m3-sys-motion-shape.css` (voir `m3-motion-shape-tokens.mdc`).
+- **ARIA** : `aria-label` reflété sur le `<button>` interne ; icônes décoratives `aria-hidden`.
+- **Icônes** : sprite (`icons.mdc`), `<use href="#id">`.
+
+## Évolutions futures (Modal, etc.)
+
+- Même principe : API stable, slots, `core/a11y` (focus trap), pas de duplication des tokens motion/shape.

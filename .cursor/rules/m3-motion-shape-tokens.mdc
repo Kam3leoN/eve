@@ -1,0 +1,27 @@
+---
+alwaysApply: false
+description: Tokens motion & shape Expressive — easing Emphasized uniquement.
+globs:
+  - "src/styles/m3-sys-motion-shape.css"
+  - "src/styles/shadow-components.css"
+---
+
+# Tokens Motion & Shape (Expressive)
+
+## Politique
+
+- **`expressive-m3.mdc`** : pas Baseline ; **courbes d’easing = Emphasized seulement** (définies dans `m3-sys-motion-shape.css`).
+
+## Fichier CSS
+
+- **`src/styles/m3-sys-motion-shape.css`** : `--md-sys-motion-duration-*`, `--md-sys-motion-easing-emphasized*` (trois courbes), `--md-sys-shape-*` sur `:root`, importé par **`eve.css`**.
+
+## Liens
+
+- [Motion overview](https://m3.material.io/m3/pages/motion-overview/)
+- [Easing and duration — tokens specs](https://m3.material.io/styles/motion/easing-and-duration/tokens-specs) (partie **Emphasized**)
+- [Shape](https://m3.material.io/styles/shape)
+
+## `button`
+
+- Transitions : **`emphasized-decelerate`** / **`emphasized-accelerate`** + durées courtes ; **`corner-full`** pour la pilule.

@@ -1,0 +1,35 @@
+---
+alwaysApply: false
+description: Utilitaires a11y Eve — FocusTrap, FocusVisible, ARIA, cohérence WCAG avec le thème.
+globs:
+  - "**/core/a11y/**"
+  - "**/components/**"
+---
+
+# Accessibilité (A11y)
+
+## Emplacement
+
+- Tout utilitaire transversal dans **`src/core/a11y/`** :
+  - `FocusTrap.ts` — piéger le focus dans modales, drawers, dialogs.
+  - `FocusVisible.ts` — distinguer focus **clavier** vs **pointeur** (comportement « focus visible » propre, sans casser la navigation souris).
+
+## FocusTrap
+
+- À l’ouverture : mémoriser l’élément actif, déplacer le focus dans le conteneur, empêcher le focus de sortir (Tab / Shift+Tab).
+- À la fermeture : restaurer le focus sur l’élément déclencheur (ou logique documentée si absent).
+- Gérer **aria-modal="true"** au niveau du composant appelant si pertinent ; le trap se concentre sur la géométrie du focus.
+
+## FocusVisible
+
+- Écouter les interactions pour appliquer une classe ou un état **:focus-visible** équivalent lorsque le focus vient du clavier.
+- Ne pas retirer l’accessibilité clavier pour « nettoyer » le focus souris : respecter les patterns WAI-ARIA Authoring Practices.
+
+## ARIA et rôles
+
+- Fournir des helpers (ex. `setAriaAttributes`, `roleForComponent`) pour **centraliser** les noms, états et propriétés (`aria-expanded`, `aria-controls`, `aria-labelledby`, etc.).
+- Chaque composant **vanilla** doit exposer une API qui permet de rester **valide** sans duplication ad hoc dans chaque dossier-plugin.
+
+## Cohérence avec le thème
+
+- Les couleurs de focus (anneaux) doivent **réutiliser les tokens** M3 et rester visibles sur les surfaces concernées (voir aussi `theming-hct.mdc`).
