@@ -1,8 +1,9 @@
-import { BaseComponent } from '../../core/BaseComponent.js';
-import { setAriaProps } from '../../core/a11y/aria.js';
-import { EVE_ICONS, type EveIconId } from '../../core/icons/constants.js';
-import { ensureIconSprite, iconHref } from '../../core/icons/sprite.js';
-import shadowStyles from '../../styles/shadow-components.compiled.css?inline';
+import { BaseComponent } from '../../core/BaseComponent';
+import { withLibEvent } from '../../lib.config';
+import { setAriaProps } from '../../core/a11y/aria';
+import { ICONS, type IconId } from '../../core/icons/constants';
+import { ensureIconSprite, iconHref } from '../../core/icons/sprite';
+import shadowStyles from './button.scss?inline';
 
 /** Types de boutons « common » M3 Expressive. @see https://m3.material.io/components/buttons */
 const VARIANTS = new Set(['elevated', 'filled', 'tonal', 'outlined', 'text']);
@@ -12,11 +13,11 @@ const SIZES = new Set(['extra-small', 'small', 'medium', 'large', 'extra-large']
 const SHAPES = new Set(['round', 'square']);
 
 /** Attributs `icon-*` (kebab-case) → id de symbole. */
-const ICON_ATTR_MAP: Record<string, EveIconId> = {
-  check: EVE_ICONS.check,
-  close: EVE_ICONS.close,
-  menu: EVE_ICONS.menu,
-  'chevron-right': EVE_ICONS.chevronRight,
+const ICON_ATTR_MAP: Record<string, IconId> = {
+  check: ICONS.check,
+  close: ICONS.close,
+  menu: ICONS.menu,
+  'chevron-right': ICONS.chevronRight,
 };
 
 /**
@@ -77,7 +78,7 @@ export class Button extends BaseComponent {
     if (next) this.setAttribute('pressed', '');
     else this.removeAttribute('pressed');
     this.dispatchEvent(
-      new CustomEvent('eve-change', {
+      new CustomEvent(withLibEvent('change'), {
         bubbles: true,
         composed: true,
         detail: { pressed: next },
@@ -187,7 +188,7 @@ export class Button extends BaseComponent {
     const el = href ? document.createElement('a') : document.createElement('button');
 
     el.setAttribute('part', 'control');
-    el.classList.add('eve-btn');
+    el.classList.add('btn');
     el.innerHTML = this._innerMarkup();
 
     if (href) {
@@ -216,14 +217,14 @@ export class Button extends BaseComponent {
 
   private _innerMarkup(): string {
     return `
-      <span class="eve-btn__content">
-        <span class="eve-btn__segment">
-          <span part="icon-leading" class="eve-icon-host" hidden></span>
+      <span class="btn__content">
+        <span class="btn__segment">
+          <span part="icon-leading" class="icon-host" hidden></span>
           <slot name="leading"></slot>
         </span>
-        <span class="eve-btn__segment eve-btn__segment--label"><slot></slot></span>
-        <span class="eve-btn__segment">
-          <span part="icon-trailing" class="eve-icon-host" hidden></span>
+        <span class="btn__segment btn__segment--label"><slot></slot></span>
+        <span class="btn__segment">
+          <span part="icon-trailing" class="icon-host" hidden></span>
           <slot name="trailing"></slot>
         </span>
       </span>
@@ -268,37 +269,37 @@ export class Button extends BaseComponent {
     const raw = this.getAttribute('variant') ?? 'filled';
     const v = VARIANTS.has(raw) ? raw : 'filled';
     const el = this._control!;
-    for (const x of VARIANTS) el.classList.remove(`eve-btn--${x}`);
-    el.classList.add(`eve-btn--${v}`);
+    for (const x of VARIANTS) el.classList.remove(`btn--${x}`);
+    el.classList.add(`btn--${v}`);
   }
 
   /**
-   * Tailles M3 Expressive : **small** = défaut doc (aucune classe ; tokens dans `.eve-btn`).
+   * Tailles M3 Expressive : **small** = défaut doc (aucune classe ; tokens dans `.btn`).
    * @see https://m3.material.io/components/buttons/overview — « Small (existing, default) »
    */
   private _syncSize(): void {
     const raw = this.getAttribute('size') ?? 'small';
     const s = SIZES.has(raw) ? raw : 'small';
     const el = this._control!;
-    el.classList.remove('eve-btn--xs', 'eve-btn--md', 'eve-btn--lg', 'eve-btn--xl');
-    if (s === 'extra-small') el.classList.add('eve-btn--xs');
-    else if (s === 'medium') el.classList.add('eve-btn--md');
-    else if (s === 'large') el.classList.add('eve-btn--lg');
-    else if (s === 'extra-large') el.classList.add('eve-btn--xl');
+    el.classList.remove('btn--xs', 'btn--md', 'btn--lg', 'btn--xl');
+    if (s === 'extra-small') el.classList.add('btn--xs');
+    else if (s === 'medium') el.classList.add('btn--md');
+    else if (s === 'large') el.classList.add('btn--lg');
+    else if (s === 'extra-large') el.classList.add('btn--xl');
   }
 
   private _syncShape(): void {
     const raw = this.getAttribute('shape') ?? 'round';
     const s = SHAPES.has(raw) ? raw : 'round';
     const el = this._control!;
-    el.classList.remove('eve-btn--shape-round', 'eve-btn--shape-square');
-    el.classList.add(s === 'square' ? 'eve-btn--shape-square' : 'eve-btn--shape-round');
+    el.classList.remove('btn--shape-round', 'btn--shape-square');
+    el.classList.add(s === 'square' ? 'btn--shape-square' : 'btn--shape-round');
   }
 
   /** Avec `shape-toggle-swap` : l’état sélectionné (toggle) inverse square ↔ pilule. */
   private _syncShapeToggleSwap(): void {
     const el = this._control!;
-    el.classList.toggle('eve-btn--shape-toggle-swap', this.hasAttribute('shape-toggle-swap'));
+    el.classList.toggle('btn--shape-toggle-swap', this.hasAttribute('shape-toggle-swap'));
   }
 
   private _syncDisabledStates(): void {
@@ -309,15 +310,15 @@ export class Button extends BaseComponent {
     if (el instanceof HTMLButtonElement) {
       if (hard) {
         el.disabled = true;
-        el.classList.remove('eve-btn--soft');
+        el.classList.remove('btn--soft');
         setAriaProps(el, { 'aria-disabled': true });
       } else if (soft) {
         el.disabled = false;
-        el.classList.add('eve-btn--soft');
+        el.classList.add('btn--soft');
         setAriaProps(el, { 'aria-disabled': true });
       } else {
         el.disabled = false;
-        el.classList.remove('eve-btn--soft');
+        el.classList.remove('btn--soft');
         setAriaProps(el, { 'aria-disabled': undefined });
       }
     } else {
@@ -325,15 +326,15 @@ export class Button extends BaseComponent {
       if (hard) {
         a.setAttribute('aria-disabled', 'true');
         a.tabIndex = -1;
-        a.classList.remove('eve-btn--soft');
+        a.classList.remove('btn--soft');
       } else if (soft) {
         a.setAttribute('aria-disabled', 'true');
         a.tabIndex = 0;
-        a.classList.add('eve-btn--soft');
+        a.classList.add('btn--soft');
       } else {
         a.removeAttribute('aria-disabled');
         a.tabIndex = 0;
-        a.classList.remove('eve-btn--soft');
+        a.classList.remove('btn--soft');
       }
     }
   }
@@ -383,8 +384,8 @@ export class Button extends BaseComponent {
     const el = this._control!;
     const hasToggle = this.hasAttribute('toggle');
     const isPressed = this.hasAttribute('pressed');
-    el.classList.toggle('eve-btn--toggle', hasToggle);
-    el.classList.toggle('eve-btn--pressed', isPressed);
+    el.classList.toggle('btn--toggle', hasToggle);
+    el.classList.toggle('btn--pressed', isPressed);
     const showPressedState = hasToggle || isPressed;
     if (showPressedState) {
       setAriaProps(el, { 'aria-pressed': isPressed ? 'true' : 'false' });
@@ -423,7 +424,7 @@ export class Button extends BaseComponent {
     }
     host.hidden = false;
     const directional = key === 'chevron-right';
-    const iconClass = directional ? 'eve-icon eve-icon--directional' : 'eve-icon';
+    const iconClass = directional ? 'icon icon--directional' : 'icon';
     host.innerHTML = `<svg class="${iconClass}" aria-hidden="true" focusable="false"><use href="${iconHref(id)}"/></svg>`;
   }
 }

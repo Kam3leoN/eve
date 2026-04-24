@@ -1,0 +1,80 @@
+@use "../../custom/config" as *;
+
+:root {
+  /*
+   * Pont tonal MD3 (10..100) pour visualisation docs.
+   * Les valeurs sont dérivées des rôles système actifs pour rester cohérentes avec le thème.
+   */
+  --#{$prefix}-md3-tone-primary-10: var(--lib-color-on-primary-container);
+  --#{$prefix}-md3-tone-primary-20: color-mix(in srgb, var(--#{$prefix}-md3-tone-primary-10) 78%, var(--#{$prefix}-md3-tone-primary-40));
+  --#{$prefix}-md3-tone-primary-30: color-mix(in srgb, var(--#{$prefix}-md3-tone-primary-10) 52%, var(--#{$prefix}-md3-tone-primary-40));
+  --#{$prefix}-md3-tone-primary-40: var(--lib-color-primary);
+  --#{$prefix}-md3-tone-primary-50: color-mix(in srgb, var(--#{$prefix}-md3-tone-primary-40) 80%, var(--#{$prefix}-md3-tone-primary-90));
+  --#{$prefix}-md3-tone-primary-60: color-mix(in srgb, var(--#{$prefix}-md3-tone-primary-40) 60%, var(--#{$prefix}-md3-tone-primary-90));
+  --#{$prefix}-md3-tone-primary-70: color-mix(in srgb, var(--#{$prefix}-md3-tone-primary-40) 40%, var(--#{$prefix}-md3-tone-primary-90));
+  --#{$prefix}-md3-tone-primary-80: color-mix(in srgb, var(--#{$prefix}-md3-tone-primary-40) 20%, var(--#{$prefix}-md3-tone-primary-90));
+  --#{$prefix}-md3-tone-primary-90: var(--lib-color-primary-container);
+  --#{$prefix}-md3-tone-primary-95: color-mix(in srgb, var(--#{$prefix}-md3-tone-primary-90) 50%, #fff);
+  --#{$prefix}-md3-tone-primary-99: color-mix(in srgb, var(--#{$prefix}-md3-tone-primary-90) 10%, #fff);
+  --#{$prefix}-md3-tone-primary-100: #fff;
+
+  --#{$prefix}-md3-tone-secondary-10: var(--lib-color-on-secondary-container);
+  --#{$prefix}-md3-tone-secondary-20: color-mix(in srgb, var(--#{$prefix}-md3-tone-secondary-10) 78%, var(--#{$prefix}-md3-tone-secondary-40));
+  --#{$prefix}-md3-tone-secondary-30: color-mix(in srgb, var(--#{$prefix}-md3-tone-secondary-10) 52%, var(--#{$prefix}-md3-tone-secondary-40));
+  --#{$prefix}-md3-tone-secondary-40: var(--lib-color-secondary);
+  --#{$prefix}-md3-tone-secondary-50: color-mix(in srgb, var(--#{$prefix}-md3-tone-secondary-40) 80%, var(--#{$prefix}-md3-tone-secondary-90));
+  --#{$prefix}-md3-tone-secondary-60: color-mix(in srgb, var(--#{$prefix}-md3-tone-secondary-40) 60%, var(--#{$prefix}-md3-tone-secondary-90));
+  --#{$prefix}-md3-tone-secondary-70: color-mix(in srgb, var(--#{$prefix}-md3-tone-secondary-40) 40%, var(--#{$prefix}-md3-tone-secondary-90));
+  --#{$prefix}-md3-tone-secondary-80: color-mix(in srgb, var(--#{$prefix}-md3-tone-secondary-40) 20%, var(--#{$prefix}-md3-tone-secondary-90));
+  --#{$prefix}-md3-tone-secondary-90: var(--lib-color-secondary-container);
+  --#{$prefix}-md3-tone-secondary-95: color-mix(in srgb, var(--#{$prefix}-md3-tone-secondary-90) 50%, #fff);
+  --#{$prefix}-md3-tone-secondary-99: color-mix(in srgb, var(--#{$prefix}-md3-tone-secondary-90) 10%, #fff);
+  --#{$prefix}-md3-tone-secondary-100: #fff;
+
+  --#{$prefix}-md3-tone-tertiary-10: var(--lib-color-on-tertiary-container);
+  --#{$prefix}-md3-tone-tertiary-20: color-mix(in srgb, var(--#{$prefix}-md3-tone-tertiary-10) 78%, var(--#{$prefix}-md3-tone-tertiary-40));
+  --#{$prefix}-md3-tone-tertiary-30: color-mix(in srgb, var(--#{$prefix}-md3-tone-tertiary-10) 52%, var(--#{$prefix}-md3-tone-tertiary-40));
+  --#{$prefix}-md3-tone-tertiary-40: var(--lib-color-tertiary);
+  --#{$prefix}-md3-tone-tertiary-50: color-mix(in srgb, var(--#{$prefix}-md3-tone-tertiary-40) 80%, var(--#{$prefix}-md3-tone-tertiary-90));
+  --#{$prefix}-md3-tone-tertiary-60: color-mix(in srgb, var(--#{$prefix}-md3-tone-tertiary-40) 60%, var(--#{$prefix}-md3-tone-tertiary-90));
+  --#{$prefix}-md3-tone-tertiary-70: color-mix(in srgb, var(--#{$prefix}-md3-tone-tertiary-40) 40%, var(--#{$prefix}-md3-tone-tertiary-90));
+  --#{$prefix}-md3-tone-tertiary-80: color-mix(in srgb, var(--#{$prefix}-md3-tone-tertiary-40) 20%, var(--#{$prefix}-md3-tone-tertiary-90));
+  --#{$prefix}-md3-tone-tertiary-90: var(--lib-color-tertiary-container);
+  --#{$prefix}-md3-tone-tertiary-95: color-mix(in srgb, var(--#{$prefix}-md3-tone-tertiary-90) 50%, #fff);
+  --#{$prefix}-md3-tone-tertiary-99: color-mix(in srgb, var(--#{$prefix}-md3-tone-tertiary-90) 10%, #fff);
+  --#{$prefix}-md3-tone-tertiary-100: #fff;
+
+  --#{$prefix}-md3-tone-error-10: var(--lib-color-on-error-container);
+  --#{$prefix}-md3-tone-error-20: color-mix(in srgb, var(--#{$prefix}-md3-tone-error-10) 78%, var(--#{$prefix}-md3-tone-error-40));
+  --#{$prefix}-md3-tone-error-30: color-mix(in srgb, var(--#{$prefix}-md3-tone-error-10) 52%, var(--#{$prefix}-md3-tone-error-40));
+  --#{$prefix}-md3-tone-error-40: var(--lib-color-error);
+  --#{$prefix}-md3-tone-error-50: color-mix(in srgb, var(--#{$prefix}-md3-tone-error-40) 80%, var(--#{$prefix}-md3-tone-error-90));
+  --#{$prefix}-md3-tone-error-60: color-mix(in srgb, var(--#{$prefix}-md3-tone-error-40) 60%, var(--#{$prefix}-md3-tone-error-90));
+  --#{$prefix}-md3-tone-error-70: color-mix(in srgb, var(--#{$prefix}-md3-tone-error-40) 40%, var(--#{$prefix}-md3-tone-error-90));
+  --#{$prefix}-md3-tone-error-80: color-mix(in srgb, var(--#{$prefix}-md3-tone-error-40) 20%, var(--#{$prefix}-md3-tone-error-90));
+  --#{$prefix}-md3-tone-error-90: var(--lib-color-error-container);
+  --#{$prefix}-md3-tone-error-95: color-mix(in srgb, var(--#{$prefix}-md3-tone-error-90) 50%, #fff);
+  --#{$prefix}-md3-tone-error-99: color-mix(in srgb, var(--#{$prefix}-md3-tone-error-90) 10%, #fff);
+  --#{$prefix}-md3-tone-error-100: #fff;
+}
+
+@layer utilities {
+  .#{$prefix}-tone-scale {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  @each $palette in (primary, secondary, tertiary, error) {
+    @each $tone in (10, 20, 30, 40, 50, 60, 70, 80, 90, 95, 99, 100) {
+      .#{$prefix}-tone-#{$palette}-#{$tone},
+      .md3-tone-#{$palette}-#{$tone} {
+        background-color: var(--#{$prefix}-md3-tone-#{$palette}-#{$tone}) !important;
+        @if $tone >= 70 {
+          color: var(--lib-color-on-surface) !important;
+        } @else {
+          color: var(--lib-color-surface) !important;
+        }
+      }
+    }
+  }
+}

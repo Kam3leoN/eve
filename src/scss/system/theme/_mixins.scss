@@ -1,0 +1,22 @@
+@use "sass:map";
+@use "./roles-light" as lightRoles;
+@use "./roles-dark" as darkRoles;
+
+$color-roles: map.keys(lightRoles.$theme-light-roles);
+
+@mixin emit-color-role-values($mode) {
+  $role-map: lightRoles.$theme-light-roles;
+  @if $mode == dark {
+    $role-map: darkRoles.$theme-dark-roles;
+  }
+
+  @each $role in $color-roles {
+    --md-sys-color-#{$role}-#{$mode}: #{map.get($role-map, $role)};
+  }
+}
+
+@mixin apply-color-scheme($mode) {
+  @each $role in $color-roles {
+    --md-sys-color-#{$role}: var(--md-sys-color-#{$role}-#{$mode});
+  }
+}

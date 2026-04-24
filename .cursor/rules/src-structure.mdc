@@ -14,27 +14,27 @@ src/
 ├── index.ts                 # API publique (exports nommés)
 ├── vite-env.d.ts            # Types Vite (dev)
 ├── types/
-│   └── css-inline.d.ts      # Ambient `*.css?inline` (tsc build)
+│   └── css-inline.d.ts      # Ambient `*.css?inline` et `*.scss?inline` (tsc build)
 ├── core/
 │   ├── a11y/                # aria, focus-trap, focus-visible
 │   ├── dom/                 # focusable (sélecteur partagé)
 │   ├── icons/               # constantes + sprite (ensureIconSprite)
-│   ├── theme/               # createEveTheme / applyEveTheme (HCT via Material)
+│   ├── theme/               # createTheme / applyThemeTokens (HCT via Material)
 │   └── index.ts
 ├── components/
-│   ├── button/              # Button
-│   └── register.ts          # registerEveElements()
-└── styles/
-    ├── eve.css              # import tokens M3 + eve-layout + Tailwind
-    ├── eve-layout.css       # .eve-container, grille 12 col, --eve-layout-*
-    ├── m3-sys-motion-shape.css # --md-sys-motion-* et --md-sys-shape-* (:root)
-    ├── m3-sys-typography.css   # label-large (boutons)
-    └── shadow-components.css # Styles shadow DOM (import ?inline dans eve-button)
+│   ├── button/              # Button + styles co-localisés
+│   │   ├── button.scss
+│   │   └── styles/
+│   └── register.ts          # registerElements()
+└── scss/
+    ├── index.scss
+    ├── custom/
+    └── system/
 ```
 
 ## Règles
 
-- **Un seul fichier** `shadow-components.css` pour `button` (évite de multiplier les imports Tailwind).
-- **Motion / formes** : `m3-sys-motion-shape.css` + règle `m3-motion-shape-tokens.mdc`.
+- **Styles Shadow** : importer directement `button.scss?inline` (aucun CSS compilé intermédiaire versionné).
+- **Motion / formes** : gérés dans `src/scss/system/motion/` et `src/scss/system/corner/`.
 - **Thème** : logique dans `core/theme/` uniquement ; pas de copie d’algo HCT hors `@material/material-color-utilities`.
 - **Icônes** : IDs dans `core/icons/constants.ts`, injection dans `sprite.ts`.

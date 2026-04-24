@@ -20,7 +20,7 @@ Construire une **librairie de composants UI/UX** en **Vanilla TypeScript/JavaScr
 
 - **Pas de dépendance** à React, Vue ou autre framework pour le cœur de la lib.
 - **Livraison double** : consommation via `<script src="...">` (HTML/PHP) **et** import **ESM** (Vite, bundlers).
-- **Styles** : **TailwindCSS** avec configuration **partagée** et réutilisable.
+- **Styles** : **SCSS** (dart-sass) + **tokens CSS** M3 (`src/styles/`), build vers `dist/eve.min.css` et shadow compilé pour les web components.
 - **Couleurs** : thème dynamique basé sur **HCT** (Material **Expressive**), pas une palette hardcodée arbitraire sans validation contraste.
 - **A11y** : intégrée dès la conception (pas en couche collée après coup).
 
@@ -45,6 +45,10 @@ Construire une **librairie de composants UI/UX** en **Vanilla TypeScript/JavaScr
 | Priorite d'usage des composants EVE | `eve-priority-usage.mdc` |
 | Build `npm run build` après modifs sources ; shadow CSS compilé | `build-after-edit.mdc` |
 | Corriger toutes les erreurs linter / diagnostics | `linter-fix-all.mdc` |
+| Triade SCSS composant (`_token/_mixin/_module`) + prefix dynamique | `component-scss-triad.mdc` |
+| Gouvernance composant 1-8 (contrat/tests/stabilité/tokens/ADR) | `component-governance-1-8.mdc` |
+| Quality gates CI (contracts/tokens/stability/manifest/lighthouse) | `ci-quality-gates.mdc` |
+| Créer la page docs avec chaque nouveau composant/style system | `doc-page-required-for-new-component-or-system-style.mdc` |
 
 ## Ordre de travail recommandé
 

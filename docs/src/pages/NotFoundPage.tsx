@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { DocDemo } from '../components/DocPrimitives';
 
 export function NotFoundPage() {
   useEffect(() => {
@@ -17,11 +18,11 @@ export function NotFoundPage() {
     <section>
       <h2>404 - Page de documentation introuvable</h2>
       <p>La route demandée ne correspond à aucune page enregistrée.</p>
-      <div className="docs-demo">
+      <DocDemo title="Navigation">
         <p>
           <Link to="/components/button">Retour à Button</Link>
         </p>
-      </div>
+      </DocDemo>
     </section>
   );
 }

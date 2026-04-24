@@ -1,0 +1,22 @@
+---
+alwaysApply: true
+description: Quality gates CI obligatoires pour gouvernance composants et Lighthouse.
+---
+
+# CI Quality Gates (obligatoires)
+
+Toute modification composant doit garder les commandes suivantes au vert:
+
+- `npm run check:contracts`
+- `npm run check:tokens`
+- `npm run check:stability`
+- `npm run build:manifest`
+- `npm run test:run`
+- `npm run lighthouse:all`
+
+## Politique
+
+- Aucun merge si un gate est en échec.
+- Les checks doivent être exécutables en local et en CI.
+- Les écarts Lighthouse doivent être corrigés ou justifiés dans un ADR temporaire.
+

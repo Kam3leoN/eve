@@ -1,0 +1,23 @@
+@use "sass:map";
+@use "./tokens" as motionTokens;
+
+@function motion-duration($token-name) {
+  @if map.has-key(motionTokens.$motion-duration-tokens, $token-name) {
+    @return map.get(motionTokens.$motion-duration-tokens, $token-name);
+  }
+  @error "Unknown motion duration token `#{$token-name}`.";
+}
+
+@function motion-easing($token-name) {
+  @if map.has-key(motionTokens.$motion-easing-tokens, $token-name) {
+    @return map.get(motionTokens.$motion-easing-tokens, $token-name);
+  }
+  @error "Unknown motion easing token `#{$token-name}`.";
+}
+
+@function motion-spring($token-name) {
+  @if map.has-key(motionTokens.$motion-spring-tokens, $token-name) {
+    @return map.get(motionTokens.$motion-spring-tokens, $token-name);
+  }
+  @error "Unknown motion spring token `#{$token-name}`.";
+}

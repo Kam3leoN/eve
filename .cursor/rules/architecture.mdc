@@ -1,6 +1,6 @@
 ---
 alwaysApply: false
-description: Structure modulaire Eve, dossiers-plugins, Tailwind partagé, usage sans framework.
+description: Structure modulaire Eve, dossiers-plugins, styles SCSS/tokens, usage sans framework.
 globs:
   - "**/*"
 ---
@@ -24,27 +24,26 @@ eve/
 │   │   ├── dom/            # Utilitaires DOM légers (sans framework)
 │   │   └── icons.ts        # Références symboles + bootstrap sprite (voir icons.mdc)
 │   ├── components/
-│   │   ├── button/         # Exemple : index.ts, styles (tokens Tailwind), tests
+│   │   ├── button/         # Exemple : index.ts, styles shadow (SCSS compilé), tests
 │   │   └── card/           # Exemple « Master » avec slots
 │   └── index.ts            # Réexport public contrôlé
-├── tailwind.config.ts      # Config partagée (preset ou package interne)
 ├── package.json
 └── vite.config.ts (ou rollup) # build ESM + UMD/IIFE
 ```
 
 ## Règles par composant (dossier-plugin)
 
-- **Un dossier = un composant** : comportement TS, styles (classes Tailwind / layers), éventuellement petit README interne si besoin.
+- **Un dossier = un composant** : comportement TS, styles (CSS / SCSS, tokens M3), éventuellement petit README interne si besoin.
 - **Exports explicites** depuis `components/<name>/index.ts` ; pas d’effets de bord à l’import sauf opt-in (`init()`).
 - **Aucun import** depuis React/Vue dans `src/core` ni dans les composants vanilla.
 - **Interop** :
   - **Module** : `import { Button } from 'eve'` (ou sous-chemin stable documenté).
   - **Script global** : bundle UMD/IIFE expose une **API namespace** (ex. `window.Eve`) avec constructeurs ou factories documentés.
 
-## TailwindCSS
+## SCSS et tokens CSS
 
-- **Une seule source de vérité** pour thème sémantique : variables CSS M3 (`--md-sys-color-*`) générées par le moteur HCT, consommées dans Tailwind via `theme.extend.colors` mappées sur `var(...)`.
-- Éviter les couleurs « magiques » en dur dans les composants ; préférer **tokens** + **états** (hover, disabled) via variables ou classes utilitaires cohérentes.
+- **Source de vérité** pour le thème sémantique : variables CSS M3 (`--md-sys-color-*`, `--md-sys-motion-*`, etc.) générées ou complétées par le moteur HCT dans `core/theme/`, consommées dans les feuilles `src/styles/`.
+- Éviter les couleurs « magiques » en dur dans les composants ; préférer **tokens** + **états** via variables CSS et classes BEM/`eve-*` cohérentes.
 
 ## Performance (rappel)
 

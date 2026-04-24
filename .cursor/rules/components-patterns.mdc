@@ -12,7 +12,7 @@ Référence **`expressive-m3.mdc`** : pas de patterns ni de visuels Baseline.
 ## Slots (Web Components)
 
 - **Préférer `<slot>` natif** dans le shadow DOM (`customElements.define`).
-- La composition doit permettre d’**imbriquer** d’autres balises ou composants sans casser les tokens (`--md-sys-color-*`, `--md-sys-motion-*`, `--md-sys-shape-*`) ni le focus.
+- La composition doit permettre d’**imbriquer** d’autres balises ou composants sans casser les tokens (`--md-sys-color-*`, `--md-sys-motion-*`, `--md-sys-corner-*`) ni le focus.
 
 ## Button (référence actuelle)
 

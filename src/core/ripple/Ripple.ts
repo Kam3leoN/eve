@@ -1,3 +1,5 @@
+import { withLibClass } from '../../lib.config';
+
 /**
  * Options de l'effet Ripple.
  */
@@ -6,8 +8,8 @@ export interface RippleOptions {
   durationMs?: number;
 }
 
-const RIPPLE_CLASS = 'eve-ripple';
-const RIPPLE_ACTIVE_CLASS = 'eve-ripple--active';
+const RIPPLE_CLASS = withLibClass('ripple');
+const RIPPLE_ACTIVE_CLASS = `${RIPPLE_CLASS}--active`;
 
 /**
  * Effet d'ondulation Material pour éléments interactifs.

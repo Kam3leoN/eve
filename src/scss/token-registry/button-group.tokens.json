@@ -1,0 +1,86 @@
+{
+  "component": "button-group",
+  "owner": "components/button-group",
+  "tokens": [
+    {
+      "name": "--{prefix}-comp-button-group-gap",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-button-group-xs-height",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-button-group-xs-inner-default",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-button-group-xs-inner-active",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-button-group-sm-height",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-button-group-sm-inner-default",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-button-group-sm-inner-active",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-button-group-md-height",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-button-group-md-inner-default",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-button-group-md-inner-active",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-button-group-lg-height",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-button-group-lg-inner-default",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-button-group-lg-inner-active",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-button-group-xl-height",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-button-group-xl-inner-default",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-button-group-xl-inner-active",
+      "role": "component",
+      "stability": "stable"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+---
+alwaysApply: true
+description: Obliger une page docs lors de tout nouveau composant ou style system.
+---
+
+# Documentation obligatoire (nouveaux composants / styles system)
+
+## Règle
+
+- Toute création d’un **nouveau composant** dans `src/components/` doit inclure dans la même tâche :
+  - une page docs dédiée dans `docs/src/pages/`
+  - le routage associé dans `docs/src/App.tsx`
+  - un lien de navigation dans `docs/src/layout/DocsLayout.tsx`
+  - les types JSX nécessaires dans `docs/src/global.d.ts` si de nouveaux attributs sont exposés.
+
+- Toute création d’un **nouveau module de style system** (`src/scss/system/**`) doit inclure une page docs associée (nouvelle ou mise à jour) qui documente :
+  - les tokens/variables exposés
+  - au moins un exemple d’usage.
+
+## Validation
+
+- Ne pas considérer la tâche terminée sans page docs connectée et visible dans la navigation.

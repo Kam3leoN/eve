@@ -1,0 +1,131 @@
+{
+  "component": "card",
+  "owner": "components/card",
+  "tokens": [
+    {
+      "name": "--{prefix}-comp-card-radius",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-card-padding-inline",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-card-padding-block",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-card-gap",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-card-gap-expanded",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-card-heading-gap",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-card-actions-gap",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-card-min-media-inline",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-card-horizontal-media-ratio",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-card-mosaic-min-block",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-card-staggered-min-block",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-card-state-hover-opacity",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-card-state-pressed-opacity",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-card-focus-ring-width",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-card-focus-ring-opacity",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-card-elevated-shadow-y",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-card-elevated-shadow-blur",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-card-elevated-shadow-opacity",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-card-elevated-hover-shadow-y",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-card-elevated-hover-shadow-blur",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-card-elevated-hover-shadow-opacity",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-card-overline-tracking",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-card-overline-size",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-card-overline-weight",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-card-overline-line-height",
+      "role": "component",
+      "stability": "stable"
+    }
+  ]
+}

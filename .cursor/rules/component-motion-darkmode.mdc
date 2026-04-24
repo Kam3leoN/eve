@@ -1,0 +1,37 @@
+---
+alwaysApply: true
+description: Imposer la gestion reduced-motion et dark mode système dans tous les composants TS/SCSS.
+globs:
+  - "src/components/**/*.ts"
+  - "src/components/**/*.scss"
+---
+
+# Accessibilité motion + dark mode système (composants)
+
+## Objectif
+
+Garantir que chaque composant (actuel et futur) respecte :
+
+- la préférence utilisateur de réduction des animations (`prefers-reduced-motion: reduce`)
+- la préférence système de thème (`prefers-color-scheme: dark`)
+
+## Règles SCSS
+
+- Chaque composant doit prévoir un bloc `@media (prefers-reduced-motion: reduce)` qui neutralise ou simplifie :
+  - `transition`
+  - `animation`
+  - effets visuels non essentiels (transform, opacity animée, etc.)
+- Toute animation essentielle doit disposer d’un fallback statique lisible.
+- Les styles dark mode doivent être gérés via `@media (prefers-color-scheme: dark)` quand le composant a des couleurs/contrastes dépendants du thème.
+- Les couleurs doivent continuer à s’appuyer sur les tokens (pas de hardcode non tokenisé).
+
+## Règles TypeScript
+
+- Si le composant orchestre des animations côté JS, il doit détecter `matchMedia('(prefers-reduced-motion: reduce)')` et désactiver/réduire les animations non essentielles.
+- Si le composant adapte son comportement visuel au thème, il doit supporter `matchMedia('(prefers-color-scheme: dark)')` sans casser les tokens système.
+- Le comportement doit rester cohérent lors des changements live de préférence système (listener `change`) quand pertinent.
+
+## Qualité
+
+- Aucun nouveau composant ne doit être livré sans gestion reduced-motion.
+- Aucun nouveau composant ne doit ignorer le dark mode système si son rendu dépend des couleurs.

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { Announcer } from './Announcer.js';
+import { Announcer } from './Announcer';
 
 describe('Announcer', () => {
   it('annonce un message dans une région aria-live', async () => {

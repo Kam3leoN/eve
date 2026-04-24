@@ -1,0 +1,389 @@
+@use "sass:string";
+@use "../../../scss/custom/align/index" as align;
+@use "../../../scss/custom/config" as *;
+
+/**
+ * Composant button — Material 3 Expressive (common buttons).
+ * @see https://m3.material.io/components/buttons
+ * @see https://material-web.dev/components/button/
+ *
+ * Cinq types : elevated, filled, tonal (filled tonal), outlined, text.
+ * M3 Expressive : taille par défaut **small** ; morph au :active **et** à l’état sélectionné (sans hover).
+ * @see https://m3.material.io/components/buttons/overview
+ * @see https://m3.material.io/components/buttons/specs
+ *
+ * RTL : `padding-inline` / `gap` sont logiques ; `dir` sur l'hôte ou héritage (`<html dir="rtl">`).
+ * Icônes directionnelles (chevron) : retournement horizontal en `dir=rtl`.
+ */
+@layer components {
+  /* —— Base —— */
+  .btn {
+    @include align.inline-flex-center;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    border: 0;
+    position: relative;
+    isolation: isolate;
+    text-decoration: none;
+    box-sizing: border-box;
+    /* Défaut = small (40px) — doc M3 Expressive « Small (existing, default) » */
+    --btn-h: var(--#{$prefix}-comp-button-sm-height);
+    --btn-pad-x: var(--#{$prefix}-comp-button-sm-padding-inline);
+    --btn-icon: var(--#{$prefix}-comp-button-sm-icon-size);
+    --btn-gap: var(--#{$prefix}-comp-button-sm-gap);
+    --btn-fs: var(--#{$prefix}-comp-button-label-large-size);
+    --btn-lh: var(--#{$prefix}-comp-button-label-large-line-height);
+    --btn-tracking: var(--#{$prefix}-comp-button-label-large-tracking);
+    --btn-radius-pressed: var(--#{$prefix}-comp-button-sm-radius-pressed);
+    min-height: var(--btn-h);
+    padding-inline: var(--btn-pad-x);
+    /* Sass ne doit pas « mathématiser » ce max/calc — sortie CSS verbatim. */
+    padding-block: string.unquote(
+      "max(0px, calc((var(--btn-h) - max(var(--btn-lh), var(--btn-icon))) / 2))"
+    );
+    gap: var(--btn-gap);
+    border-radius: var(--btn-radius-rest);
+    font-family: var(--#{$prefix}-type-label-large-font-family-name);
+    font-size: var(--btn-fs);
+    line-height: var(--btn-lh);
+    font-weight: var(--#{$prefix}-type-label-large-weight);
+    letter-spacing: var(--btn-tracking);
+    -webkit-tap-highlight-color: transparent;
+    transition-property: background-color, color, border-color, box-shadow, opacity, border-radius;
+    transition-duration: var(--#{$prefix}-motion-duration-short4);
+    transition-timing-function: var(--#{$prefix}-motion-easing-emphasized-decelerate);
+  }
+
+  /* Connected group overrides injected on host custom element. */
+  :host([data-group-position='middle']) .btn {
+    border-radius: var(--lib-group-inner-current-radius, var(--lib-group-inner-radius, var(--btn-radius-rest))) !important;
+  }
+
+  :host([data-group-position='first']) .btn {
+    border-start-start-radius: var(--lib-group-outer-radius, var(--btn-radius-rest)) !important;
+    border-end-start-radius: var(--lib-group-outer-radius, var(--btn-radius-rest)) !important;
+    border-start-end-radius: var(--lib-group-inner-current-radius, var(--lib-group-inner-radius, var(--btn-radius-rest))) !important;
+    border-end-end-radius: var(--lib-group-inner-current-radius, var(--lib-group-inner-radius, var(--btn-radius-rest))) !important;
+  }
+
+  :host([data-group-position='last']) .btn {
+    border-start-start-radius: var(--lib-group-inner-current-radius, var(--lib-group-inner-radius, var(--btn-radius-rest))) !important;
+    border-end-start-radius: var(--lib-group-inner-current-radius, var(--lib-group-inner-radius, var(--btn-radius-rest))) !important;
+    border-start-end-radius: var(--lib-group-outer-radius, var(--btn-radius-rest)) !important;
+    border-end-end-radius: var(--lib-group-outer-radius, var(--btn-radius-rest)) !important;
+  }
+
+  .btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--#{$prefix}-motion-duration-short4)
+      var(--#{$prefix}-motion-easing-emphasized-decelerate);
+  }
+
+  .btn__content {
+    position: relative;
+    z-index: 1;
+    @include align.inline-flex-center;
+    gap: var(--btn-gap);
+  }
+
+  .btn__segment {
+    @include align.inline-flex-center;
+  }
+
+  .btn__segment--label:empty {
+    display: none;
+  }
+
+  /* —— State layer (M3) : opacités sur la couleur « on » / accent —— */
+  .btn--elevated::before {
+    background-color: var(--#{$prefix}-color-on-surface);
+  }
+  .btn--filled::before {
+    background-color: var(--#{$prefix}-color-on-primary);
+  }
+  /** Filled + toggle off : surface container + libellé on-surface-variant (voir grille M3). */
+  .btn--toggle.btn--filled:not(.btn--pressed):not(:disabled):not(.btn--soft)::before {
+    background-color: var(--#{$prefix}-color-on-surface-variant);
+  }
+  .btn--tonal::before {
+    background-color: var(--#{$prefix}-color-on-secondary-container);
+  }
+  .btn--outlined::before {
+    background-color: var(--#{$prefix}-color-on-surface-variant);
+  }
+
+  /** Text : pas de state layer (::before) — aucune surface derrière le libellé */
+  .btn--text::before {
+    display: none;
+  }
+
+  .btn:focus-visible:not(:disabled)::before {
+    opacity: 0.1;
+  }
+  /* Pressed : state layer + morph de forme (specs M3 Expressive). */
+  .btn:active:not(:disabled):not(.btn--soft)::before {
+    opacity: 0.1;
+  }
+  /* Morph row C au :active — pas pour text (aucune surface), shape-toggle-swap */
+  .btn:active:not(:disabled):not(.btn--soft):not(.btn--shape-toggle-swap):not(.btn--text) {
+    border-radius: var(--btn-radius-pressed);
+    transition-duration: var(--#{$prefix}-motion-duration-short2);
+    transition-timing-function: var(--#{$prefix}-motion-easing-emphasized-accelerate);
+  }
+
+  /* Round (A) : pilule — rayon repos = 50 % de la hauteur */
+  .btn--shape-round {
+    --btn-radius-rest: calc(var(--btn-h) / 2);
+  }
+
+  /* Square (B) : au repos, row B par palier (small = défaut sans classe taille) */
+  .btn--shape-square {
+    --btn-radius-rest: var(--#{$prefix}-comp-button-sm-radius-square);
+  }
+  .btn--shape-square.btn--xs {
+    --btn-radius-rest: var(--#{$prefix}-comp-button-xs-radius-square);
+  }
+  .btn--shape-square.btn--md {
+    --btn-radius-rest: var(--#{$prefix}-comp-button-md-radius-square);
+  }
+  .btn--shape-square.btn--lg {
+    --btn-radius-rest: var(--#{$prefix}-comp-button-lg-radius-square);
+  }
+  .btn--shape-square.btn--xl {
+    --btn-radius-rest: var(--#{$prefix}-comp-button-xl-radius-square);
+  }
+
+  /**
+   * Sélectionné (toggle) : row C — sauf `shape-toggle-swap` (inverse square ↔ pilule).
+   */
+  .btn--pressed:not(:disabled):not(.btn--soft):not(.btn--shape-toggle-swap):not(.btn--text) {
+    border-radius: var(--btn-radius-pressed);
+  }
+
+  /* In connected group, active state follows group's current inner radius. */
+  :host([data-group-active='true']) .btn,
+  :host(:active) .btn {
+    border-radius: var(--lib-group-inner-current-radius, var(--lib-group-inner-radius, var(--btn-radius-pressed))) !important;
+  }
+
+  :host([data-group-position='first'][data-group-active='true']) .btn,
+  :host([data-group-position='first']:active) .btn {
+    border-start-start-radius: var(--lib-group-outer-radius, var(--btn-radius-rest)) !important;
+    border-end-start-radius: var(--lib-group-outer-radius, var(--btn-radius-rest)) !important;
+    border-start-end-radius: var(--lib-group-inner-current-radius, var(--lib-group-inner-radius, var(--btn-radius-pressed))) !important;
+    border-end-end-radius: var(--lib-group-inner-current-radius, var(--lib-group-inner-radius, var(--btn-radius-pressed))) !important;
+  }
+
+  :host([data-group-position='last'][data-group-active='true']) .btn,
+  :host([data-group-position='last']:active) .btn {
+    border-start-start-radius: var(--lib-group-inner-current-radius, var(--lib-group-inner-radius, var(--btn-radius-pressed))) !important;
+    border-end-start-radius: var(--lib-group-inner-current-radius, var(--lib-group-inner-radius, var(--btn-radius-pressed))) !important;
+    border-start-end-radius: var(--lib-group-outer-radius, var(--btn-radius-rest)) !important;
+    border-end-end-radius: var(--lib-group-outer-radius, var(--btn-radius-rest)) !important;
+  }
+
+  /**
+   * `shape-toggle-swap` : toggle **off** = `shape` ; toggle **on** = géométrie opposée
+   * (square → pilule h÷2 ; round → square row B par palier).
+   */
+  .btn--shape-toggle-swap.btn--shape-square.btn--pressed:not(:disabled):not(.btn--soft):not(.btn--text) {
+    border-radius: calc(var(--btn-h) / 2);
+  }
+
+  .btn--shape-toggle-swap.btn--shape-round.btn--pressed:not(:disabled):not(.btn--soft):not(.btn--text) {
+    border-radius: var(--#{$prefix}-comp-button-sm-radius-square);
+  }
+  .btn--shape-toggle-swap.btn--shape-round.btn--pressed.btn--xs:not(.btn--text) {
+    border-radius: var(--#{$prefix}-comp-button-xs-radius-square);
+  }
+  .btn--shape-toggle-swap.btn--shape-round.btn--pressed.btn--md:not(.btn--text) {
+    border-radius: var(--#{$prefix}-comp-button-md-radius-square);
+  }
+  .btn--shape-toggle-swap.btn--shape-round.btn--pressed.btn--lg:not(.btn--text) {
+    border-radius: var(--#{$prefix}-comp-button-lg-radius-square);
+  }
+  .btn--shape-toggle-swap.btn--shape-round.btn--pressed.btn--xl:not(.btn--text) {
+    border-radius: var(--#{$prefix}-comp-button-xl-radius-square);
+  }
+
+  .btn:focus-visible {
+    outline: 2px solid var(--#{$prefix}-color-primary);
+    outline-offset: 2px;
+  }
+
+  .btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.38;
+    pointer-events: none;
+  }
+
+  .btn--soft {
+    cursor: not-allowed;
+    opacity: 0.38;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn,
+    .btn::before {
+      transition: none;
+    }
+  }
+
+  /* —— Variantes —— */
+  .btn--elevated {
+    background-color: var(--#{$prefix}-color-surface-container-low);
+    color: var(--#{$prefix}-color-primary);
+    box-shadow:
+      0 1px 2px color-mix(in srgb, var(--#{$prefix}-color-shadow) 30%, transparent),
+      0 1px 3px 1px color-mix(in srgb, var(--#{$prefix}-color-shadow) 15%, transparent);
+  }
+
+  .btn--filled {
+    background-color: var(--#{$prefix}-color-primary);
+    color: var(--#{$prefix}-color-on-primary);
+  }
+
+  .btn--tonal {
+    background-color: var(--#{$prefix}-color-secondary-container);
+    color: var(--#{$prefix}-color-on-secondary-container);
+  }
+
+  .btn--outlined {
+    background-color: transparent;
+    color: var(--#{$prefix}-color-on-surface-variant);
+    border: 1px solid var(--#{$prefix}-color-outline-variant);
+  }
+
+  .btn--text {
+    background-color: transparent;
+    border: 0;
+    box-shadow: none;
+    color: var(--#{$prefix}-color-primary);
+  }
+
+  /**
+   * Toggle — grille M3 (Default / Toggle unselected / Toggle selected) — tokens roles.
+   * Elevated : défaut & toggle off = surface-container-low + primary ; sélectionné = primary + on-primary.
+   * Filled : défaut = primary + on-primary ; toggle off = surface-container + on-surface-variant ; sélectionné = primary + on-primary.
+   * Tonal : défaut & off = secondary-container + on-secondary-container ; sélectionné = secondary + on-secondary.
+   * Outlined : défaut & off = contour outline-variant + on-surface-variant ; sélectionné = inverse-surface + inverse-on-surface.
+   * Text : primary (pas de rangée toggle dédiée dans la grille).
+   */
+
+  /* —— B : filled, toggle non sélectionné —— */
+  .btn--toggle.btn--filled:not(.btn--pressed):not(:disabled):not(.btn--soft) {
+    background-color: var(--#{$prefix}-color-surface-container);
+    color: var(--#{$prefix}-color-on-surface-variant);
+  }
+
+  /* —— C : sélectionné (`pressed`) —— */
+  .btn--elevated.btn--pressed {
+    background-color: var(--#{$prefix}-color-primary);
+    color: var(--#{$prefix}-color-on-primary);
+    box-shadow:
+      0 1px 2px color-mix(in srgb, var(--#{$prefix}-color-shadow) 30%, transparent),
+      0 1px 3px 1px color-mix(in srgb, var(--#{$prefix}-color-shadow) 15%, transparent);
+  }
+  .btn--elevated.btn--pressed::before {
+    background-color: var(--#{$prefix}-color-on-primary);
+  }
+
+  .btn--filled.btn--pressed {
+    background-color: var(--#{$prefix}-color-primary);
+    color: var(--#{$prefix}-color-on-primary);
+  }
+  .btn--filled.btn--pressed::before {
+    background-color: var(--#{$prefix}-color-on-primary);
+  }
+
+  .btn--tonal.btn--pressed {
+    background-color: var(--#{$prefix}-color-secondary);
+    color: var(--#{$prefix}-color-on-secondary);
+  }
+  .btn--tonal.btn--pressed::before {
+    background-color: var(--#{$prefix}-color-on-secondary);
+  }
+
+  .btn--outlined.btn--pressed {
+    background-color: var(--#{$prefix}-color-inverse-surface);
+    color: var(--#{$prefix}-color-inverse-on-surface);
+    border-color: var(--#{$prefix}-color-inverse-surface);
+  }
+  .btn--outlined.btn--pressed::before {
+    background-color: var(--#{$prefix}-color-inverse-on-surface);
+  }
+
+  /** Text : grille M3 sans états toggle distincts — pas de surface, libellé primary. */
+  .btn--text.btn--pressed {
+    background-color: transparent;
+    color: var(--#{$prefix}-color-primary);
+  }
+
+  /* —— Tailles (fiche Expressive : 32 / 40 / 56 / 96 / 136) —— */
+  .btn--xs {
+    --btn-h: var(--#{$prefix}-comp-button-xs-height);
+    --btn-pad-x: var(--#{$prefix}-comp-button-xs-padding-inline);
+    --btn-icon: var(--#{$prefix}-comp-button-xs-icon-size);
+    --btn-gap: var(--#{$prefix}-comp-button-xs-gap);
+    --btn-fs: var(--#{$prefix}-comp-button-label-medium-size);
+    --btn-lh: var(--#{$prefix}-comp-button-label-medium-line-height);
+    --btn-tracking: var(--#{$prefix}-comp-button-label-medium-tracking);
+    --btn-radius-pressed: var(--#{$prefix}-comp-button-xs-radius-pressed);
+  }
+
+  .btn--md {
+    --btn-h: var(--#{$prefix}-comp-button-md-height);
+    --btn-pad-x: var(--#{$prefix}-comp-button-md-padding-inline);
+    --btn-icon: var(--#{$prefix}-comp-button-md-icon-size);
+    --btn-gap: var(--#{$prefix}-comp-button-md-gap);
+    --btn-fs: var(--#{$prefix}-comp-button-title-md-size);
+    --btn-lh: var(--#{$prefix}-comp-button-title-md-line-height);
+    --btn-tracking: var(--#{$prefix}-comp-button-title-md-tracking);
+    --btn-radius-pressed: var(--#{$prefix}-comp-button-md-radius-pressed);
+  }
+
+  .btn--lg {
+    --btn-h: var(--#{$prefix}-comp-button-lg-height);
+    --btn-pad-x: var(--#{$prefix}-comp-button-lg-padding-inline);
+    --btn-icon: var(--#{$prefix}-comp-button-lg-icon-size);
+    --btn-gap: var(--#{$prefix}-comp-button-lg-gap);
+    --btn-fs: var(--#{$prefix}-comp-button-headline-md-size);
+    --btn-lh: var(--#{$prefix}-comp-button-headline-md-line-height);
+    --btn-tracking: var(--#{$prefix}-comp-button-headline-md-tracking);
+    --btn-radius-pressed: var(--#{$prefix}-comp-button-lg-radius-pressed);
+  }
+
+  .btn--xl {
+    --btn-h: var(--#{$prefix}-comp-button-xl-height);
+    --btn-pad-x: var(--#{$prefix}-comp-button-xl-padding-inline);
+    --btn-icon: var(--#{$prefix}-comp-button-xl-icon-size);
+    --btn-gap: var(--#{$prefix}-comp-button-xl-gap);
+    --btn-fs: var(--#{$prefix}-comp-button-headline-lg-size);
+    --btn-lh: var(--#{$prefix}-comp-button-headline-lg-line-height);
+    --btn-tracking: var(--#{$prefix}-comp-button-headline-lg-tracking);
+    --btn-radius-pressed: var(--#{$prefix}-comp-button-xl-radius-pressed);
+  }
+
+  .icon {
+    flex-shrink: 0;
+    width: var(--btn-icon);
+    height: var(--btn-icon);
+    color: currentColor;
+  }
+
+  .icon-host {
+    display: inline-flex;
+  }
+
+  /** Icône « sens » (p.ex. chevron) — en RTL le glyphe physique reste « right », on le miroite. */
+  .btn:dir(rtl) .icon--directional {
+    transform: scaleX(-1);
+  }
+}
+

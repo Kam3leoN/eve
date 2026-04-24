@@ -1,4 +1,4 @@
-import { getFocusableElements } from '../dom/focusable.js';
+import { getFocusableElements } from '../dom/focusable';
 
 export interface FocusTrapOptions {
   /** Élément à activer en sortie (souvent le déclencheur). */

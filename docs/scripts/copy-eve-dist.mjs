@@ -1,5 +1,5 @@
 /**
- * Copie eve.min.css et eve.min.js depuis la racine du dépôt (../dist) vers public/eve/.
+ * Copie eve.min.css et eve.min.mjs depuis la racine du dépôt (../dist) vers public/eve/.
  * À exécuter avant vite build / dev.
  */
 import fs from 'node:fs';
@@ -10,7 +10,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const docsRoot = path.resolve(__dirname, '..');
 const repoDist = path.join(docsRoot, '..', 'dist');
 const targetDir = path.join(docsRoot, 'public', 'eve');
-const files = ['eve.min.css', 'eve.min.js'];
+const files = ['eve.min.css', 'eve.min.mjs'];
 
 fs.mkdirSync(targetDir, { recursive: true });
 

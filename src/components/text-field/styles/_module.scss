@@ -1,0 +1,355 @@
+@use "../../../scss/custom/config" as *;
+@use "./mixin" as tfm;
+
+@layer components {
+  :host {
+    display: inline-block;
+    inline-size: 100%;
+    max-inline-size: 100%;
+    min-inline-size: 220px;
+    color: var(--#{$prefix}-color-on-surface);
+    font: var(--#{$prefix}-typescale-body-large-font, 400 1rem/1.5rem system-ui, sans-serif);
+  }
+
+  .tf {
+    display: grid;
+    gap: 4px;
+  }
+
+  .tf__field {
+    @include tfm.lib-text-field-container;
+    min-block-size: var(--#{$prefix}-comp-text-field-height);
+    block-size: var(--#{$prefix}-comp-text-field-height);
+    padding-inline: var(--#{$prefix}-comp-text-field-padding-inline);
+    padding-block-start: var(--#{$prefix}-comp-text-field-padding-top);
+    padding-block-end: var(--#{$prefix}-comp-text-field-padding-bottom);
+    --lib-outlined-stroke-width: 1px;
+  }
+
+  .tf__field--outlined.is-focused {
+    --lib-outlined-stroke-width: 2px;
+  }
+
+  /* Bordure outlined segmentée = encoche transparente (Segments) */
+  .tf__outlined-strokes {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    color: var(--#{$prefix}-color-outline);
+    border-radius: var(--#{$prefix}-comp-text-field-radius);
+    overflow: hidden;
+  }
+
+  .tf__field--outlined.is-error .tf__outlined-strokes,
+  .tf__field--outlined.is-error.is-focused .tf__outlined-strokes {
+    color: var(--#{$prefix}-color-error);
+  }
+
+  .tf__field--outlined.is-focused:not(.is-error) .tf__outlined-strokes {
+    color: var(--#{$prefix}-color-primary);
+  }
+
+  .tf__outlined-svg {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  .tf__outlined-path {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: var(--lib-outlined-stroke-width);
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+    transition: stroke-width var(--md-sys-motion-duration-short2, 100ms)
+      var(--md-sys-motion-easing-emphasized-decelerate, ease);
+  }
+
+  .tf__field--filled {
+    @include tfm.lib-text-field-filled-base;
+  }
+
+  .tf__field--filled:hover:not(.is-disabled) {
+    &:not(.is-error) {
+      @include tfm.lib-text-field-filled-hover;
+    }
+
+    &.is-error {
+      @include tfm.lib-text-field-filled-error-hover;
+    }
+  }
+
+  .tf__field--filled.is-focused:not(.is-disabled) {
+    &:not(.is-error) {
+      @include tfm.lib-text-field-filled-focus;
+    }
+
+    &.is-error {
+      @include tfm.lib-text-field-filled-error-focus;
+    }
+  }
+
+  .tf__field--filled.is-error:not(.is-focused) {
+    @include tfm.lib-text-field-filled-error;
+  }
+
+  .tf__field--outlined:not(.is-top-notched) {
+    @include tfm.lib-text-field-outlined-full-border;
+  }
+
+  .tf__field--outlined.is-top-notched {
+    box-shadow: none;
+    background: transparent;
+  }
+
+  .tf__field--outlined:hover:not(.is-disabled):not(.is-top-notched) {
+    &:not(.is-error) {
+      @include tfm.lib-text-field-outlined-hover;
+    }
+
+    &.is-error {
+      @include tfm.lib-text-field-outlined-error-hover;
+    }
+  }
+
+  .tf__field--outlined.is-focused:not(.is-disabled):not(.is-top-notched) {
+    &:not(.is-error) {
+      @include tfm.lib-text-field-outlined-focus;
+    }
+
+    &.is-error {
+      @include tfm.lib-text-field-outlined-error-focus;
+    }
+  }
+
+  .tf__field--outlined.is-error:not(.is-focused):not(.is-top-notched) {
+    @include tfm.lib-text-field-outlined-error;
+  }
+
+  .tf__field--outlined.is-disabled:not(.is-top-notched) {
+    @include tfm.lib-text-field-outlined-disabled;
+  }
+
+  .tf__field.is-disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.38;
+  }
+
+  .tf__leading,
+  .tf__trailing,
+  .tf__prefix,
+  .tf__suffix,
+  .tf__control-wrap {
+    position: relative;
+    z-index: 1;
+  }
+
+  .tf__leading {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: var(--#{$prefix}-color-on-surface-variant);
+    inline-size: var(--#{$prefix}-comp-text-field-icon-size);
+    block-size: var(--#{$prefix}-comp-text-field-icon-size);
+    flex: 0 0 auto;
+  }
+
+  .tf__trailing {
+    display: none;
+    flex: 0 0 auto;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0;
+    min-block-size: var(--#{$prefix}-comp-text-field-icon-size);
+    inline-size: auto;
+    color: var(--#{$prefix}-color-on-surface-variant);
+  }
+
+  .tf__leading.is-visible,
+  .tf__trailing.is-visible {
+    display: inline-flex;
+  }
+
+  .tf__leading {
+    margin-inline-end: var(--#{$prefix}-comp-text-field-icon-gap);
+  }
+
+  .tf__trailing {
+    margin-inline-start: var(--#{$prefix}-comp-text-field-icon-gap);
+  }
+
+  .tf__icon {
+    inline-size: var(--#{$prefix}-comp-text-field-icon-size);
+    block-size: var(--#{$prefix}-comp-text-field-icon-size);
+    color: currentColor;
+  }
+
+  .tf__password-toggle,
+  .tf__password-generate {
+    box-sizing: border-box;
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 40px;
+    block-size: 40px;
+    margin: 0;
+    margin-inline: -8px;
+    padding: 0;
+    border: none;
+    border-radius: 9999px;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .tf__field:not(.is-disabled) .tf__password-toggle:hover,
+  .tf__field:not(.is-disabled) .tf__password-generate:hover {
+    background: color-mix(in srgb, currentColor 8%, transparent);
+  }
+
+  .tf__field:not(.is-disabled) .tf__password-toggle:focus-visible,
+  .tf__field:not(.is-disabled) .tf__password-generate:focus-visible {
+    outline: 2px solid var(--#{$prefix}-color-primary);
+    outline-offset: 2px;
+  }
+
+  .tf__prefix,
+  .tf__suffix {
+    color: var(--#{$prefix}-color-on-surface-variant);
+    font-size: var(--#{$prefix}-comp-text-field-input-size);
+    line-height: 24px;
+    white-space: nowrap;
+    align-self: center;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .tf__prefix {
+    margin-inline-end: var(--#{$prefix}-comp-text-field-prefix-gap);
+  }
+
+  .tf__suffix {
+    margin-inline-start: var(--#{$prefix}-comp-text-field-prefix-gap);
+  }
+
+  .tf__control-wrap {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: center;
+    align-items: stretch;
+    align-self: stretch;
+    min-inline-size: 0;
+    min-block-size: 0;
+    block-size: 100%;
+  }
+
+  .tf__input {
+    @include tfm.lib-text-field-input;
+    min-inline-size: 0;
+    min-block-size: 24px;
+    /* Alignement vertical sur la hauteur du champ = même axe que leading/trailing (24px) */
+    block-size: auto;
+    max-block-size: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Le libellé est en absolute : la ligne de saisie reste centrée (spec MD, refs. captures) */
+  .tf__field.has-label .tf__input,
+  .tf__field.has-label.is-floating .tf__input,
+  .tf__field.has-label:not(.is-floating) .tf__input {
+    padding: 0;
+  }
+
+  .tf__field:not(.has-label) .tf__input {
+    min-block-size: 24px;
+  }
+
+  .tf__input::placeholder {
+    color: var(--#{$prefix}-color-on-surface-variant);
+    opacity: 0;
+    transition: opacity var(--#{$prefix}-motion-duration-short4) var(--#{$prefix}-motion-easing-emphasized-decelerate);
+  }
+
+  .tf__field.is-floating .tf__input::placeholder {
+    opacity: 1;
+  }
+
+  .tf__label {
+    @include tfm.lib-text-field-label-base;
+    inset-inline-start: 0;
+    inset-block-start: 16px;
+    z-index: 1;
+  }
+
+  .tf__field--filled.has-label.is-floating .tf__label {
+    @include tfm.lib-text-field-label-filled-active;
+  }
+
+  .tf__field--outlined.has-label:not(.is-floating) .tf__label {
+    @include tfm.lib-text-field-label-outlined-rest;
+  }
+
+  .tf__field--outlined.has-label.is-floating .tf__label {
+    @include tfm.lib-text-field-label-outlined-active;
+  }
+
+  /* k3ui field-label-outlined-hover : libellé + au repos outlined */
+  .tf__field--outlined:hover:not(.is-disabled):not(.is-error) .tf__label {
+    color: var(--#{$prefix}-color-on-surface);
+  }
+
+  .tf__field.is-error .tf__label {
+    color: var(--#{$prefix}-color-error);
+  }
+
+  .tf__field.is-focused.is-error .tf__label,
+  .tf__field--filled.has-label.is-floating.is-error .tf__label,
+  .tf__field--outlined.has-label.is-floating.is-error .tf__label {
+    color: var(--#{$prefix}-color-error);
+  }
+
+  .tf__support {
+    @include tfm.lib-text-field-supporting;
+    min-block-size: 20px;
+  }
+
+  .tf__support.is-error {
+    color: var(--#{$prefix}-color-error);
+  }
+
+  .tf__counter {
+    white-space: nowrap;
+  }
+
+  .tf__slot {
+    display: contents;
+  }
+
+  .tf__field.has-leading {
+    padding-inline-start: var(--#{$prefix}-comp-text-field-icon-edge-padding);
+  }
+
+  .tf__field.has-trailing {
+    padding-inline-end: var(--#{$prefix}-comp-text-field-icon-edge-padding);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tf__field,
+    .tf__input::placeholder,
+    .tf__label,
+    .tf__outlined-path {
+      transition: none;
+    }
+  }
+}
+

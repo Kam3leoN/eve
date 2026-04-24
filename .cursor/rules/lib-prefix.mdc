@@ -13,3 +13,6 @@ globs:
 - Utiliser `LIB_PREFIX` et helpers de `lib.config.ts` pour le nommage.
 - Les custom elements publics doivent passer par `withLibPrefix()`.
 - Les nouvelles variables CSS exposées doivent être préfixées `--${LIB_PREFIX}-...`.
+- En SCSS, la forme attendue est strictement `--#{$prefix}-...` (tiret obligatoire entre le prefix et la suite).
+- Interdit: `--#{$prefix}comp-...` (sans tiret après le prefix).
+- Si un token standard `--md-sys-*` est requis pour compatibilité Material, exposer aussi un alias préfixé `--${LIB_PREFIX}-...` pointant vers ce token (pas de logique dupliquée).

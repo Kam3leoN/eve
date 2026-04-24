@@ -1,6 +1,6 @@
 ---
 alwaysApply: false
-description: Build et livraison Eve — ESM tree-shakeable, UMD/IIFE pour script tag, Tailwind consommateur.
+description: Build et livraison Eve — ESM tree-shakeable, UMD/IIFE pour script tag, CSS Sass.
 globs:
   - "**/vite.config.*"
   - "**/rollup.config.*"
@@ -12,12 +12,12 @@ globs:
 
 ## Formats (état du dépôt)
 
-1. **ESM** : `dist/eve.mjs` — `package.json` → `exports["."].import`.
-2. **CommonJS** : `dist/eve.cjs` — `exports["."].require`.
-3. **IIFE** : `dist/eve.iife.js` — globale **`Eve`** (script sans module).
-4. **CSS** : `dist/eve.css` — `exports["./styles"]` ; généré par `@tailwindcss/cli` depuis `src/styles/eve.css`.
+1. **ESM** : `dist/eve.min.mjs` — `package.json` → `exports["."].import`.
+2. **CommonJS** : `dist/eve.min.cjs` — `exports["."].require`.
+3. **IIFE** : `dist/eve.min.js` — globale **`Eve`** (script sans module).
+4. **CSS** : `dist/eve.min.css` — `exports["./styles"]` ; généré par **dart-sass** depuis `src/scss/index.scss`.
 
-Scripts npm : `npm run build` = `vite build` + `tsc -p tsconfig.build.json` (déclarations `.d.ts` dans `dist/`) + Tailwind CLI (`dist/eve.css`).
+Scripts npm : `npm run build` = `vite build` → `build:global-css` → `zip:dist` (+ `postbuild` copie doc).
 
 ## Déclarations TypeScript
 
@@ -28,13 +28,11 @@ Scripts npm : `npm run build` = `vite build` + `tsc -p tsconfig.build.json` (dé
 
 - **`exports`** : mapper `./` vers ESM build ; fichier **types** `.d.ts` alignés.
 - **`sideEffects`** : déclarer si CSS entry ou fichiers avec effets pour aider le tree-shaking (sinon `"sideEffects": false` si tout est pur).
-- **Peer vs deps** : Tailwind reste typiquement chez le consommateur ; la lib fournit **preset** ou **fichier de config** à fusionner.
 
 ## CSS
 
-- Stratégie au choix (documenter dans le repo) :
-  - Build CSS unique `eve.css` pour script tag.
-  - Ou consommateur intègre le **preset Tailwind** + import des layers.
+- **Entrée globale** : `src/scss/index.scss` (tokens M3, layout, reset) → `dist/eve.min.css` pour balise `<link>` ou import `eve/styles`.
+- **Shadow DOM** : styles co-localisés, importés directement en `*.scss?inline` par les web components (pas de fichier compilé intermédiaire versionné).
 
 ## Qualité
 

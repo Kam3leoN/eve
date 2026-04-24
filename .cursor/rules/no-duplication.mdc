@@ -1,0 +1,12 @@
+---
+alwaysApply: true
+description: Eviter les doublons de logique, mixins et tokens.
+---
+
+# Anti-doublon (obligatoire)
+
+- Ne jamais conserver deux mixins/fonctions/classes qui produisent la meme sortie.
+- Si deux symboles deviennent equivalents, fusionner vers un seul symbole canonique et mettre a jour les usages.
+- Eviter les alias temporaires qui dupliquent la logique; preferer un mapping unique documente.
+- Avant de finaliser, scanner les fichiers modifies pour detecter duplications evidentes (meme declarations CSS, meme blocs SCSS, meme utilitaire).
+- Quand un doublon est supprime, verifier qu'aucune reference restante n'utilise l'ancien symbole.

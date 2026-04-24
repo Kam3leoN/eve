@@ -1,0 +1,42 @@
+---
+alwaysApply: true
+description: Pour chaque nouveau composant, imposer prefix dynamique + triade SCSS _token/_mixin/_module.
+globs:
+  - "src/components/**/styles/*.scss"
+  - "src/components/**/*.scss"
+  - "src/components/**/*.ts"
+---
+
+# Triade SCSS obligatoire par composant
+
+## Objectif
+
+Standardiser la creation des composants: chaque composant doit disposer d'une base SCSS commune, reusable et lisible.
+
+## Obligation a la creation d'un composant
+
+Pour tout nouveau composant sous `src/components/<name>/`, creer et utiliser:
+
+- `src/components/<name>/styles/_token.scss`
+- `src/components/<name>/styles/_mixin.scss`
+- `src/components/<name>/styles/_module.scss`
+- un point d'entree SCSS composant (`<name>.scss`) qui agrège ces fichiers
+
+## Prefix dynamique (obligatoire)
+
+- Ne jamais hardcoder `--lib-...` ou un prefix fixe dans les fichiers styles.
+- Toujours utiliser le prefix dynamique provenant de `src/scss/custom/config` (ex: `@use "../../../scss/custom/config" as *;` puis `--#{$prefix}-...`).
+- Toute nouvelle variable CSS exposee par un composant doit etre prefixee dynamiquement.
+
+## Règles de composition
+
+- `_token.scss`: valeurs/tokens locaux du composant (pas de logique de rendu).
+- `_mixin.scss`: mixins reutilisables du composant.
+- `_module.scss`: styles finaux du composant (structure, etats, variantes), en consommant tokens + mixins.
+- `<name>.scss`: point d'entree qui `@use` les fichiers du dossier `styles/`.
+
+## Compatibilite historique
+
+- Les composants existants peuvent temporairement conserver des variantes de nommage (`_tokens.scss`, `_mixins.scss`).
+- Ne pas casser l'existant uniquement pour renommer.
+- En cas d'edition d'un composant existant, converger vers `styles/_token.scss` / `styles/_mixin.scss` / `styles/_module.scss`.

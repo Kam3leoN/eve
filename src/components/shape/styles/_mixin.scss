@@ -1,0 +1,103 @@
+@use "../../../scss/custom/config" as *;
+
+@mixin shape-host-reset {
+  :host {
+    display: inline-flex;
+    inline-size: var(--#{$prefix}-comp-shape-size);
+    block-size: var(--#{$prefix}-comp-shape-size);
+    color: var(--#{$prefix}-comp-shape-color);
+    vertical-align: middle;
+    line-height: 0;
+  }
+}
+
+@mixin shape-svg {
+  svg {
+    inline-size: 100%;
+    block-size: 100%;
+    display: block;
+    color: inherit;
+    fill: currentColor;
+    transform-origin: center;
+    transition:
+      transform var(--#{$prefix}-motion-duration-short4) var(--#{$prefix}-motion-easing-emphasized-decelerate),
+      color var(--#{$prefix}-motion-duration-short4) var(--#{$prefix}-motion-easing-emphasized-decelerate);
+  }
+
+  svg[data-motion="emphasized"] {
+    animation: eve-shape-emphasized-in var(--#{$prefix}-motion-duration-medium2)
+      var(--#{$prefix}-motion-easing-emphasized-decelerate) both;
+  }
+
+  svg[data-motion="emphasized"][data-recoil] {
+    animation: eve-shape-emphasized-in-recoil var(--#{$prefix}-motion-duration-medium3)
+      var(--#{$prefix}-motion-easing-emphasized) both;
+  }
+
+  svg[data-motion="spin"] {
+    animation: eve-shape-spin var(--#{$prefix}-motion-duration-long4)
+      var(--#{$prefix}-motion-easing-emphasized) infinite;
+  }
+
+  svg[data-motion="spin-inverse"] {
+    animation: eve-shape-spin-inverse var(--#{$prefix}-motion-duration-long4)
+      var(--#{$prefix}-motion-easing-emphasized) infinite;
+  }
+
+  @keyframes eve-shape-emphasized-in {
+    from {
+      transform: scale(0.92);
+      opacity: 0.001;
+    }
+
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes eve-shape-emphasized-in-recoil {
+    0% {
+      transform: scale(0.88);
+      opacity: 0.001;
+    }
+
+    60% {
+      transform: scale(1.05);
+      opacity: 1;
+    }
+
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes eve-shape-spin {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes eve-shape-spin-inverse {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(-360deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    svg {
+      transition: none;
+      animation: none;
+      transform: none;
+    }
+  }
+}

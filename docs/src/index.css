@@ -1,6 +1,83 @@
-/* Reset minimal — le rendu typographique des composants vient de la lib Eve. */
+/*
+ * Typo doc:
+ * - Priorité aux fontes locales / self-host (si présentes dans docs/public/fonts)
+ * - Fallback propre si le CDN externe tarde ou échoue
+ */
+@font-face {
+  font-family: 'Google Sans Flex';
+  font-style: normal;
+  font-weight: 100 1000;
+  font-stretch: 25% 151%;
+  font-display: swap;
+  src:
+    local('Google Sans Flex'),
+    url('/fonts/GoogleSansFlex-VariableFont.woff2') format('woff2-variations'),
+    url('/fonts/GoogleSansFlex-VariableFont.ttf') format('truetype-variations');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+  src:
+    local('JetBrains Mono'),
+    url('/fonts/JetBrainsMono[wght].woff2') format('woff2-variations'),
+    url('/fonts/JetBrainsMono-VariableFont_wght.woff2') format('woff2-variations');
+}
+
+@font-face {
+  font-family: 'Burbank Big';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src:
+    local('Burbank Big'),
+    url('/fonts/BurbankBigCondensed-Black.woff2') format('woff2');
+}
+
+:root {
+  --docs-font-sans:
+    'Google Sans Flex',
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    Arial,
+    sans-serif;
+  --docs-font-mono:
+    'JetBrains Mono',
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    'Liberation Mono',
+    'Courier New',
+    monospace;
+  --docs-font-landing:
+    'Burbank Big',
+    var(--docs-font-sans);
+}
+
+html,
+body {
+  font-family: var(--docs-font-sans);
+}
+
 body {
   margin: 0;
+}
+
+code,
+pre,
+kbd,
+samp {
+  font-family: var(--md-ref-typeface-code, var(--docs-font-mono));
+}
+
+.docs-landing {
+  font-family: var(--docs-font-landing);
 }
 
 #root {

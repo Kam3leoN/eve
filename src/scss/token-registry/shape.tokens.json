@@ -1,0 +1,16 @@
+{
+  "component": "shape",
+  "owner": "components/shape",
+  "tokens": [
+    {
+      "name": "--{prefix}-comp-shape-size",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-shape-color",
+      "role": "component",
+      "stability": "stable"
+    }
+  ]
+}

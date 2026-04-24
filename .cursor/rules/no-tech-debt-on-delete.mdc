@@ -1,0 +1,29 @@
+---
+alwaysApply: true
+description: Suppression sans dette technique: nettoyer toutes les références et pipelines.
+---
+
+# Zéro dette technique après suppression
+
+Quand un fichier ou dossier est supprimé, la suppression est **terminée uniquement** si tous les points suivants sont traités :
+
+1. **Références code**  
+   - retirer/adapter tous les imports/exports, chemins, types, aliases, enregistrements, loaders.
+
+2. **Pipelines et scripts**  
+   - nettoyer `package.json` (build/watch/test/dev), configs Vite/TS/Sass, scripts utilitaires.
+
+3. **Règles et docs internes**  
+   - mettre à jour les règles Cursor (`.cursor/rules/*`) et la documentation qui mentionnent l’ancien chemin.
+
+4. **Artefacts générés**  
+   - supprimer les sorties intermédiaires obsolètes et empêcher leur régénération.
+
+5. **Validation obligatoire**  
+   - lancer le build approprié (`npm run build` à la racine si doute).  
+   - corriger toute erreur/lint liée à la suppression.
+
+## Interdit
+
+- Laisser un fichier supprimé encore mentionné dans scripts, règles, docs, tests, ou config.
+- Conserver un artefact compilé versionné devenu inutile.

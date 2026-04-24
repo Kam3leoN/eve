@@ -1,0 +1,15 @@
+@use "../../../scss/custom/config" as *;
+
+:host {
+  --#{$prefix}-comp-loading-indicator-size: 48px;
+  --#{$prefix}-comp-loading-indicator-active-size-default: 48px;
+  --#{$prefix}-comp-loading-indicator-active-size-contained: 38px;
+  --#{$prefix}-comp-loading-indicator-contained-gap: 6px;
+  --#{$prefix}-comp-loading-indicator-spring-duration: 700ms;
+  --#{$prefix}-comp-loading-indicator-rotation-spin-duration: 4666ms;
+  --#{$prefix}-comp-loading-indicator-rotation-spring-duration: 600ms;
+  --#{$prefix}-comp-loading-indicator-default-active-color: var(--#{$prefix}-color-primary);
+  --#{$prefix}-comp-loading-indicator-default-container-color: var(--#{$prefix}-color-primary-container);
+  --#{$prefix}-comp-loading-indicator-contained-container-color: var(--#{$prefix}-color-primary-container);
+  --#{$prefix}-comp-loading-indicator-contained-active-color: var(--#{$prefix}-color-on-primary-container);
+}

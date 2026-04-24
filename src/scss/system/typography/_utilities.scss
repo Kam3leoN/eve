@@ -1,0 +1,19 @@
+@use "../../custom/config" as *;
+@use "./tokens" as typographyTokens;
+@use "./mixins" as typographyMixins;
+
+@layer utilities {
+  .landing,
+  .#{$prefix}landing {
+    font-family: var(--#{$prefix}-ref-typeface-landing);
+  }
+
+  @each $role, $values in typographyTokens.$type-tokens {
+    .#{$role},
+    .#{$prefix}#{$role},
+    .emphasized-#{$role},
+    .#{$prefix}emphasized-#{$role} {
+      @include typographyMixins.type-role($role);
+    }
+  }
+}

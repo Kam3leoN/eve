@@ -1,0 +1,6 @@
+@use "../../../scss/custom/config" as *;
+
+:host {
+  --#{$prefix}-comp-shape-size: 2.5rem;
+  --#{$prefix}-comp-shape-color: currentColor;
+}

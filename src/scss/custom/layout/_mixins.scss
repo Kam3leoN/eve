@@ -1,0 +1,17 @@
+@mixin media-queries-up($query) {
+  @media #{$query} {
+    @content;
+  }
+}
+
+@mixin media-queries-down($query) {
+  @media #{$query} {
+    @content;
+  }
+}
+
+@mixin media-queries-between($query) {
+  @media #{$query} {
+    @content;
+  }
+}

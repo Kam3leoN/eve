@@ -1,0 +1,54 @@
+@use "../../../scss/custom/config" as *;
+
+@layer components {
+  .nav-card {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 0.9rem;
+    min-block-size: 88px;
+    padding: 0.9rem 1.1rem;
+    border-radius: 1rem;
+    border: 1px solid var(--#{$prefix}-color-outline-variant);
+    background: var(--#{$prefix}-color-surface-container-low);
+    color: inherit;
+    text-decoration: none;
+    transition: background-color var(--#{$prefix}-motion-duration-short4) var(--#{$prefix}-motion-easing-emphasized-decelerate);
+  }
+
+  .nav-card:hover {
+    background: var(--#{$prefix}-color-surface-container);
+  }
+
+  .nav-card__icon-chip {
+    inline-size: 2.6rem;
+    block-size: 2.6rem;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: color-mix(in srgb, var(--#{$prefix}-color-primary) 10%, transparent);
+    color: var(--#{$prefix}-color-primary);
+  }
+
+  .nav-card__title {
+    margin: 0;
+    font-size: var(--#{$prefix}-type-title-medium-font-size);
+    line-height: var(--#{$prefix}-type-title-medium-line-height);
+    font-weight: var(--#{$prefix}-type-title-medium-weight);
+    letter-spacing: var(--#{$prefix}-type-title-medium-tracking);
+  }
+
+  .nav-card__subtitle {
+    margin: 0.15rem 0 0;
+    font-size: var(--#{$prefix}-type-body-medium-font-size);
+    line-height: var(--#{$prefix}-type-body-medium-line-height);
+    color: var(--#{$prefix}-color-on-surface-variant);
+  }
+
+  .nav-card__icon {
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+    color: currentColor;
+  }
+}

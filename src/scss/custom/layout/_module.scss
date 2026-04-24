@@ -1,0 +1,130 @@
+@use "../config" as *;
+@use "./tokens" as layoutTokens;
+@use "./mixins" as layoutMixins;
+
+.container,
+.#{$prefix}container {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--#{$prefix}-layout-max-width);
+  margin-inline: auto;
+  padding-inline: var(--#{$prefix}-layout-padding-x);
+}
+
+.content,
+.#{$prefix}content {
+  width: min(100%, var(--#{$prefix}-layout-content-max));
+  margin-inline: auto;
+}
+
+.row,
+.#{$prefix}row {
+  display: grid;
+  grid-template-columns: repeat(var(--#{$prefix}-layout-columns), minmax(0, 1fr));
+  column-gap: var(--row-col-gap, var(--#{$prefix}-layout-gap-3));
+  row-gap: var(--row-row-gap, var(--#{$prefix}-layout-gap-3));
+}
+
+.row > *,
+.#{$prefix}row > * {
+  --col-span: 12;
+  --col-start: auto;
+  grid-column: var(--col-start) / span var(--col-span);
+  min-width: 0;
+}
+
+.col,
+.#{$prefix}col {
+  --col-span: 12;
+  --col-start: auto;
+  grid-column: var(--col-start) / span var(--col-span);
+  min-width: 0;
+}
+
+.span-full,
+.#{$prefix}span-full {
+  grid-column: 1 / -1 !important;
+}
+
+@for $i from 1 through 12 {
+  .s#{$i},
+  .#{$prefix}s#{$i} {
+    --col-span: #{$i};
+  }
+}
+
+@for $i from 1 through 12 {
+  .offset-s#{$i},
+  .#{$prefix}offset-s#{$i} {
+    --col-start: #{$i + 1};
+  }
+}
+
+@include layoutMixins.media-queries-up(layoutTokens.$medium-and-up) {
+  @for $i from 1 through 12 {
+    .m#{$i},
+    .#{$prefix}m#{$i} {
+      --col-span: #{$i};
+    }
+    .offset-m#{$i},
+    .#{$prefix}offset-m#{$i} {
+      --col-start: #{$i + 1};
+    }
+  }
+}
+
+@include layoutMixins.media-queries-up(layoutTokens.$large-and-up) {
+  @for $i from 1 through 12 {
+    .l#{$i},
+    .#{$prefix}l#{$i} {
+      --col-span: #{$i};
+    }
+    .offset-l#{$i},
+    .#{$prefix}offset-l#{$i} {
+      --col-start: #{$i + 1};
+    }
+  }
+}
+
+@include layoutMixins.media-queries-up(layoutTokens.$extra-large-and-up) {
+  @for $i from 1 through 12 {
+    .xl#{$i},
+    .#{$prefix}xl#{$i} {
+      --col-span: #{$i};
+    }
+    .offset-xl#{$i},
+    .#{$prefix}offset-xl#{$i} {
+      --col-start: #{$i + 1};
+    }
+  }
+}
+
+@for $i from 0 through 5 {
+  .g-#{$i},
+  .#{$prefix}g-#{$i} {
+    --row-col-gap: var(--#{$prefix}-layout-gap-#{$i});
+    --row-row-gap: var(--#{$prefix}-layout-gap-#{$i});
+  }
+}
+
+.cluster,
+.#{$prefix}cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--#{$prefix}-layout-gap);
+}
+
+.stack,
+.#{$prefix}stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--#{$prefix}-layout-gap);
+}
+
+.flow-text,
+.#{$prefix}flow-text {
+  font-size: clamp(1rem, 0.925rem + 0.35vw, 1.25rem);
+  line-height: 1.45;
+}
+

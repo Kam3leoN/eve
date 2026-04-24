@@ -1,0 +1,35 @@
+---
+alwaysApply: true
+description: Co-localiser les styles des composants dans leur dossier src/components, en consommant les tokens globaux sans duplication.
+globs:
+  - "src/components/**/*.scss"
+  - "src/components/**/*.ts"
+  - "src/scss/**/*.scss"
+  - "src/styles/**/*.scss"
+---
+
+# Styles composants — co-localisation obligatoire
+
+## Principe
+
+Les styles propres a un composant doivent vivre dans son dossier composant:
+
+- `src/components/<component>/styles/*`
+- eventuellement une entrée locale (`<component>.scss`) dans le meme dossier composant
+
+## Règles
+
+- Ne pas déplacer les styles spécifiques composant vers `src/styles/` global.
+- Ne pas dupliquer localement les tokens système/globaux.
+- Les composants doivent consommer les tokens partagés via `@use` depuis:
+  - `src/scss/system/*`
+  - `src/scss/custom/*`
+  - `src/scss/ref/*` (si présent)
+- Conserver une séparation claire:
+  - **global** = design tokens / foundations
+  - **local composant** = structure, variantes, états, shadow styles
+
+## Qualité
+
+- Toute nouvelle feature composant doit ajouter/adapter ses styles dans son dossier composant.
+- Toute logique de style transversale réutilisable doit aller dans `src/scss/*`, pas copiée dans chaque composant.

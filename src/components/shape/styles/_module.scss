@@ -1,0 +1,6 @@
+@use "./mixin" as shape;
+
+@layer components {
+  @include shape.shape-host-reset;
+  @include shape.shape-svg;
+}

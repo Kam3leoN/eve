@@ -1,0 +1,20 @@
+@use "../../../scss/custom/config" as *;
+
+:host {
+  --#{$prefix}-comp-button-group-gap: 2px;
+  --#{$prefix}-comp-button-group-xs-height: 32px;
+  --#{$prefix}-comp-button-group-xs-inner-default: 8px;
+  --#{$prefix}-comp-button-group-xs-inner-active: 4px;
+  --#{$prefix}-comp-button-group-sm-height: 40px;
+  --#{$prefix}-comp-button-group-sm-inner-default: 8px;
+  --#{$prefix}-comp-button-group-sm-inner-active: 4px;
+  --#{$prefix}-comp-button-group-md-height: 56px;
+  --#{$prefix}-comp-button-group-md-inner-default: 8px;
+  --#{$prefix}-comp-button-group-md-inner-active: 4px;
+  --#{$prefix}-comp-button-group-lg-height: 96px;
+  --#{$prefix}-comp-button-group-lg-inner-default: 16px;
+  --#{$prefix}-comp-button-group-lg-inner-active: 12px;
+  --#{$prefix}-comp-button-group-xl-height: 136px;
+  --#{$prefix}-comp-button-group-xl-inner-default: 20px;
+  --#{$prefix}-comp-button-group-xl-inner-active: 16px;
+}

@@ -1,0 +1,86 @@
+@use "../../custom/config" as *;
+
+/* Source unique M3 Motion (sys) */
+:root {
+  --md-sys-motion-duration-short1: 50ms;
+  --md-sys-motion-duration-short2: 100ms;
+  --md-sys-motion-duration-short3: 150ms;
+  --md-sys-motion-duration-short4: 200ms;
+  --md-sys-motion-duration-medium1: 250ms;
+  --md-sys-motion-duration-medium2: 300ms;
+  --md-sys-motion-duration-medium3: 350ms;
+  --md-sys-motion-duration-medium4: 400ms;
+  --md-sys-motion-duration-long1: 450ms;
+  --md-sys-motion-duration-long2: 500ms;
+  --md-sys-motion-duration-long3: 550ms;
+  --md-sys-motion-duration-long4: 600ms;
+  --md-sys-motion-duration-extra-long1: 700ms;
+  --md-sys-motion-duration-extra-long2: 800ms;
+  --md-sys-motion-duration-extra-long3: 900ms;
+  --md-sys-motion-duration-extra-long4: 1000ms;
+
+  --md-sys-motion-easing-emphasized: cubic-bezier(0.2, 0, 0, 1);
+  --md-sys-motion-easing-emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1);
+  --md-sys-motion-easing-emphasized-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15);
+
+  /*
+   * Spring schema — Material 3 Expressive (officiel).
+   * Sources:
+   * - https://raw.githubusercontent.com/androidx/androidx/androidx-main/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/tokens/ExpressiveMotionTokens.kt
+   * - https://raw.githubusercontent.com/androidx/androidx/androidx-main/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/MotionScheme.kt
+   */
+  --md-sys-motion-spring-default-spatial-damping: 0.8;
+  --md-sys-motion-spring-default-spatial-stiffness: 380;
+  --md-sys-motion-spring-default-effects-damping: 1;
+  --md-sys-motion-spring-default-effects-stiffness: 1600;
+
+  --md-sys-motion-spring-fast-spatial-damping: 0.6;
+  --md-sys-motion-spring-fast-spatial-stiffness: 800;
+  --md-sys-motion-spring-fast-effects-damping: 1;
+  --md-sys-motion-spring-fast-effects-stiffness: 3800;
+
+  --md-sys-motion-spring-slow-spatial-damping: 0.8;
+  --md-sys-motion-spring-slow-spatial-stiffness: 200;
+  --md-sys-motion-spring-slow-effects-damping: 1;
+  --md-sys-motion-spring-slow-effects-stiffness: 800;
+}
+
+$motion-duration-tokens: (
+  short1: var(--md-sys-motion-duration-short1),
+  short2: var(--md-sys-motion-duration-short2),
+  short3: var(--md-sys-motion-duration-short3),
+  short4: var(--md-sys-motion-duration-short4),
+  medium1: var(--md-sys-motion-duration-medium1),
+  medium2: var(--md-sys-motion-duration-medium2),
+  medium3: var(--md-sys-motion-duration-medium3),
+  medium4: var(--md-sys-motion-duration-medium4),
+  long1: var(--md-sys-motion-duration-long1),
+  long2: var(--md-sys-motion-duration-long2),
+  long3: var(--md-sys-motion-duration-long3),
+  long4: var(--md-sys-motion-duration-long4),
+  extra-long1: var(--md-sys-motion-duration-extra-long1),
+  extra-long2: var(--md-sys-motion-duration-extra-long2),
+  extra-long3: var(--md-sys-motion-duration-extra-long3),
+  extra-long4: var(--md-sys-motion-duration-extra-long4),
+);
+
+$motion-easing-tokens: (
+  emphasized: var(--md-sys-motion-easing-emphasized),
+  emphasized-decelerate: var(--md-sys-motion-easing-emphasized-decelerate),
+  emphasized-accelerate: var(--md-sys-motion-easing-emphasized-accelerate),
+);
+
+$motion-spring-tokens: (
+  default-spatial-damping: var(--md-sys-motion-spring-default-spatial-damping),
+  default-spatial-stiffness: var(--md-sys-motion-spring-default-spatial-stiffness),
+  default-effects-damping: var(--md-sys-motion-spring-default-effects-damping),
+  default-effects-stiffness: var(--md-sys-motion-spring-default-effects-stiffness),
+  fast-spatial-damping: var(--md-sys-motion-spring-fast-spatial-damping),
+  fast-spatial-stiffness: var(--md-sys-motion-spring-fast-spatial-stiffness),
+  fast-effects-damping: var(--md-sys-motion-spring-fast-effects-damping),
+  fast-effects-stiffness: var(--md-sys-motion-spring-fast-effects-stiffness),
+  slow-spatial-damping: var(--md-sys-motion-spring-slow-spatial-damping),
+  slow-spatial-stiffness: var(--md-sys-motion-spring-slow-spatial-stiffness),
+  slow-effects-damping: var(--md-sys-motion-spring-slow-effects-damping),
+  slow-effects-stiffness: var(--md-sys-motion-spring-slow-effects-stiffness),
+);

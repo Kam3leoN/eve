@@ -1,0 +1,153 @@
+@use "../../../scss/custom/config" as *;
+
+@layer components {
+  .group {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .group--standard {
+    gap: 0.5rem;
+  }
+
+  .group--connected {
+    gap: var(--group-gap);
+    --group-item-height: var(--#{$prefix}-comp-button-group-sm-height);
+    --group-gap: var(--#{$prefix}-comp-button-group-gap);
+    /* rest = inner-default, active = inner-active, selected = outer (h/2) */
+    --group-inner-radius-active: var(--#{$prefix}-comp-button-group-sm-inner-active);
+    --group-inner-radius: var(--#{$prefix}-comp-button-group-sm-inner-default);
+    --group-outer-radius: calc(var(--group-item-height) / 2);
+    border-radius: calc(var(--group-item-height) / 2);
+  }
+
+  .group--connected ::slotted(.lib-group-item) {
+    margin: 0;
+    display: inline-flex !important;
+    overflow: hidden !important;
+    --lib-group-inner-radius: var(--group-inner-radius);
+    --lib-group-outer-radius: var(--group-outer-radius);
+    --lib-group-inner-current-radius: var(--group-inner-radius);
+    border-radius: var(--lib-group-inner-current-radius) !important;
+    border: 0 !important;
+  }
+
+  .group--connected ::slotted(.lib-group-item--first) {
+    border-start-start-radius: var(--group-outer-radius) !important;
+    border-end-start-radius: var(--group-outer-radius) !important;
+    border-start-end-radius: var(--lib-group-inner-current-radius) !important;
+    border-end-end-radius: var(--lib-group-inner-current-radius) !important;
+  }
+
+  .group--connected ::slotted(.lib-group-item--middle) {
+    border-radius: var(--lib-group-inner-current-radius) !important;
+  }
+
+  .group--connected ::slotted(.lib-group-item--last) {
+    border-start-end-radius: var(--group-outer-radius) !important;
+    border-end-end-radius: var(--group-outer-radius) !important;
+    border-start-start-radius: var(--lib-group-inner-current-radius) !important;
+    border-end-start-radius: var(--lib-group-inner-current-radius) !important;
+  }
+
+  /* Selected/toggle-on uses outer radius (pill). */
+  .group--connected ::slotted(.lib-group-item[pressed]),
+  .group--connected ::slotted(.lib-group-item[aria-pressed='true']) {
+    --lib-group-inner-current-radius: var(--group-outer-radius);
+  }
+
+  .group--connected ::slotted(.lib-group-item--first[pressed]),
+  .group--connected ::slotted(.lib-group-item--first[aria-pressed='true']) {
+    border-start-start-radius: var(--group-outer-radius) !important;
+    border-end-start-radius: var(--group-outer-radius) !important;
+    border-start-end-radius: var(--group-outer-radius) !important;
+    border-end-end-radius: var(--group-outer-radius) !important;
+  }
+
+  .group--connected ::slotted(.lib-group-item--middle[pressed]),
+  .group--connected ::slotted(.lib-group-item--middle[aria-pressed='true']) {
+    border-radius: var(--group-outer-radius) !important;
+  }
+
+  .group--connected ::slotted(.lib-group-item--last[pressed]),
+  .group--connected ::slotted(.lib-group-item--last[aria-pressed='true']) {
+    border-start-end-radius: var(--group-outer-radius) !important;
+    border-end-end-radius: var(--group-outer-radius) !important;
+    border-start-start-radius: var(--group-outer-radius) !important;
+    border-end-start-radius: var(--group-outer-radius) !important;
+  }
+
+  /* Active/pressed pointer state uses inner-active radius. */
+  .group--connected ::slotted(.lib-group-item:active) {
+    --lib-group-inner-current-radius: var(--group-inner-radius-active);
+    border-radius: var(--group-inner-radius-active) !important;
+  }
+
+  /* Debug/documentation helper: permet d'afficher un état active persistant dans la page docs. */
+  .group--connected ::slotted(.lib-group-item[data-group-active='true']) {
+    --lib-group-inner-current-radius: var(--group-inner-radius-active);
+    border-radius: var(--group-inner-radius-active) !important;
+  }
+
+  .group--connected ::slotted(.lib-group-item--first:active),
+  .group--connected ::slotted(.lib-group-item--first[data-group-active='true']) {
+    border-start-start-radius: var(--group-outer-radius) !important;
+    border-end-start-radius: var(--group-outer-radius) !important;
+    border-start-end-radius: var(--group-inner-radius-active) !important;
+    border-end-end-radius: var(--group-inner-radius-active) !important;
+  }
+
+  .group--connected ::slotted(.lib-group-item--middle:active),
+  .group--connected ::slotted(.lib-group-item--middle[data-group-active='true']) {
+    border-radius: var(--group-inner-radius-active) !important;
+  }
+
+  .group--connected ::slotted(.lib-group-item--last:active),
+  .group--connected ::slotted(.lib-group-item--last[data-group-active='true']) {
+    border-start-start-radius: var(--group-inner-radius-active) !important;
+    border-end-start-radius: var(--group-inner-radius-active) !important;
+    border-start-end-radius: var(--group-outer-radius) !important;
+    border-end-end-radius: var(--group-outer-radius) !important;
+  }
+
+  .group--xs {
+    --group-item-height: var(--#{$prefix}-comp-button-group-xs-height);
+    --group-gap: var(--#{$prefix}-comp-button-group-gap);
+    --group-inner-radius: var(--#{$prefix}-comp-button-group-xs-inner-default);
+    --group-inner-radius-active: var(--#{$prefix}-comp-button-group-xs-inner-active);
+    --group-outer-radius: calc(var(--group-item-height) / 2);
+  }
+
+  .group--sm {
+    --group-item-height: var(--#{$prefix}-comp-button-group-sm-height);
+    --group-gap: var(--#{$prefix}-comp-button-group-gap);
+    --group-inner-radius: var(--#{$prefix}-comp-button-group-sm-inner-default);
+    --group-inner-radius-active: var(--#{$prefix}-comp-button-group-sm-inner-active);
+    --group-outer-radius: calc(var(--group-item-height) / 2);
+  }
+
+  .group--md {
+    --group-item-height: var(--#{$prefix}-comp-button-group-md-height);
+    --group-gap: var(--#{$prefix}-comp-button-group-gap);
+    --group-inner-radius: var(--#{$prefix}-comp-button-group-md-inner-default);
+    --group-inner-radius-active: var(--#{$prefix}-comp-button-group-md-inner-active);
+    --group-outer-radius: calc(var(--group-item-height) / 2);
+  }
+
+  .group--lg {
+    --group-item-height: var(--#{$prefix}-comp-button-group-lg-height);
+    --group-gap: var(--#{$prefix}-comp-button-group-gap);
+    --group-inner-radius: var(--#{$prefix}-comp-button-group-lg-inner-default);
+    --group-inner-radius-active: var(--#{$prefix}-comp-button-group-lg-inner-active);
+    --group-outer-radius: calc(var(--group-item-height) / 2);
+  }
+
+  .group--xl {
+    --group-item-height: var(--#{$prefix}-comp-button-group-xl-height);
+    --group-gap: var(--#{$prefix}-comp-button-group-gap);
+    --group-inner-radius: var(--#{$prefix}-comp-button-group-xl-inner-default);
+    --group-inner-radius-active: var(--#{$prefix}-comp-button-group-xl-inner-active);
+    --group-outer-radius: calc(var(--group-item-height) / 2);
+  }
+}

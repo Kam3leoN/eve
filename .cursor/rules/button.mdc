@@ -3,7 +3,7 @@ alwaysApply: false
 description: Référence `button` alignée M3 Expressive common buttons.
 globs:
   - "src/components/button/**"
-  - "src/styles/shadow-components.css"
+  - "src/components/button/button.scss"
 ---
 
 # `button` (Material 3 Expressive)
@@ -26,7 +26,7 @@ globs:
 
 ## Attributs
 
-- `size`: `extra-small` \| `small` (**défaut** doc M3 Expressive) \| `medium` \| `large` \| `extra-large` — hauteurs **32 / 40 / 56 / 96 / 136** px (`m3-comp-button-tokens.css`).
+- `size`: `extra-small` \| `small` (**défaut** doc M3 Expressive) \| `medium` \| `large` \| `extra-large` — hauteurs **32 / 40 / 56 / 96 / 136** px (tokens `src/components/button/styles/_tokens.scss`).
 - `shape`: **`round` (défaut M3 Expressive / pilule h÷2)** \| `square` — **square** : row B au repos ; **:active** et sélectionné : row C (sauf ci-dessous).
 - `shape-toggle-swap` (booléen) — avec **toggle** / `pressed` : **off** = forme `shape` ; **on** = **inverse** (*square* → pilule h÷2, *round* → square row B). Désactive le morph row C classique sur sélectionné / `:active`.
 - `dir` — `rtl` \| `ltr` (optionnel) : propagé sur le `<button>` / `<a>` interne ; sinon héritage depuis le document ou un ancêtre. Padding/gap déjà logiques ; chevron sprite retourné en RTL.

@@ -1,0 +1,32 @@
+@use "../../../scss/custom/config" as *;
+
+:host {
+  --#{$prefix}-comp-card-radius: 12px;
+  --#{$prefix}-comp-card-padding-inline: 16px;
+  --#{$prefix}-comp-card-padding-block: 16px;
+  --#{$prefix}-comp-card-gap: 8px;
+  --#{$prefix}-comp-card-gap-expanded: 12px;
+  --#{$prefix}-comp-card-heading-gap: 4px;
+  --#{$prefix}-comp-card-actions-gap: 8px;
+
+  --#{$prefix}-comp-card-min-media-inline: 120px;
+  --#{$prefix}-comp-card-horizontal-media-ratio: 36%;
+  --#{$prefix}-comp-card-mosaic-min-block: 220px;
+  --#{$prefix}-comp-card-staggered-min-block: 180px;
+
+  --#{$prefix}-comp-card-state-hover-opacity: 0.08;
+  --#{$prefix}-comp-card-state-pressed-opacity: 0.1;
+  --#{$prefix}-comp-card-focus-ring-width: 3px;
+  --#{$prefix}-comp-card-focus-ring-opacity: 35%;
+  --#{$prefix}-comp-card-elevated-shadow-y: 1px;
+  --#{$prefix}-comp-card-elevated-shadow-blur: 2px;
+  --#{$prefix}-comp-card-elevated-shadow-opacity: 18%;
+  --#{$prefix}-comp-card-elevated-hover-shadow-y: 1px;
+  --#{$prefix}-comp-card-elevated-hover-shadow-blur: 3px;
+  --#{$prefix}-comp-card-elevated-hover-shadow-opacity: 22%;
+
+  --#{$prefix}-comp-card-overline-tracking: 0.04em;
+  --#{$prefix}-comp-card-overline-size: 0.875rem;
+  --#{$prefix}-comp-card-overline-weight: 500;
+  --#{$prefix}-comp-card-overline-line-height: 1.25rem;
+}

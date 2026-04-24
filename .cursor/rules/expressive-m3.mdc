@@ -6,6 +6,8 @@ description: Politique obligatoire — Material 3 Expressive uniquement ; jamais
 # Material 3 Expressive (obligatoire)
 
 - **Eve vise exclusivement Material 3 Expressive.** Ne pas orienter le design, la doc ni le code vers le train **Baseline** ni vers un « M3 minimal / classique » présenté comme cible.
+- **Quand Google Material propose plusieurs variantes, prendre toujours en référence prioritaire `Expressive` puis `Emphasized`.** Si une page/documentation n’expose pas clairement ces valeurs, chercher la source officielle équivalente (tokens, API, tables M3) avant d’implémenter.
+- **Typography** : en cas de coexistence baseline/emphasized, implémenter et consommer les tokens en **mode emphasized-only** pour Eve ; ne pas introduire de nouvelle dépendance fonctionnelle aux valeurs baseline.
 - **Motion — easing** : utiliser **uniquement** la famille **Emphasized** (`md.sys.motion.easing.emphasized`, `emphasized-decelerate`, `emphasized-accelerate`). Aucune autre famille de courbes du tableau Material (p.ex. jeux de courbes « utilitaires » parallèles à Emphasized) dans ce dépôt.
 - **Motion** : [Motion overview](https://m3.material.io/m3/pages/motion-overview/) ; courbes Emphasized + durées : [tokens specs](https://m3.material.io/styles/motion/easing-and-duration/tokens-specs) (colonnes **Emphasized**).
 - **Formes** : échelle **Expressive** (rayons généreux, continuité avec les composants expressifs).

@@ -1,8 +1,8 @@
 export {
-  applyEveTheme,
-  createEveTheme,
-  type EveTheme,
-  type EveThemeFromHexOptions,
-  type EveThemeFromImageOptions,
-  type EveThemeSource,
-} from './eve-theme.js';
+  applyThemeTokens,
+  createTheme,
+  type ThemeFromHexOptions,
+  type ThemeFromImageOptions,
+  type ThemeSource,
+  type UiTheme,
+} from './theme';

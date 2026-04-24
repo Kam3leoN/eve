@@ -1,0 +1,61 @@
+{
+  "component": "loading-indicator",
+  "owner": "components/loading-indicator",
+  "tokens": [
+    {
+      "name": "--{prefix}-comp-loading-indicator-size",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-loading-indicator-active-size-default",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-loading-indicator-active-size-contained",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-loading-indicator-contained-gap",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-loading-indicator-spring-duration",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-loading-indicator-rotation-spin-duration",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-loading-indicator-rotation-spring-duration",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-loading-indicator-default-active-color",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-loading-indicator-default-container-color",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-loading-indicator-contained-container-color",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-loading-indicator-contained-active-color",
+      "role": "component",
+      "stability": "stable"
+    }
+  ]
+}

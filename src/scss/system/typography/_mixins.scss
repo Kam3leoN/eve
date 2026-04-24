@@ -1,0 +1,29 @@
+@use "sass:map";
+@use "../../custom/config" as *;
+@use "./tokens" as typographyTokens;
+
+@function type-value($role, $property) {
+  @if not map.has-key(typographyTokens.$type-tokens, $role) {
+    @error "Unknown typography role `#{$role}`.";
+  }
+  $role-map: map.get(typographyTokens.$type-tokens, $role);
+  @if not map.has-key($role-map, $property) {
+    @error "Unknown typography property `#{$property}` for role `#{$role}`.";
+  }
+  @return map.get($role-map, $property);
+}
+
+@mixin type-role($role) {
+  font-family: var(--md-sys-typescale-emphasized-#{$role}-font-family-name);
+  font-style: var(--md-sys-typescale-emphasized-#{$role}-font-family-style);
+  font-weight: var(--md-sys-typescale-emphasized-#{$role}-font-weight);
+  font-size: var(--md-sys-typescale-emphasized-#{$role}-font-size);
+  letter-spacing: var(--md-sys-typescale-emphasized-#{$role}-tracking);
+  line-height: var(--md-sys-typescale-emphasized-#{$role}-height);
+  text-transform: var(--md-sys-typescale-emphasized-#{$role}-text-transform);
+  text-decoration: var(--md-sys-typescale-emphasized-#{$role}-text-decoration);
+}
+
+@mixin type-family-sans {
+  font-family: var(--#{$prefix}-type-font-family-sans);
+}

@@ -15,13 +15,13 @@ globs:
 
 ## Build
 
-- **ESM** : `dist/eve.mjs` — imports nommés, tree-shaking possible.
-- **CJS** : `dist/eve.cjs`
-- **IIFE** : `dist/eve.iife.js` — variable globale **`Eve`** (script classique).
-- **CSS** : `dist/eve.css` (Tailwind + couche base focus) — import optionnel `eve/styles`.
+- **ESM** : `dist/eve.min.mjs` — imports nommés, tree-shaking possible.
+- **CJS** : `dist/eve.min.cjs`
+- **IIFE** : `dist/eve.min.js` — variable globale **`Eve`** (script classique).
+- **CSS** : `dist/eve.min.css` (tokens M3 + layout + reset + couche base focus) — import optionnel `eve/styles`.
 
 ## Consommateurs
 
 - **Module** : `import { createEveTheme, registerEveElements } from 'eve'`
 - **Script** : charger `eve.iife.js` puis `Eve.registerEveElements()`, `Eve.createEveTheme`, etc.
-- **Styles** : lier `eve.css` ou intégrer le preset Tailwind du projet (voir `build-delivery.mdc`).
+- **Styles** : lier `eve.min.css` depuis `dist/` ou le sous-chemin exporté `eve/styles` (voir `build-delivery.mdc`).

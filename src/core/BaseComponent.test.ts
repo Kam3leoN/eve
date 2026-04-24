@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { BaseComponent } from './BaseComponent.js';
+import { BaseComponent } from './BaseComponent';
 
 class DemoBaseComponent extends BaseComponent {
   initCount = 0;

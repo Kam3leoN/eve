@@ -1,0 +1,246 @@
+@use "../../../scss/custom/config" as *;
+
+@layer components {
+  .split {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    border-radius: calc(var(--split-height) / 2);
+    min-block-size: var(--split-height);
+    --split-height: 40px;
+    --split-primary-pad-start: 16px;
+    --split-primary-pad-end: 12px;
+    --split-secondary-size: 40px;
+    --split-icon-size: 20px;
+    --split-inner-radius: 4px;
+    --split-menu-offset: -1px;
+    --split-font-size: var(--#{$prefix}-type-label-large-size);
+    --split-line-height: var(--#{$prefix}-type-label-large-line-height);
+    --split-letter-spacing: var(--#{$prefix}-type-label-large-tracking);
+    --split-font-weight: var(--#{$prefix}-type-label-large-weight);
+  }
+
+  .split__primary,
+  .split__secondary {
+    border: 0;
+    cursor: pointer;
+    background: transparent;
+    color: inherit;
+    font-family: var(--#{$prefix}-type-label-large-font-family-name);
+    font-size: var(--split-font-size);
+    font-weight: var(--split-font-weight);
+    line-height: var(--split-line-height);
+    letter-spacing: var(--split-letter-spacing);
+    min-height: var(--split-height);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+      background-color var(--#{$prefix}-motion-duration-short4) var(--#{$prefix}-motion-easing-emphasized-decelerate),
+      border-radius var(--#{$prefix}-motion-duration-short4) var(--#{$prefix}-motion-easing-emphasized-decelerate);
+    position: relative;
+    isolation: isolate;
+  }
+
+  .split__primary::before,
+  .split__secondary::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: currentColor;
+    opacity: 0;
+    transition: opacity var(--#{$prefix}-motion-duration-short4) var(--#{$prefix}-motion-easing-emphasized-decelerate);
+    pointer-events: none;
+  }
+
+  .split__primary {
+    padding-inline: 16px 12px;
+    gap: 8px;
+  }
+
+  .split__secondary {
+    inline-size: var(--split-secondary-size);
+  }
+
+  .split--equal .split__primary,
+  .split--equal .split__secondary {
+    inline-size: var(--split-secondary-size);
+    padding-inline: 0;
+    justify-content: center;
+  }
+
+  .split__primary {
+    padding-inline: var(--split-primary-pad-start) var(--split-primary-pad-end);
+  }
+
+  .split__secondary .icon {
+    transform: translateX(var(--split-menu-offset)) rotate(90deg);
+    transition: transform var(--#{$prefix}-motion-duration-short4) var(--#{$prefix}-motion-easing-emphasized-decelerate);
+  }
+
+  .split__primary {
+    border-start-start-radius: calc(var(--split-height) / 2);
+    border-end-start-radius: calc(var(--split-height) / 2);
+    border-start-end-radius: var(--split-inner-radius);
+    border-end-end-radius: var(--split-inner-radius);
+  }
+
+  .split__secondary {
+    border-start-start-radius: var(--split-inner-radius);
+    border-end-start-radius: var(--split-inner-radius);
+    border-start-end-radius: calc(var(--split-height) / 2);
+    border-end-end-radius: calc(var(--split-height) / 2);
+  }
+
+  .split--selected-trailing .split__secondary .icon {
+    transform: translateX(0) rotate(-90deg);
+  }
+
+  .split--elevated {
+    color: var(--#{$prefix}-color-primary);
+  }
+  .split--elevated .split__primary,
+  .split--elevated .split__secondary {
+    background: var(--#{$prefix}-color-surface-container-low);
+    box-shadow:
+      0 1px 2px color-mix(in srgb, var(--#{$prefix}-color-shadow) 30%, transparent),
+      0 1px 3px 1px color-mix(in srgb, var(--#{$prefix}-color-shadow) 15%, transparent);
+  }
+
+  .split--filled {
+    color: var(--#{$prefix}-color-on-primary);
+  }
+  .split--filled .split__primary,
+  .split--filled .split__secondary {
+    background: var(--#{$prefix}-color-primary);
+  }
+
+  .split--tonal {
+    color: var(--#{$prefix}-color-on-secondary-container);
+  }
+  .split--tonal .split__primary,
+  .split--tonal .split__secondary {
+    background: var(--#{$prefix}-color-secondary-container);
+  }
+
+  .split--outlined {
+    color: var(--#{$prefix}-color-on-surface-variant);
+  }
+  .split--outlined .split__primary,
+  .split--outlined .split__secondary {
+    background: transparent;
+    border: 1px solid var(--#{$prefix}-color-outline-variant);
+  }
+
+  .split__primary:focus-visible,
+  .split__secondary:focus-visible {
+    outline: 2px solid var(--#{$prefix}-color-primary);
+    outline-offset: -2px;
+    border-radius: var(--split-inner-radius);
+  }
+
+  .split__primary:hover::before,
+  .split__secondary:hover::before {
+    opacity: 0.08;
+  }
+
+  .split__primary:focus-visible::before,
+  .split__secondary:focus-visible::before {
+    opacity: 0.1;
+  }
+
+  .split__secondary:active,
+  .split--selected-trailing .split__secondary {
+    border-radius: calc(var(--split-height) / 2);
+  }
+
+  .split__secondary:active::before,
+  .split--selected-trailing .split__secondary::before {
+    opacity: 0.1;
+  }
+
+  .split[aria-disabled="true"] {
+    opacity: 0.38;
+  }
+
+  .split[aria-disabled="true"] .split__primary,
+  .split[aria-disabled="true"] .split__secondary {
+    cursor: not-allowed;
+  }
+
+  .icon {
+    inline-size: var(--split-icon-size);
+    block-size: var(--split-icon-size);
+  }
+
+  .split--xs {
+    --split-height: 32px;
+    --split-primary-pad-start: 12px;
+    --split-primary-pad-end: 10px;
+    --split-secondary-size: 32px;
+    --split-icon-size: 18px;
+    --split-menu-offset: -1px;
+    --split-inner-radius: 4px;
+    --split-font-size: var(--#{$prefix}-type-label-small-font-size);
+    --split-line-height: var(--#{$prefix}-type-label-small-line-height);
+    --split-letter-spacing: var(--#{$prefix}-type-label-small-tracking);
+    --split-font-weight: var(--#{$prefix}-type-label-small-weight);
+  }
+
+  .split--sm {
+    --split-height: 40px;
+    --split-primary-pad-start: 16px;
+    --split-primary-pad-end: 12px;
+    --split-secondary-size: 40px;
+    --split-icon-size: 20px;
+    --split-menu-offset: -1px;
+    --split-inner-radius: 4px;
+    --split-font-size: var(--#{$prefix}-type-label-large-size);
+    --split-line-height: var(--#{$prefix}-type-label-large-line-height);
+    --split-letter-spacing: var(--#{$prefix}-type-label-large-tracking);
+    --split-font-weight: var(--#{$prefix}-type-label-large-weight);
+  }
+
+  .split--md {
+    --split-height: 56px;
+    --split-primary-pad-start: 24px;
+    --split-primary-pad-end: 16px;
+    --split-secondary-size: 56px;
+    --split-icon-size: 24px;
+    --split-menu-offset: -2px;
+    --split-inner-radius: 4px;
+    --split-font-size: var(--#{$prefix}-type-title-medium-font-size);
+    --split-line-height: var(--#{$prefix}-type-title-medium-line-height);
+    --split-letter-spacing: var(--#{$prefix}-type-title-medium-tracking);
+    --split-font-weight: var(--#{$prefix}-type-title-medium-weight);
+  }
+
+  .split--lg {
+    --split-height: 96px;
+    --split-primary-pad-start: 48px;
+    --split-primary-pad-end: 24px;
+    --split-secondary-size: 96px;
+    --split-icon-size: 32px;
+    --split-menu-offset: -3px;
+    --split-inner-radius: 8px;
+    --split-font-size: var(--#{$prefix}-type-title-large-font-size);
+    --split-line-height: var(--#{$prefix}-type-title-large-line-height);
+    --split-letter-spacing: var(--#{$prefix}-type-title-large-tracking);
+    --split-font-weight: var(--#{$prefix}-type-title-large-weight);
+  }
+
+  .split--xl {
+    --split-height: 136px;
+    --split-primary-pad-start: 64px;
+    --split-primary-pad-end: 32px;
+    --split-secondary-size: 136px;
+    --split-icon-size: 40px;
+    --split-menu-offset: -6px;
+    --split-inner-radius: 12px;
+    --split-font-size: var(--#{$prefix}-type-headline-small-font-size);
+    --split-line-height: var(--#{$prefix}-type-headline-small-line-height);
+    --split-letter-spacing: var(--#{$prefix}-type-headline-small-tracking);
+    --split-font-weight: var(--#{$prefix}-type-headline-small-weight);
+  }
+}

@@ -1,0 +1,162 @@
+/**
+ * Text field – alignement mesures k3ui-field (field.token + field.mixin) → composant lib-*
+ */
+@use "../../../scss/custom/config" as *;
+
+$field-height: 56px;
+$field-padding-inline: 16px;
+$field-padding-top: 0;
+$field-padding-bottom: 0;
+$field-icon-size: 24px;
+$field-icon-gap: 16px;
+$field-border-width: 1px;
+$field-border-width-focused: 2px;
+$field-radius-xs: 4px;
+$field-label-top-default: 16px;
+$field-label-top-filled-active: 4px;
+$field-label-top-outlined-active: -8px;
+$field-label-pad-inline: 4px;
+$field-label-margin-inline-neg: -4px;
+$field-outlined-label-active-left: 12px;
+$field-support-pt: 4px;
+$field-transition: var(--#{$prefix}-motion-duration-short4)
+  var(--#{$prefix}-motion-easing-emphasized-decelerate);
+
+@mixin lib-text-field-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: $field-height;
+  box-sizing: border-box;
+  padding: $field-padding-top $field-padding-inline $field-padding-bottom;
+  transition:
+    background-color $field-transition,
+    box-shadow $field-transition;
+  overflow: visible;
+}
+
+@mixin lib-text-field-filled-base {
+  background-color: var(--#{$prefix}-color-surface-container-highest);
+  border-radius: $field-radius-xs $field-radius-xs 0 0;
+  box-shadow: inset 0 calc(-1 * #{$field-border-width}) 0 0 var(--#{$prefix}-color-on-surface-variant);
+}
+
+@mixin lib-text-field-filled-hover {
+  box-shadow: inset 0 calc(-1 * #{$field-border-width}) 0 0 var(--#{$prefix}-color-on-surface);
+}
+
+@mixin lib-text-field-filled-focus {
+  box-shadow: inset 0 calc(-1 * #{$field-border-width-focused}) 0 0 var(--#{$prefix}-color-primary);
+}
+
+@mixin lib-text-field-filled-error {
+  box-shadow: inset 0 calc(-1 * #{$field-border-width}) 0 0 var(--#{$prefix}-color-error);
+}
+
+@mixin lib-text-field-filled-error-focus {
+  box-shadow: inset 0 calc(-1 * #{$field-border-width-focused}) 0 0 var(--#{$prefix}-color-error);
+}
+
+@mixin lib-text-field-filled-error-hover {
+  box-shadow: inset 0 calc(-1 * #{$field-border-width}) 0 0 var(--#{$prefix}-color-on-error-container);
+}
+
+@mixin lib-text-field-outlined-disabled {
+  box-shadow: inset 0 0 0 $field-border-width color-mix(in srgb, var(--#{$prefix}-color-outline) 38%, transparent);
+}
+
+@mixin lib-text-field-outlined-full-border {
+  height: $field-height;
+  box-shadow: inset 0 0 0 $field-border-width var(--#{$prefix}-color-outline);
+  border-radius: $field-radius-xs;
+  background: transparent;
+}
+
+@mixin lib-text-field-outlined-hover {
+  box-shadow: inset 0 0 0 $field-border-width var(--#{$prefix}-color-outline);
+}
+
+@mixin lib-text-field-outlined-focus {
+  box-shadow: inset 0 0 0 $field-border-width-focused var(--#{$prefix}-color-primary);
+}
+
+@mixin lib-text-field-outlined-error {
+  box-shadow: inset 0 0 0 $field-border-width var(--#{$prefix}-color-error);
+}
+
+@mixin lib-text-field-outlined-error-hover {
+  box-shadow: inset 0 0 0 $field-border-width var(--#{$prefix}-color-error);
+}
+
+@mixin lib-text-field-outlined-error-focus {
+  box-shadow: inset 0 0 0 $field-border-width-focused var(--#{$prefix}-color-error);
+}
+
+@mixin lib-text-field-label-base {
+  position: absolute;
+  pointer-events: none;
+  max-width: calc(100% - 1rem);
+  line-height: 1;
+  color: var(--#{$prefix}-color-on-surface-variant);
+  transform-origin: left top;
+  transition:
+    inset-block-start $field-transition,
+    inset-inline-start $field-transition,
+    transform $field-transition,
+    color $field-transition,
+    font-size $field-transition;
+}
+
+@mixin lib-text-field-label-filled-active {
+  font-size: var(--#{$prefix}-comp-text-field-label-float-size);
+  color: var(--#{$prefix}-color-primary);
+  inset-block-start: $field-label-top-filled-active;
+  inset-inline-start: 0;
+}
+
+@mixin lib-text-field-label-outlined-rest {
+  padding: 0 $field-label-pad-inline;
+  margin: 0 $field-label-margin-inline-neg;
+  inset-inline-start: 0;
+  inset-block-start: $field-label-top-default;
+  font-size: var(--#{$prefix}-comp-text-field-label-size);
+  transform: translateY(0);
+}
+
+@mixin lib-text-field-label-outlined-active {
+  font-size: var(--#{$prefix}-comp-text-field-label-float-size);
+  color: var(--#{$prefix}-color-primary);
+  inset-block-start: $field-label-top-outlined-active;
+  inset-inline-start: calc(#{$field-outlined-label-active-left} - var(--#{$prefix}-comp-text-field-padding-inline));
+  margin: 0;
+  padding: 0 $field-label-pad-inline;
+  line-height: 1.35;
+  transform: none;
+  z-index: 2;
+}
+
+@mixin lib-text-field-input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  background: none;
+  font: inherit;
+  font-size: var(--#{$prefix}-comp-text-field-input-size);
+  line-height: 24px;
+  color: var(--#{$prefix}-color-on-surface);
+  caret-color: var(--#{$prefix}-color-primary);
+}
+
+@mixin lib-text-field-supporting {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: $field-support-pt $field-padding-inline 0;
+  color: var(--#{$prefix}-color-on-surface-variant);
+  font-size: var(--#{$prefix}-comp-text-field-support-size);
+  line-height: 1.35;
+  gap: $field-icon-gap;
+}
+

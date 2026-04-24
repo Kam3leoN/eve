@@ -18,5 +18,5 @@ description: Conteneur grille `.eve-container`, mobile-first et intégration use
 ## Patterns
 
 - Grille **12 colonnes** ; les enfants directs de `.eve-container` sont **pleine largeur** par défaut (`grid-column: 1 / -1`).
-- Ne pas combiner **`display: flex`** (utilitaires Tailwind inclus) sur le **même nœud** que `.eve-container` : la grille serait écrasée. Utiliser un **enfant** pour colonne flex ou stack.
+- Ne pas combiner **`display: flex`** sur le **même nœud** que `.eve-container` : la grille serait écrasée. Utiliser un **enfant** pour colonne flex ou stack.
 - Préférer **`clamp()`** pour paddings / gaps entre breakpoints plutôt que des paliers arbitraires non testés sur mobile.

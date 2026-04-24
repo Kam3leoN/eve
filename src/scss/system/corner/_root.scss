@@ -1,0 +1,16 @@
+@use "../../custom/config" as *;
+@use "./mixins" as cornerMixins;
+
+:root {
+  --#{$prefix}-corner-none: #{cornerMixins.corner(none)};
+  --#{$prefix}-corner-extra-small: #{cornerMixins.corner(extra-small)};
+  --#{$prefix}-corner-small: #{cornerMixins.corner(small)};
+  --#{$prefix}-corner-medium: #{cornerMixins.corner(medium)};
+  --#{$prefix}-corner-large: #{cornerMixins.corner(large)};
+  --#{$prefix}-corner-extra-large: #{cornerMixins.corner(extra-large)};
+  --#{$prefix}-corner-full: #{cornerMixins.corner(full)};
+
+  --#{$prefix}-corner-container: var(--#{$prefix}-corner-large);
+  --#{$prefix}-corner-control: var(--#{$prefix}-corner-medium);
+  --#{$prefix}-corner-chip: var(--#{$prefix}-corner-full);
+}

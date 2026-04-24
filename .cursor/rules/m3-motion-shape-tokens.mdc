@@ -1,20 +1,21 @@
 ---
 alwaysApply: false
-description: Tokens motion & shape Expressive — easing Emphasized uniquement.
+description: Tokens motion & corner Expressive — easing Emphasized uniquement.
 globs:
-  - "src/styles/m3-sys-motion-shape.css"
-  - "src/styles/shadow-components.css"
+  - "src/scss/system/motion/**/*.scss"
+  - "src/scss/system/corner/**/*.scss"
+  - "src/components/button/button.scss"
 ---
 
-# Tokens Motion & Shape (Expressive)
+# Tokens Motion & Corner (Expressive)
 
 ## Politique
 
-- **`expressive-m3.mdc`** : pas Baseline ; **courbes d’easing = Emphasized seulement** (définies dans `m3-sys-motion-shape.css`).
+- **`expressive-m3.mdc`** : pas Baseline ; **courbes d’easing = Emphasized seulement** (définies dans `src/scss/system/motion/`).
 
 ## Fichier CSS
 
-- **`src/styles/m3-sys-motion-shape.css`** : `--md-sys-motion-duration-*`, `--md-sys-motion-easing-emphasized*` (trois courbes), `--md-sys-shape-*` sur `:root`, importé par **`eve.css`**.
+- **`src/scss/system/motion/`** + **`src/scss/system/corner/`** : `--md-sys-motion-duration-*`, `--md-sys-motion-easing-emphasized*` (trois courbes), `--md-sys-corner-*` sur `:root`, importés via **`src/scss/index.scss`**.
 
 ## Liens
 

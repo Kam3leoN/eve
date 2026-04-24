@@ -1,0 +1,35 @@
+---
+alwaysApply: true
+description: Prefix SCSS/CSS dynamique obligatoire via source unique lib.config.ts pour styles système et composants.
+globs:
+  - "src/**/*.scss"
+  - "src/**/*.css"
+  - "src/**/*.ts"
+  - "package.json"
+---
+
+# Prefixing SCSS/CSS — source unique
+
+## Objectif
+
+Eviter tout hardcode du nom de lib (`eve`, etc.) dans les variables CSS et conventions de styles.
+
+## Règles obligatoires
+
+- Source unique du prefix: `LIB_PREFIX` dans `src/lib.config.ts`.
+- Interdiction d'écrire `--eve-` en dur dans les nouveaux styles.
+- Le prefix Sass utilisé par les SCSS doit provenir d'un fichier généré depuis `LIB_PREFIX` (ex: `_prefix.generated.scss`) ou d'un mécanisme équivalent garantissant l'alignement automatique.
+- Tous les SCSS composants (`src/components/**/styles/*.scss`) doivent utiliser ce meme `$prefix`.
+- Les variables CSS doivent etre interpolées avec le prefix sous la forme `--#{$prefix}-...` (tiret obligatoire apres `$prefix`).
+- Interdit: formes sans tiret comme `--#{$prefix}comp-...`.
+- Le pipeline build doit générer/synchroniser le prefix Sass avant compilation CSS/SCSS.
+- Toute modification de convention de prefix implique mise a jour de `lib.config.ts` uniquement (pas de changements manuels dispersés).
+- Les modules SCSS doivent utiliser `@use` et `@forward` (architecture modulaire Sass).
+- `@import` est interdit dans les nouveaux fichiers SCSS.
+- En legacy, `@import` est toléré uniquement de façon temporaire avec TODO de migration vers `@use`/`@forward`.
+
+## Qualité
+
+- Aucun nouveau fichier SCSS ne doit introduire de hardcode de prefix lib.
+- En cas de migration legacy, remplacer progressivement les clés hardcodées par la version prefixée dynamique.
+- Aucun nouveau module SCSS ne doit etre ajouté sans respecter `@use`/`@forward`.

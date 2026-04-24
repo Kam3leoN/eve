@@ -1,11 +1,13 @@
-const CLASS = 'eve-focus-visible';
+import { withLibClass } from '../../lib.config';
+
+const CLASS = withLibClass('focus-visible');
 
 let refcount = 0;
 let removeListeners: (() => void) | null = null;
 
 /**
  * Active un mode « focus visible » principalement au clavier.
- * Ajoute la classe `eve-focus-visible` sur `:root` lorsque la navigation est clavier.
+ * Ajoute une classe `<prefix>-focus-visible` sur `:root` lorsque la navigation est clavier.
  */
 export function initFocusVisible(root: HTMLElement = document.documentElement): () => void {
   refcount += 1;

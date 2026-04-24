@@ -1,0 +1,30 @@
+@use "../../custom/config" as *;
+@use "./mixins" as themeMixins;
+
+:root {
+  color-scheme: light dark;
+
+  @include themeMixins.emit-color-role-values(light);
+  @include themeMixins.emit-color-role-values(dark);
+  @include themeMixins.apply-color-scheme(light);
+
+  @each $role in themeMixins.$color-roles {
+    --#{$prefix}-color-#{$role}: var(--md-sys-color-#{$role});
+    --#{$prefix}-color-#{$role}-light: var(--md-sys-color-#{$role}-light);
+    --#{$prefix}-color-#{$role}-dark: var(--md-sys-color-#{$role}-dark);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    @include themeMixins.apply-color-scheme(dark);
+  }
+}
+
+:root[data-theme="light"] {
+  @include themeMixins.apply-color-scheme(light);
+}
+
+:root[data-theme="dark"] {
+  @include themeMixins.apply-color-scheme(dark);
+}

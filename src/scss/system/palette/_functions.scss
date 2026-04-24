@@ -1,0 +1,10 @@
+@use "sass:map";
+@use "./materialize-tokens" as materializeTokens;
+
+@function colorFunc($color) {
+  @if map.has-key(materializeTokens.$materialize-base-colors, $color) {
+    @return map.get(materializeTokens.$materialize-base-colors, $color);
+  }
+  @warn "Unknown `#{$color}` in materialize base colors.";
+  @return null;
+}

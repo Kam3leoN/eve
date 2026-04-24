@@ -1,0 +1,14 @@
+@use "./maps" as motionMaps;
+
+@mixin motion-transition($properties, $duration-token: short4, $easing-token: emphasized-decelerate) {
+  transition-property: $properties;
+  transition-duration: motionMaps.motion-duration($duration-token);
+  transition-timing-function: motionMaps.motion-easing($easing-token);
+}
+
+@mixin motion-disabled {
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+    animation: none;
+  }
+}

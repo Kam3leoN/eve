@@ -1,0 +1,31 @@
+---
+alwaysApply: true
+description: Gouvernance 1-8 obligatoire pour chaque composant Eve.
+globs:
+  - "src/components/**/*.ts"
+  - "src/components/**/*.scss"
+  - "src/scss/token-registry/*.json"
+  - "docs/adr/*.md"
+---
+
+# Gouvernance composant 1-8 (obligatoire)
+
+Pour chaque composant `src/components/<name>/`, les fichiers suivants doivent exister et être tenus à jour:
+
+1. `<name>.contract.ts`
+2. `<name>.contract.test.ts`
+3. `<name>.a11y.test.ts`
+4. `<name>.visual.test.ts`
+5. `<name>.stability.ts`
+6. `<name>.migrations.json`
+7. `src/scss/token-registry/<name>.tokens.json`
+8. `docs/adr/ADR-<name>-contract-and-governance.md`
+
+## Exigences
+
+- Le contrat (`*.contract.ts`) est la source machine-readable de l'API composant.
+- Les tests contrat valident l’alignement avec `observedAttributes`.
+- Les tests a11y et visuels doivent couvrir les états critiques.
+- Les tokens SCSS du composant doivent être enregistrés dans le registre dédié.
+- Les suppressions d’attributs passent obligatoirement par `*.migrations.json`.
+

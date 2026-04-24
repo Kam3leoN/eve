@@ -1,0 +1,24 @@
+@use "../../../scss/custom/config" as *;
+
+:host {
+  --#{$prefix}-comp-icon-button-xs-size: 32px;
+  --#{$prefix}-comp-icon-button-sm-size: 40px;
+  --#{$prefix}-comp-icon-button-md-size: 56px;
+  --#{$prefix}-comp-icon-button-lg-size: 96px;
+  --#{$prefix}-comp-icon-button-xl-size: 136px;
+  --#{$prefix}-comp-icon-button-xs-icon: 18px;
+  --#{$prefix}-comp-icon-button-sm-icon: 20px;
+  --#{$prefix}-comp-icon-button-md-icon: 24px;
+  --#{$prefix}-comp-icon-button-lg-icon: 32px;
+  --#{$prefix}-comp-icon-button-xl-icon: 40px;
+  --#{$prefix}-comp-icon-button-radius-rest: 999px;
+  --#{$prefix}-comp-icon-button-width-narrow: 0.75;
+  --#{$prefix}-comp-icon-button-width-default: 1;
+  --#{$prefix}-comp-icon-button-width-wide: 1.25;
+  --#{$prefix}-comp-icon-button-square-xs-radius: 10px;
+  --#{$prefix}-comp-icon-button-square-sm-radius: 12px;
+  --#{$prefix}-comp-icon-button-square-md-radius: 16px;
+  --#{$prefix}-comp-icon-button-square-lg-radius: 28px;
+  --#{$prefix}-comp-icon-button-square-xl-radius: 28px;
+}
+

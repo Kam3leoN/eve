@@ -1,0 +1,53 @@
+@use "../../../scss/custom/config" as *;
+
+/**
+ * Mesures — M3 Expressive (buttons).
+ */
+:host {
+  --#{$prefix}-comp-button-label-medium-size: 0.75rem;
+  --#{$prefix}-comp-button-label-medium-line-height: 1rem;
+  --#{$prefix}-comp-button-label-medium-tracking: 0.03125em;
+  --#{$prefix}-comp-button-label-large-size: 0.875rem;
+  --#{$prefix}-comp-button-label-large-line-height: 1.25rem;
+  --#{$prefix}-comp-button-label-large-tracking: 0.00625em;
+  --#{$prefix}-comp-button-title-md-size: 1.125rem;
+  --#{$prefix}-comp-button-title-md-line-height: 1.75rem;
+  --#{$prefix}-comp-button-title-md-tracking: 0.00625em;
+  --#{$prefix}-comp-button-headline-md-size: 2rem;
+  --#{$prefix}-comp-button-headline-md-line-height: 2.5rem;
+  --#{$prefix}-comp-button-headline-md-tracking: 0em;
+  --#{$prefix}-comp-button-headline-lg-size: 2.5rem;
+  --#{$prefix}-comp-button-headline-lg-line-height: 3rem;
+  --#{$prefix}-comp-button-headline-lg-tracking: 0em;
+  --#{$prefix}-comp-button-xs-height: 32px;
+  --#{$prefix}-comp-button-xs-padding-inline: 12px;
+  --#{$prefix}-comp-button-xs-icon-size: 20px;
+  --#{$prefix}-comp-button-xs-gap: 4px;
+  --#{$prefix}-comp-button-sm-height: 40px;
+  --#{$prefix}-comp-button-sm-padding-inline: 16px;
+  --#{$prefix}-comp-button-sm-icon-size: 20px;
+  --#{$prefix}-comp-button-sm-gap: 8px;
+  --#{$prefix}-comp-button-md-height: 56px;
+  --#{$prefix}-comp-button-md-padding-inline: 24px;
+  --#{$prefix}-comp-button-md-icon-size: 24px;
+  --#{$prefix}-comp-button-md-gap: 8px;
+  --#{$prefix}-comp-button-lg-height: 96px;
+  --#{$prefix}-comp-button-lg-padding-inline: 48px;
+  --#{$prefix}-comp-button-lg-icon-size: 32px;
+  --#{$prefix}-comp-button-lg-gap: 12px;
+  --#{$prefix}-comp-button-xl-height: 136px;
+  --#{$prefix}-comp-button-xl-padding-inline: 64px;
+  --#{$prefix}-comp-button-xl-icon-size: 40px;
+  --#{$prefix}-comp-button-xl-gap: 16px;
+  --#{$prefix}-comp-button-xs-radius-square: 12px;
+  --#{$prefix}-comp-button-xs-radius-pressed: 8px;
+  --#{$prefix}-comp-button-sm-radius-square: 12px;
+  --#{$prefix}-comp-button-sm-radius-pressed: 8px;
+  --#{$prefix}-comp-button-md-radius-square: 16px;
+  --#{$prefix}-comp-button-md-radius-pressed: 12px;
+  --#{$prefix}-comp-button-lg-radius-square: 28px;
+  --#{$prefix}-comp-button-lg-radius-pressed: 16px;
+  --#{$prefix}-comp-button-xl-radius-square: 28px;
+  --#{$prefix}-comp-button-xl-radius-pressed: 16px;
+}
+

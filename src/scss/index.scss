@@ -1,0 +1,15 @@
+@use "./custom/config" as *;
+@use "./custom/reset";
+@use "./custom/layout/index" as *;
+@use "./custom/code/index";
+@use "./system/theme/index" as *;
+@use "./system/corner/index" as *;
+@use "./system/motion/index" as *;
+@use "./system/typography/index" as *;
+@use "./system/palette/index" as *;
+
+@layer base {
+  :root.#{$prefix}focus-visible :focus:not(:focus-visible) {
+    outline: none;
+  }
+}

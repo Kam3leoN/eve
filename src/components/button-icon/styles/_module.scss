@@ -1,0 +1,219 @@
+@use "../../../scss/custom/config" as *;
+
+@layer components {
+  .icon-btn {
+    inline-size: calc(var(--icon-btn-size) * var(--icon-btn-width-factor));
+    block-size: var(--icon-btn-size);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--icon-btn-rest-radius);
+    border: 0;
+    cursor: pointer;
+    position: relative;
+    isolation: isolate;
+    -webkit-tap-highlight-color: transparent;
+    transition:
+      background-color var(--#{$prefix}-motion-duration-short4) var(--#{$prefix}-motion-easing-emphasized-decelerate),
+      color var(--#{$prefix}-motion-duration-short4) var(--#{$prefix}-motion-easing-emphasized-decelerate),
+      border-color var(--#{$prefix}-motion-duration-short4) var(--#{$prefix}-motion-easing-emphasized-decelerate);
+  }
+
+  .icon-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: currentColor;
+    opacity: 0;
+    transition: opacity var(--#{$prefix}-motion-duration-short4) var(--#{$prefix}-motion-easing-emphasized-decelerate);
+  }
+
+  .icon-btn:focus-visible::before,
+  .icon-btn:active:not(:disabled)::before {
+    opacity: 0.1;
+  }
+
+  .icon-btn--xs {
+    --icon-btn-size: var(--#{$prefix}-comp-icon-button-xs-size);
+    --icon-btn-icon: var(--#{$prefix}-comp-icon-button-xs-icon);
+    --icon-btn-square-radius: var(--#{$prefix}-comp-icon-button-square-xs-radius);
+  }
+
+  .icon-btn--sm {
+    --icon-btn-size: var(--#{$prefix}-comp-icon-button-sm-size);
+    --icon-btn-icon: var(--#{$prefix}-comp-icon-button-sm-icon);
+    --icon-btn-square-radius: var(--#{$prefix}-comp-icon-button-square-sm-radius);
+  }
+
+  .icon-btn--md {
+    --icon-btn-size: var(--#{$prefix}-comp-icon-button-md-size);
+    --icon-btn-icon: var(--#{$prefix}-comp-icon-button-md-icon);
+    --icon-btn-square-radius: var(--#{$prefix}-comp-icon-button-square-md-radius);
+  }
+
+  .icon-btn--lg {
+    --icon-btn-size: var(--#{$prefix}-comp-icon-button-lg-size);
+    --icon-btn-icon: var(--#{$prefix}-comp-icon-button-lg-icon);
+    --icon-btn-square-radius: var(--#{$prefix}-comp-icon-button-square-lg-radius);
+  }
+
+  .icon-btn--xl {
+    --icon-btn-size: var(--#{$prefix}-comp-icon-button-xl-size);
+    --icon-btn-icon: var(--#{$prefix}-comp-icon-button-xl-icon);
+    --icon-btn-square-radius: var(--#{$prefix}-comp-icon-button-square-xl-radius);
+  }
+
+  .icon-btn--width-narrow {
+    --icon-btn-width-factor: var(--#{$prefix}-comp-icon-button-width-narrow);
+    --icon-btn-rest-radius: calc(var(--icon-btn-size) / 2);
+  }
+
+  .icon-btn--width-default {
+    --icon-btn-width-factor: var(--#{$prefix}-comp-icon-button-width-default);
+    --icon-btn-rest-radius: var(--#{$prefix}-comp-icon-button-radius-rest);
+  }
+
+  .icon-btn--width-wide {
+    --icon-btn-width-factor: var(--#{$prefix}-comp-icon-button-width-wide);
+    --icon-btn-rest-radius: calc(var(--icon-btn-size) / 2);
+  }
+
+  .icon-btn--shape-round {
+    --icon-btn-shape-radius: calc(var(--icon-btn-size) / 2);
+    --icon-btn-morph-radius: var(--icon-btn-square-radius);
+  }
+
+  .icon-btn--shape-square {
+    --icon-btn-shape-radius: var(--icon-btn-square-radius);
+    --icon-btn-morph-radius: calc(var(--icon-btn-size) / 2);
+  }
+
+  .icon-btn {
+    border-radius: var(--icon-btn-shape-radius, var(--icon-btn-rest-radius));
+  }
+
+  :host([data-group-position='middle']) .icon-btn {
+    border-radius: var(--lib-group-inner-current-radius, var(--lib-group-inner-radius, var(--icon-btn-shape-radius, var(--icon-btn-rest-radius)))) !important;
+  }
+
+  :host([data-group-position='first']) .icon-btn {
+    border-start-start-radius: var(--lib-group-outer-radius, var(--icon-btn-shape-radius, var(--icon-btn-rest-radius))) !important;
+    border-end-start-radius: var(--lib-group-outer-radius, var(--icon-btn-shape-radius, var(--icon-btn-rest-radius))) !important;
+    border-start-end-radius: var(--lib-group-inner-current-radius, var(--lib-group-inner-radius, var(--icon-btn-shape-radius, var(--icon-btn-rest-radius)))) !important;
+    border-end-end-radius: var(--lib-group-inner-current-radius, var(--lib-group-inner-radius, var(--icon-btn-shape-radius, var(--icon-btn-rest-radius)))) !important;
+  }
+
+  :host([data-group-position='last']) .icon-btn {
+    border-start-start-radius: var(--lib-group-inner-current-radius, var(--lib-group-inner-radius, var(--icon-btn-shape-radius, var(--icon-btn-rest-radius)))) !important;
+    border-end-start-radius: var(--lib-group-inner-current-radius, var(--lib-group-inner-radius, var(--icon-btn-shape-radius, var(--icon-btn-rest-radius)))) !important;
+    border-start-end-radius: var(--lib-group-outer-radius, var(--icon-btn-shape-radius, var(--icon-btn-rest-radius))) !important;
+    border-end-end-radius: var(--lib-group-outer-radius, var(--icon-btn-shape-radius, var(--icon-btn-rest-radius))) !important;
+  }
+
+  .icon-btn:active:not(:disabled),
+  .icon-btn.icon-btn--pressed {
+    border-radius: var(--icon-btn-morph-radius, var(--icon-btn-rest-radius));
+  }
+
+  /* In connected group, active state follows group's current inner radius. */
+  :host([data-group-active='true']) .icon-btn,
+  :host(:active) .icon-btn {
+    border-radius: var(--lib-group-inner-current-radius, var(--lib-group-inner-radius, var(--icon-btn-morph-radius, var(--icon-btn-rest-radius)))) !important;
+  }
+
+  :host([data-group-position='first'][data-group-active='true']) .icon-btn,
+  :host([data-group-position='first']:active) .icon-btn {
+    border-start-start-radius: var(--lib-group-outer-radius, var(--icon-btn-shape-radius, var(--icon-btn-rest-radius))) !important;
+    border-end-start-radius: var(--lib-group-outer-radius, var(--icon-btn-shape-radius, var(--icon-btn-rest-radius))) !important;
+    border-start-end-radius: var(--lib-group-inner-current-radius, var(--lib-group-inner-radius, var(--icon-btn-morph-radius, var(--icon-btn-rest-radius)))) !important;
+    border-end-end-radius: var(--lib-group-inner-current-radius, var(--lib-group-inner-radius, var(--icon-btn-morph-radius, var(--icon-btn-rest-radius)))) !important;
+  }
+
+  :host([data-group-position='last'][data-group-active='true']) .icon-btn,
+  :host([data-group-position='last']:active) .icon-btn {
+    border-start-start-radius: var(--lib-group-inner-current-radius, var(--lib-group-inner-radius, var(--icon-btn-morph-radius, var(--icon-btn-rest-radius)))) !important;
+    border-end-start-radius: var(--lib-group-inner-current-radius, var(--lib-group-inner-radius, var(--icon-btn-morph-radius, var(--icon-btn-rest-radius)))) !important;
+    border-start-end-radius: var(--lib-group-outer-radius, var(--icon-btn-shape-radius, var(--icon-btn-rest-radius))) !important;
+    border-end-end-radius: var(--lib-group-outer-radius, var(--icon-btn-shape-radius, var(--icon-btn-rest-radius))) !important;
+  }
+
+  .icon-btn--standard {
+    background: transparent;
+    color: var(--#{$prefix}-color-primary);
+  }
+
+  .icon-btn--filled {
+    background: var(--#{$prefix}-color-primary);
+    color: var(--#{$prefix}-color-on-primary);
+  }
+
+  .icon-btn--tonal {
+    background: var(--#{$prefix}-color-secondary-container);
+    color: var(--#{$prefix}-color-on-secondary-container);
+  }
+
+  .icon-btn--outlined {
+    background: transparent;
+    color: var(--#{$prefix}-color-on-surface-variant);
+    border: 1px solid var(--#{$prefix}-color-outline-variant);
+  }
+
+  .icon-btn--elevated {
+    background: var(--#{$prefix}-color-surface-container-low);
+    color: var(--#{$prefix}-color-primary);
+    box-shadow:
+      0 1px 2px color-mix(in srgb, var(--#{$prefix}-color-shadow) 30%, transparent),
+      0 1px 3px 1px color-mix(in srgb, var(--#{$prefix}-color-shadow) 15%, transparent);
+  }
+
+  .icon-btn--pressed.icon-btn--filled {
+    background: var(--#{$prefix}-color-primary-container);
+    color: var(--#{$prefix}-color-on-primary-container);
+  }
+
+  .icon-btn--pressed.icon-btn--tonal {
+    background: var(--#{$prefix}-color-secondary);
+    color: var(--#{$prefix}-color-on-secondary);
+  }
+
+  .icon-btn--pressed.icon-btn--outlined {
+    background: var(--#{$prefix}-color-inverse-surface);
+    color: var(--#{$prefix}-color-inverse-on-surface);
+    border-color: var(--#{$prefix}-color-inverse-surface);
+  }
+
+  .icon-btn--pressed.icon-btn--elevated {
+    background: var(--#{$prefix}-color-primary-container);
+    color: var(--#{$prefix}-color-on-primary-container);
+    box-shadow:
+      0 1px 2px color-mix(in srgb, var(--#{$prefix}-color-shadow) 30%, transparent),
+      0 1px 3px 1px color-mix(in srgb, var(--#{$prefix}-color-shadow) 15%, transparent);
+  }
+
+  .icon {
+    inline-size: var(--icon-btn-icon);
+    block-size: var(--icon-btn-icon);
+    color: currentColor;
+    position: relative;
+    z-index: 1;
+  }
+
+  .icon-btn:focus-visible {
+    outline: 2px solid var(--#{$prefix}-color-primary);
+    outline-offset: 2px;
+  }
+
+  .icon-btn:disabled {
+    opacity: 0.38;
+    cursor: not-allowed;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .icon-btn,
+    .icon-btn::before {
+      transition: none;
+    }
+  }
+}
+

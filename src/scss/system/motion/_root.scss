@@ -1,0 +1,49 @@
+@use "../../custom/config" as *;
+@use "./maps" as motionMaps;
+
+:root {
+  --#{$prefix}-motion-duration-short1: #{motionMaps.motion-duration(short1)};
+  --#{$prefix}-motion-duration-short2: #{motionMaps.motion-duration(short2)};
+  --#{$prefix}-motion-duration-short3: #{motionMaps.motion-duration(short3)};
+  --#{$prefix}-motion-duration-short4: #{motionMaps.motion-duration(short4)};
+  --#{$prefix}-motion-duration-medium1: #{motionMaps.motion-duration(medium1)};
+  --#{$prefix}-motion-duration-medium2: #{motionMaps.motion-duration(medium2)};
+  --#{$prefix}-motion-duration-medium3: #{motionMaps.motion-duration(medium3)};
+  --#{$prefix}-motion-duration-medium4: #{motionMaps.motion-duration(medium4)};
+  --#{$prefix}-motion-duration-long1: #{motionMaps.motion-duration(long1)};
+  --#{$prefix}-motion-duration-long2: #{motionMaps.motion-duration(long2)};
+  --#{$prefix}-motion-duration-long3: #{motionMaps.motion-duration(long3)};
+  --#{$prefix}-motion-duration-long4: #{motionMaps.motion-duration(long4)};
+  --#{$prefix}-motion-duration-extra-long1: #{motionMaps.motion-duration(extra-long1)};
+  --#{$prefix}-motion-duration-extra-long2: #{motionMaps.motion-duration(extra-long2)};
+  --#{$prefix}-motion-duration-extra-long3: #{motionMaps.motion-duration(extra-long3)};
+  --#{$prefix}-motion-duration-extra-long4: #{motionMaps.motion-duration(extra-long4)};
+
+  --#{$prefix}-motion-easing-emphasized: #{motionMaps.motion-easing(emphasized)};
+  --#{$prefix}-motion-easing-emphasized-decelerate: #{motionMaps.motion-easing(emphasized-decelerate)};
+  --#{$prefix}-motion-easing-emphasized-accelerate: #{motionMaps.motion-easing(emphasized-accelerate)};
+
+  --#{$prefix}-motion-spring-default-spatial-damping: #{motionMaps.motion-spring(default-spatial-damping)};
+  --#{$prefix}-motion-spring-default-spatial-stiffness: #{motionMaps.motion-spring(default-spatial-stiffness)};
+  --#{$prefix}-motion-spring-default-effects-damping: #{motionMaps.motion-spring(default-effects-damping)};
+  --#{$prefix}-motion-spring-default-effects-stiffness: #{motionMaps.motion-spring(default-effects-stiffness)};
+  --#{$prefix}-motion-spring-fast-spatial-damping: #{motionMaps.motion-spring(fast-spatial-damping)};
+  --#{$prefix}-motion-spring-fast-spatial-stiffness: #{motionMaps.motion-spring(fast-spatial-stiffness)};
+  --#{$prefix}-motion-spring-fast-effects-damping: #{motionMaps.motion-spring(fast-effects-damping)};
+  --#{$prefix}-motion-spring-fast-effects-stiffness: #{motionMaps.motion-spring(fast-effects-stiffness)};
+  --#{$prefix}-motion-spring-slow-spatial-damping: #{motionMaps.motion-spring(slow-spatial-damping)};
+  --#{$prefix}-motion-spring-slow-spatial-stiffness: #{motionMaps.motion-spring(slow-spatial-stiffness)};
+  --#{$prefix}-motion-spring-slow-effects-damping: #{motionMaps.motion-spring(slow-effects-damping)};
+  --#{$prefix}-motion-spring-slow-effects-stiffness: #{motionMaps.motion-spring(slow-effects-stiffness)};
+
+  --#{$prefix}-motion-duration-default: var(--#{$prefix}-motion-duration-short4);
+  --#{$prefix}-motion-duration-enter: var(--#{$prefix}-motion-duration-medium2);
+  --#{$prefix}-motion-duration-exit: var(--#{$prefix}-motion-duration-short3);
+  --#{$prefix}-motion-easing-default: var(--#{$prefix}-motion-easing-emphasized-decelerate);
+  --#{$prefix}-motion-easing-enter: var(--#{$prefix}-motion-easing-emphasized-decelerate);
+  --#{$prefix}-motion-easing-exit: var(--#{$prefix}-motion-easing-emphasized-accelerate);
+  --#{$prefix}-motion-spring-default-spatial-damping-ratio: var(--#{$prefix}-motion-spring-default-spatial-damping);
+  --#{$prefix}-motion-spring-default-spatial-stiffness-value: var(--#{$prefix}-motion-spring-default-spatial-stiffness);
+  --#{$prefix}-motion-spring-default-effects-damping-ratio: var(--#{$prefix}-motion-spring-default-effects-damping);
+  --#{$prefix}-motion-spring-default-effects-stiffness-value: var(--#{$prefix}-motion-spring-default-effects-stiffness);
+}

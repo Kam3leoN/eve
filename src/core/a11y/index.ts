@@ -1,4 +1,4 @@
-export { setAriaProps, type AriaAttributeMap } from './aria.js';
-export { createFocusTrap, type FocusTrapOptions } from './focus-trap.js';
-export { initFocusVisible } from './focus-visible.js';
-export { Announcer, type AnnouncePoliteness } from './Announcer.js';
+export { setAriaProps, type AriaAttributeMap } from './aria';
+export { createFocusTrap, type FocusTrapOptions } from './focus-trap';
+export { initFocusVisible } from './focus-visible';
+export { Announcer, type AnnouncePoliteness } from './Announcer';

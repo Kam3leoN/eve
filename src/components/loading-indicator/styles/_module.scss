@@ -1,0 +1,6 @@
+@use "./mixin" as loading;
+
+@layer components {
+  @include loading.loading-host;
+  @include loading.loading-structure;
+}

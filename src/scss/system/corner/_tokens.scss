@@ -1,0 +1,19 @@
+:root {
+  --md-sys-corner-none: 0px;
+  --md-sys-corner-extra-small: 4px;
+  --md-sys-corner-small: 8px;
+  --md-sys-corner-medium: 12px;
+  --md-sys-corner-large: 16px;
+  --md-sys-corner-extra-large: 28px;
+  --md-sys-corner-full: 9999px;
+}
+
+$corner-tokens: (
+  none: var(--md-sys-corner-none),
+  extra-small: var(--md-sys-corner-extra-small),
+  small: var(--md-sys-corner-small),
+  medium: var(--md-sys-corner-medium),
+  large: var(--md-sys-corner-large),
+  extra-large: var(--md-sys-corner-extra-large),
+  full: var(--md-sys-corner-full),
+);

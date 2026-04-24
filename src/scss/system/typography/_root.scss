@@ -1,0 +1,70 @@
+@use "sass:map";
+@use "../../custom/config" as *;
+@use "./tokens" as typographyTokens;
+
+:root {
+  --#{$prefix}-type-font-family-sans:
+    "Google Sans Flex",
+    system-ui,
+    "Segoe UI",
+    "Roboto",
+    Arial,
+    sans-serif;
+  --#{$prefix}-type-font-family-jetbrains:
+    "JetBrains Mono",
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    "Liberation Mono",
+    "Courier New",
+    monospace;
+  --#{$prefix}-ref-typeface-landing:
+    "Burbank Big",
+    var(--#{$prefix}-type-font-family-sans);
+
+  --md-ref-typeface-plain: var(--#{$prefix}-type-font-family-sans);
+  --md-ref-typeface-brand: var(--#{$prefix}-type-font-family-sans);
+  --md-ref-typeface-code: var(--#{$prefix}-type-font-family-jetbrains);
+
+  @each $role, $values in typographyTokens.$type-tokens {
+    $emphasized-weight: 500;
+    @if map.get($values, weight) >= 500 {
+      $emphasized-weight: 600;
+    }
+
+    --md-sys-typescale-emphasized-#{$role}-font-family-name: var(--md-ref-typeface-plain);
+    --md-sys-typescale-emphasized-#{$role}-font-family-style: normal;
+    --md-sys-typescale-emphasized-#{$role}-font-weight: #{$emphasized-weight};
+    --md-sys-typescale-emphasized-#{$role}-font-size: #{map.get($values, size)};
+    --md-sys-typescale-emphasized-#{$role}-tracking: #{map.get($values, tracking)};
+    --md-sys-typescale-emphasized-#{$role}-height: #{map.get($values, line-height)};
+    --md-sys-typescale-emphasized-#{$role}-text-transform: none;
+    --md-sys-typescale-emphasized-#{$role}-text-decoration: none;
+
+    --md-sys-typescale-#{$role}-font-family-name: var(--md-sys-typescale-emphasized-#{$role}-font-family-name);
+    --md-sys-typescale-#{$role}-font-family-style: var(--md-sys-typescale-emphasized-#{$role}-font-family-style);
+    --md-sys-typescale-#{$role}-font-weight: var(--md-sys-typescale-emphasized-#{$role}-font-weight);
+    --md-sys-typescale-#{$role}-font-size: var(--md-sys-typescale-emphasized-#{$role}-font-size);
+    --md-sys-typescale-#{$role}-tracking: var(--md-sys-typescale-emphasized-#{$role}-tracking);
+    --md-sys-typescale-#{$role}-height: var(--md-sys-typescale-emphasized-#{$role}-height);
+    --md-sys-typescale-#{$role}-text-transform: var(--md-sys-typescale-emphasized-#{$role}-text-transform);
+    --md-sys-typescale-#{$role}-text-decoration: var(--md-sys-typescale-emphasized-#{$role}-text-decoration);
+
+    --#{$prefix}-type-#{$role}-font-family-name: var(--md-sys-typescale-emphasized-#{$role}-font-family-name);
+    --#{$prefix}-type-#{$role}-font-family-style: var(--md-sys-typescale-emphasized-#{$role}-font-family-style);
+    --#{$prefix}-type-#{$role}-weight: var(--md-sys-typescale-emphasized-#{$role}-font-weight);
+    --#{$prefix}-type-#{$role}-font-size: var(--md-sys-typescale-emphasized-#{$role}-font-size);
+    --#{$prefix}-type-#{$role}-tracking: var(--md-sys-typescale-emphasized-#{$role}-tracking);
+    --#{$prefix}-type-#{$role}-line-height: var(--md-sys-typescale-emphasized-#{$role}-height);
+    --#{$prefix}-type-#{$role}-text-transform: var(--md-sys-typescale-emphasized-#{$role}-text-transform);
+    --#{$prefix}-type-#{$role}-text-decoration: var(--md-sys-typescale-emphasized-#{$role}-text-decoration);
+  }
+}
+
+@layer base {
+  html {
+    font-family: var(--#{$prefix}-type-font-family-sans);
+  }
+}

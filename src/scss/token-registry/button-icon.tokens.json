@@ -1,0 +1,101 @@
+{
+  "component": "button-icon",
+  "owner": "components/button-icon",
+  "tokens": [
+    {
+      "name": "--{prefix}-comp-icon-button-xs-size",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-icon-button-sm-size",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-icon-button-md-size",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-icon-button-lg-size",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-icon-button-xl-size",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-icon-button-xs-icon",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-icon-button-sm-icon",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-icon-button-md-icon",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-icon-button-lg-icon",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-icon-button-xl-icon",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-icon-button-radius-rest",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-icon-button-width-narrow",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-icon-button-width-default",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-icon-button-width-wide",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-icon-button-square-xs-radius",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-icon-button-square-sm-radius",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-icon-button-square-md-radius",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-icon-button-square-lg-radius",
+      "role": "component",
+      "stability": "stable"
+    },
+    {
+      "name": "--{prefix}-comp-icon-button-square-xl-radius",
+      "role": "component",
+      "stability": "stable"
+    }
+  ]
+}

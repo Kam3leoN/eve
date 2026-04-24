@@ -1,0 +1,22 @@
+@use "../../../scss/custom/config" as *;
+
+:host {
+  --#{$prefix}-comp-text-field-height: 56px;
+  --#{$prefix}-comp-text-field-padding-inline: 16px;
+  --#{$prefix}-comp-text-field-padding-top: 0;
+  --#{$prefix}-comp-text-field-padding-bottom: 0;
+  --#{$prefix}-comp-text-field-radius: 4px;
+  --#{$prefix}-comp-text-field-label-size: 1rem;
+  --#{$prefix}-comp-text-field-label-float-size: 0.75rem;
+  --#{$prefix}-comp-text-field-input-size: 1rem;
+  --#{$prefix}-comp-text-field-support-size: 0.75rem;
+  --#{$prefix}-comp-text-field-icon-size: 24px;
+  --#{$prefix}-comp-text-field-prefix-gap: 2px;
+  --#{$prefix}-comp-text-field-icon-gap: 16px;
+  --#{$prefix}-comp-text-field-icon-edge-padding: 12px;
+  --#{$prefix}-comp-text-field-surface-color: transparent;
+  --#{$prefix}-comp-text-field-outlined-notch-pad: 4px;
+  --#{$prefix}-comp-text-field-outlined-notch-duration: var(--md-sys-motion-duration-medium2, 300ms);
+  --#{$prefix}-comp-text-field-outlined-notch-spring: cubic-bezier(0.28, 1.25, 0.42, 0.99);
+}
+

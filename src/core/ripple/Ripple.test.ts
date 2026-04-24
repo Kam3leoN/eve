@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { Ripple } from './Ripple.js';
+import { withLibClass } from '../../lib.config';
+import { Ripple } from './Ripple';
 
 describe('Ripple', () => {
   it('injecte un ripple sur pointerdown', async () => {
@@ -15,7 +16,7 @@ describe('Ripple', () => {
     event.clientY = 10;
     host.dispatchEvent(event);
     await new Promise((resolve) => setTimeout(resolve, 20));
-    expect(host.querySelector('.eve-ripple')).toBeTruthy();
+    expect(host.querySelector(`.${withLibClass('ripple')}`)).toBeTruthy();
     ripple.destroy();
     host.remove();
   });

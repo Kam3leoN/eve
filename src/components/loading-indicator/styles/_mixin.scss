@@ -1,0 +1,163 @@
+@use "../../../scss/custom/config" as *;
+
+@mixin loading-host {
+  :host {
+    display: inline-flex;
+    inline-size: var(--#{$prefix}-comp-loading-indicator-size);
+    block-size: var(--#{$prefix}-comp-loading-indicator-size);
+    vertical-align: middle;
+    line-height: 0;
+  }
+}
+
+@mixin loading-structure {
+  .li-root,
+  .li-container,
+  .li-rotor,
+  .li-shape-stack,
+  .li-shape {
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  .li-root,
+  .li-container,
+  .li-rotor {
+    display: grid;
+    place-items: center;
+  }
+
+  .li-container {
+    border-radius: 9999px;
+    background: transparent;
+    max-inline-size: var(--#{$prefix}-comp-loading-indicator-size);
+    max-block-size: var(--#{$prefix}-comp-loading-indicator-size);
+  }
+
+  .li-rotor {
+    inline-size: var(--#{$prefix}-comp-loading-indicator-active-size-default);
+    block-size: var(--#{$prefix}-comp-loading-indicator-active-size-default);
+    max-inline-size: var(--#{$prefix}-comp-loading-indicator-active-size-default);
+    max-block-size: var(--#{$prefix}-comp-loading-indicator-active-size-default);
+    transform-origin: center;
+  }
+
+  .li-root[data-variant="contained"] .li-container {
+    background: var(--#{$prefix}-comp-loading-indicator-contained-container-color);
+  }
+
+  .li-root[data-variant="contained"] .li-rotor {
+    inline-size: calc(var(--#{$prefix}-comp-loading-indicator-size) - (2 * var(--#{$prefix}-comp-loading-indicator-contained-gap)));
+    block-size: calc(var(--#{$prefix}-comp-loading-indicator-size) - (2 * var(--#{$prefix}-comp-loading-indicator-contained-gap)));
+    max-inline-size: var(--#{$prefix}-comp-loading-indicator-active-size-contained);
+    max-block-size: var(--#{$prefix}-comp-loading-indicator-active-size-contained);
+  }
+
+  .li-shape-stack {
+    position: relative;
+    transform-origin: center;
+  }
+
+  .li-shape {
+    position: absolute;
+    inset: 0;
+    color: var(--#{$prefix}-comp-loading-indicator-default-active-color);
+    opacity: 0;
+    transform: scale(0.97);
+    transition:
+      opacity var(--#{$prefix}-motion-duration-medium1) var(--#{$prefix}-motion-easing-emphasized-decelerate),
+      transform var(--#{$prefix}-motion-duration-medium1) var(--#{$prefix}-motion-easing-emphasized-decelerate);
+  }
+
+  .li-root[data-variant="contained"] .li-shape {
+    color: var(--#{$prefix}-comp-loading-indicator-contained-active-color);
+  }
+
+  .li-root[data-front="a"] .li-shape--a,
+  .li-root[data-front="b"] .li-shape--b {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .li-root[data-animated] .li-shape-stack {
+    animation: eve-loading-spring var(--#{$prefix}-comp-loading-indicator-spring-duration)
+      var(--#{$prefix}-motion-easing-emphasized) infinite paused;
+    transform-origin: center;
+  }
+
+  .li-root[data-animated] .li-rotor {
+    animation: eve-loading-spin var(--#{$prefix}-comp-loading-indicator-rotation-spin-duration)
+      linear infinite;
+  }
+
+  :host([data-dir="rtl"]) .li-root[data-animated][data-phase="spin"] .li-rotor {
+    animation-name: eve-loading-spin-inverse;
+  }
+
+  .li-root[data-animated][data-phase="spring-swap"] .li-shape-stack {
+    animation-play-state: running;
+  }
+
+  .li-root[data-animated][data-phase="spring-swap"] .li-rotor {
+    animation-name: eve-loading-spin-inverse;
+    animation-duration: var(--#{$prefix}-comp-loading-indicator-rotation-spring-duration);
+  }
+
+  :host([data-dir="rtl"]) .li-root[data-animated][data-phase="spring-swap"] .li-rotor {
+    animation-name: eve-loading-spin;
+  }
+
+  @keyframes eve-loading-spin {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes eve-loading-spin-inverse {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(-360deg);
+    }
+  }
+
+  @keyframes eve-loading-spring {
+    0% {
+      transform: scale(1);
+    }
+
+    42% {
+      transform: scale(1.08);
+    }
+
+    100% {
+      transform: scale(0.96);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .li-rotor,
+    .li-shape-stack,
+    .li-shape {
+      animation: none !important;
+      transform: none !important;
+      transition: none !important;
+    }
+
+    .li-root[data-front="a"] .li-shape--a,
+    .li-root[data-front="b"] .li-shape--b {
+      opacity: 1;
+    }
+
+    .li-root[data-front="a"] .li-shape--b,
+    .li-root[data-front="b"] .li-shape--a {
+      opacity: 0;
+    }
+  }
+}

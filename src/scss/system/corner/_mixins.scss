@@ -1,0 +1,20 @@
+@use "sass:map";
+@use "./tokens" as cornerTokens;
+
+@function corner($token-name) {
+  @if map.has-key(cornerTokens.$corner-tokens, $token-name) {
+    @return map.get(cornerTokens.$corner-tokens, $token-name);
+  }
+  @error "Unknown corner token `#{$token-name}`.";
+}
+
+@mixin corner-radius($token-name: medium) {
+  border-radius: corner($token-name);
+}
+
+@mixin corner-radius-logical($start-start: medium, $start-end: medium, $end-end: medium, $end-start: medium) {
+  border-start-start-radius: corner($start-start);
+  border-start-end-radius: corner($start-end);
+  border-end-end-radius: corner($end-end);
+  border-end-start-radius: corner($end-start);
+}
