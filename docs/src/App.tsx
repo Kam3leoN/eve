@@ -25,15 +25,19 @@ const TypographyPage = lazy(() => import('./pages/TypographyPage').then((m) => (
 
 export default function App() {
   useEffect(() => {
-    const initEve = async () => {
-      const base = import.meta.env.BASE_URL;
-      const modulePath = `${base}eve/eve.min.mjs`;
-      const eve = await import(/* @vite-ignore */ modulePath);
-      (window as Window & { Eve?: unknown }).Eve = eve;
-      window.Eve?.registerElements?.();
-    };
+    const eveWindow = window as Window & { Eve?: { registerElements?: () => void } };
+    if (eveWindow.Eve?.registerElements) {
+      eveWindow.Eve.registerElements();
+      return;
+    }
 
-    void initEve();
+    const script = document.createElement('script');
+    script.type = 'module';
+    script.src = `${import.meta.env.BASE_URL}eve/eve-init.mjs`;
+    script.onload = () => {
+      eveWindow.Eve?.registerElements?.();
+    };
+    document.head.appendChild(script);
   }, []);
 
   return (
